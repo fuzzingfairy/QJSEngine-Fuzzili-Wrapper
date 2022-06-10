@@ -14,6 +14,21 @@
 #define REPRL_CWFD 101
 #define REPRL_DRFD 102
 #define REPRL_DWFD 103
+#include <QCoreApplication>
+#include <QJSEngine>
+
+// libfuzzer test for QJSEngine::evaluate()
+
+extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size) {
+    const QByteArray ba = QByteArray::fromRawData(Data, Size);
+    // avoid potential endless loops
+    if (ba.contains("for") || ba.contains("while"))
+        return 1;
+    int c = 0;
+    QCoreApplication a(c, nullptr);
+    QJSEngine().evaluate(ba);
+    return 0;
+}
 
 int main(int argc, char *argv[])
 {
