@@ -10,6 +10,9 @@
 #include <fcntl.h>    /* For O_* constants */
 #include <string>
 #include <stdint.h>
+#include <./jsconsole.h>
+
+#include <QDebug>
 
 #define REPRL_CRFD 100
 #define REPRL_CWFD 101
@@ -34,16 +37,31 @@ extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size)
     return 0;
 }
 
+class SegFault : public QObject
+{
+public:
+    Q_INVOKABLE SegFault()
+    {
+        std::cout << "CALLED";
+        *((int *)0x41414141) = 0x1337;
+    }
+
+};
+
+
+
 int main(int argc, char *argv[])
 {
     bool doReprl = false;
-    for (int i = 1; i < argc; i++){  
-        if (strcmp(argv[i], "-reprl") == 0){                 
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "-reprl") == 0)
+        {
             doReprl = true;
         }
     }
 
-    if (doReprl) 
+    if (doReprl)
     {
         // init app
         QApplication app(argc, argv);
@@ -55,60 +73,73 @@ int main(int argc, char *argv[])
 
         if (strcmp(buffer, hello) != 0)
         {
-            exit(-1);
+            // exit(-1);
         }
 
         // FIXME: possibly implement mmap speed optimization
 
         while (true)
         {
-            
-	    // init engine
-            QJSEngine myEngine;
 
+            // init engine
+            QJSEngine myEngine;
+            myEngine.installExtensions(QJSEngine::ConsoleExtension);
+
+            
+            QJSValue jsMetaObject = myEngine.newQMetaObject(&SegFault::staticMetaObject);
+            myEngine.globalObject().setProperty("Segfault", jsMetaObject);
+            QJSValue segfault = myEngine.evaluate("var myObject = new Segfault(); print(myObject); print('done');");
+
+
+            QJSValue fun = myEngine.evaluate("(function(a) { if (a === 'FUZZILI_CRASH') { new Segfault()}  })");
+            myEngine.globalObject().setProperty("fuzzili", fun);
+            std::cout << segfault.isError();
+            myEngine.evaluate("print(1 + 3)");
             read(REPRL_CRFD, &buffer, sizeof(buffer));
             char cexe[5] = "cexe";
-            if (strcmp(buffer,cexe) != 0) {
-		fprintf(stderr, "cexe not present in REPRL_CRFD\n");
+            if (strcmp(buffer, cexe) != 0)
+            {
+                fprintf(stderr, "cexe not present in REPRL_CRFD\n");
                 break;
             }
-	    // get size of fuzzed js byte array
+            // get size of fuzzed js byte array
             int64_t size;
-	    // read size
-            read(REPRL_CRFD,&size,8);
-	    // initialize fuzzed js byte array
-            char * input = (char *) malloc(size+1);
+            // read size
+            read(REPRL_CRFD, &size, 8);
+            // initialize fuzzed js byte array
+            char *input = (char *)malloc(size + 1);
             // TODO if mmap then read from mmap io
-            read(REPRL_DRFD,input,sizeof(input));
+            read(REPRL_DRFD, input, sizeof(input));
 
-	    // convert input into a raw byte array
+            // convert input into a raw byte array
             const QByteArray ba = QByteArray::fromRawData(input, sizeof(input));
 
-	    // evaluate byte array
+            // evaluate byte array
             QJSValue result = myEngine.evaluate(ba);
-	    int status = 0;
-	    if (result.isError()){
-		    fprintf(stderr, "Failed to evaluate byte array reprl\n");
-		    status = 1;
-	   } 
-            
-            //flush stderr, stdout
+            int status = 0;
+            if (result.isError())
+            {
+                fprintf(stderr, "Failed to evaluate byte array reprl\n");
+                status = 1;
+            }
+
+            // flush stderr, stdout
             fflush(stderr);
             fflush(stdout);
-    	    // bitmask with 0xff
-	    status = (status & 0XFF) << 8;
-	    // write our error code
-	    if (write(REPRL_CWFD, &status, 4) != 4)
-               exit(1);
-	    // collect garbage
+            // bitmask with 0xff
+            status = (status & 0XFF) << 8;
+            // write our error code
+            if (write(REPRL_CWFD, &status, 4) != 4)
+                exit(1);
+            // collect garbage
             myEngine.collectGarbage();
-	    // destroy engine
-	    myEngine.~QJSEngine();
-	    // reset coverage guards
-	    __sanitizer_cov_reset_edgeguards();
+            // destroy engine
+            myEngine.~QJSEngine();
+            // reset coverage guards
+            __sanitizer_cov_reset_edgeguards();
         }
 
-    return app.exec();
+        return app.exec();
     }
 }
 
