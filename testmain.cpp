@@ -9,6 +9,7 @@
 #include <sys/stat.h> /* For mode constants */
 #include <fcntl.h>    /* For O_* constants */
 #include <string>
+#include <stdint.h>
 
 #define REPRL_CRFD 100
 #define REPRL_CWFD 101
@@ -19,7 +20,8 @@
 
 // libfuzzer test for QJSEngine::evaluate()
 
-extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size) {
+extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size)
+{
     const QByteArray ba = QByteArray::fromRawData(Data, Size);
     // avoid potential endless loops
     if (ba.contains("for") || ba.contains("while"))
@@ -37,24 +39,51 @@ int main(int argc, char *argv[])
         char hello[] = "HELO";
         write(REPRL_CWFD, hello, sizeof(hello));
 
-        char buffer [4];
-        read(REPRL_CRFD,buffer,sizeof(buffer));
+        char buffer[4];
+        read(REPRL_CRFD, buffer, sizeof(buffer));
         std::cout << typeid(buffer).name();
-      
-        if (strcmp(buffer,hello) != 0) {
-         //   exit(-1);
-        }
-        
-        std::cout << "HELLO";
 
-        
-        QApplication app(argc, argv);
-        QJSEngine myEngine;
-        myEngine.globalObject().setProperty("myNumber", 123);
-        QJSValue three = myEngine.evaluate("myNumber + 12");
-        qDebug() << three.toString();
-        exit(0);
-        return app.exec();
+        if (strcmp(buffer, hello) != 0)
+        {
+            //   exit(-1);
+        }
+
+        // TODO implement mmap speed optimization
+
+        while (true)
+        {
+            
+            read(REPRL_CRFD, &buffer, sizeof(buffer));
+            char cexe[5] = "cexe";
+            if (strcmp(buffer,cexe) != 0) {
+                exit(-1);
+            }
+            int64_t size;
+            read(REPRL_CRFD,&size,8);
+            char * input = (char *) malloc(size+1);
+            // TODO if mmap then read from mmap io
+            read(REPRL_DRFD,input,sizeof(input));
+
+            const QByteArray ba = QByteArray::fromRawData(input, sizeof(input));
+
+            QApplication app(argc, argv);
+            QJSEngine myEngine;
+            myEngine.globalObject().setProperty("myNumber", 123);
+            QJSValue three = myEngine.evaluate(ba);
+            
+            //flush stdin, stdout
+            //fflush(0)
+            //fflush(1)
+
+
+            myEngine.collectGarbage();
+
+            __sanitizer_cov_reset_edgeguards();
+            
+
+            exit(0);
+            return app.exec();
+        }
     }
 }
 

@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun 10 11:38:07 2022
+# Make data base, printed on Mon Jun 13 09:37:36 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ QINSTALL_PROGRAM = /usr/lib/qt5/bin/qmake -install qinstall -exe
 # makefile (from 'Makefile', line 41)
 LINK = g++
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-0a403d30-d6b0-4a60-bbaf-f16f7c58780c.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d38f9c24-cac1-4a7f-a803-81fc19f2b2c0.sock
 # environment
 VSCODE_CWD = /home/emma
 # environment
@@ -115,7 +115,8 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 1979
+ 
+VSCODE_PID = 11032
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # makefile (from 'Makefile', line 45)
@@ -151,7 +152,7 @@ MAKECMDGOALS := all
 # makefile (from 'Makefile', line 17)
 DEFINES = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 # environment
-SHLVL = 0
+SHLVL = 1
 # environment
 MAKELEVEL := 0
 # makefile (from 'Makefile', line 24)
@@ -159,7 +160,7 @@ MKDIR = mkdir -p
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-LD_ARGV0_REL = ../bin/garcon
+LD_ARGV0_REL = ../bin/vshd
 # environment
 PATH = /home/emma/.local/bin:/home/emma/.config/nvm/versions/node/v17.4.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin
 # default
@@ -169,7 +170,7 @@ XCURSOR_SIZE_LOW_DENSITY = 15
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = ff1334f5b76f4065ae295849dbd93279
+INVOCATION_ID = ff1196aa31f54e6493a011df228b1459
 # environment
 XDG_CONFIG_HOME = /home/emma/.config
 # environment
@@ -183,7 +184,7 @@ COPY_FILE = cp -f
 # environment
 XDG_CURRENT_DESKTOP = X-Generic
 # environment
-LS_COLORS = 
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
 # automatic
 +F = $(notdir $+)
 # environment
@@ -217,7 +218,7 @@ COPY = cp -f
 # makefile (from 'Makefile', line 20)
 INCPATH = -I. -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtQml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 # environment
-MANAGERPID = 167
+MANAGERPID = 164
 # environment
 NCURSES_NO_UTF8_ACS = 1
 # makefile (from 'Makefile', line 9)
@@ -225,7 +226,7 @@ MAKEFILE = Makefile
 # environment
 SOMMELIER_DRM_DEVICE = /dev/dri/renderD128
 # environment
-_ = /usr/share/code/code
+_ = /usr/bin/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 18)
@@ -235,7 +236,7 @@ DISPLAY_LOW_DENSITY = :1
 # environment
 NVM_CD_FLAGS = 
 # environment
-JOURNAL_STREAM = 7:20113
+JOURNAL_STREAM = 7:21604
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -244,6 +245,8 @@ HOME = /home/emma
 ELECTRON_RUN_AS_NODE = 1
 # environment
 VSCODE_IPC_HOOK = /run/user/1000/vscode-842d6cdb-1.68.0-main.sock
+# environment
+TERM = xterm-256color
 # environment
 XCURSOR_SIZE = 30
 # default
@@ -256,6 +259,10 @@ SUFFIXES :=
 TARGET = qjs
 # environment
 QT_AUTO_SCREEN_SCALE_FACTOR = 1
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
 # makefile (from 'Makefile', line 36)
 MOVE = mv -f
 # makefile (from 'Makefile', line 19)
@@ -268,13 +275,12 @@ STRIP = strip
 CXX = g++
 # makefile (from 'Makefile', line 15)
 CC = gcc
- 
 # makefile (from 'Makefile', line 42)
 LFLAGS = -Wl,-O1
 # makefile (from 'Makefile', line 55)
 SOURCES = testmain.cpp 
 # variable set hash-table stats:
-# Load=131/1024=13%, Rehash=0, Collisions=8/163=5%
+# Load=134/1024=13%, Rehash=0, Collisions=9/173=5%
 
 # Pattern-specific Variable Values
 
@@ -282,9 +288,9 @@ SOURCES = testmain.cpp
 
 # Directories
 
-# . (device 49, inode 1005612): 9 files, no impossibilities.
+# . (device 49, inode 1005612): 10 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -391,6 +397,7 @@ mocclean: compiler_moc_header_clean compiler_moc_objc_header_clean compiler_moc_
 
 compiler_yacc_decl_make_all:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -448,7 +455,7 @@ benchmark: first
 
 Makefile: qjs.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-base.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-unix.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/qconfig.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_edid_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_egl_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fb_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_glx_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_gui_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_input_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_kms_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_network_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qml.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmlmodels.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmltest.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmlworkerscript.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quick.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quickwidgets.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_service_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_theme_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xkbcommon_support_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_xml_private.pri /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_functions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf .qmake.stash /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources_functions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/moc.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/opengl.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/uic.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/thread.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/testcase_targets.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf qjs.pro
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-10 11:37:50.32281422
+#  Last modified 2022-06-13 09:37:36.000495288
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 236):
@@ -514,16 +521,18 @@ distdir: FORCE
 
 qjs: testmain.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-10 11:37:54.661814029
+#  Last modified 2022-06-10 12:14:46.823716501
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
 #  recipe to execute (from 'Makefile', line 150):
-	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS) -lrt
+	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 # Not a target:
 testmain.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 11:37:25.991815293
+#  Last modified 2022-06-13 09:35:50.249500223
 #  File has been updated.
 #  Successfully updated.
 
@@ -539,7 +548,6 @@ testmain.cpp:
 #  File has been updated.
 #  Successfully updated.
 
- 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri:
 #  Implicit rule search has been done.
 #  Last modified 2022-05-14 14:12:36
@@ -601,9 +609,28 @@ compiler_uic_clean:
 
 testmain.o: testmain.cpp
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-10 11:37:29.23781515
+#  Implicit/static pattern stem: ''
+#  Last modified 2022-06-10 12:14:46.255716526
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := testmain.o
+# automatic
+# * := 
+# automatic
+# < := testmain.cpp
+# automatic
+# + := testmain.cpp
+# automatic
+# % := 
+# automatic
+# ^ := testmain.cpp
+# automatic
+# ? := testmain.cpp
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/15=7%
 #  recipe to execute (from 'Makefile', line 387):
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o testmain.o testmain.cpp
 
@@ -780,7 +807,9 @@ all: Makefile qjs
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri:
 #  Implicit rule search has been done.
@@ -818,7 +847,6 @@ qmake_all: FORCE
 #  Successfully updated.
 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_core_private.pri:
- 
 #  Implicit rule search has been done.
 #  Last modified 2022-05-14 14:12:36
 #  File has been updated.
@@ -873,6 +901,7 @@ compiler_rcc_make_all:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/gcc-base-unix.conf:
 #  Implicit rule search has been done.
 #  Last modified 2020-10-27 03:02:11
+ 
 #  File has been updated.
 #  Successfully updated.
 
@@ -986,6 +1015,12 @@ compiler_lex_make_all:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 first: all
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -1039,19 +1074,19 @@ compiler_yacc_decl_clean:
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=126/1024=12%, Rehash=0, Collisions=29/344=8%
+# Load=126/1024=12%, Rehash=0, Collisions=29/345=8%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 131 / storage = 6417 B / avg = 48 B
-# current buf: size = 8162 B / used = 6417 B / count = 131 / avg = 48 B
+# strcache buffers: 1 (0) / strings = 132 / storage = 6422 B / avg = 48 B
+# current buf: size = 8162 B / used = 6422 B / count = 132 / avg = 48 B
 
-# strcache performance: lookups = 373 / hit rate = 64%
+# strcache performance: lookups = 375 / hit rate = 64%
 # hash-table stats:
-# Load=131/8192=2%, Rehash=0, Collisions=6/373=2%
-# Finished Make data base on Fri Jun 10 11:38:07 2022
+# Load=132/8192=2%, Rehash=0, Collisions=6/375=2%
+# Finished Make data base on Mon Jun 13 09:37:36 2022
 
  
