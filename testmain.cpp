@@ -18,6 +18,8 @@
 #include <QCoreApplication>
 #include <QJSEngine>
 
+void __sanitizer_cov_reset_edgeguards();
+
 // libfuzzer test for QJSEngine::evaluate()
 
 extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size)
@@ -34,56 +36,79 @@ extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size)
 
 int main(int argc, char *argv[])
 {
-    if (true)
+    bool doReprl = false;
+    for (int i = 1; i < argc; i++){  
+        if (strcmp(argv[i], "-reprl") == 0){                 
+            doReprl = true;
+        }
+    }
+
+    if (doReprl) 
     {
+        // init app
+        QApplication app(argc, argv);
         char hello[] = "HELO";
         write(REPRL_CWFD, hello, sizeof(hello));
 
         char buffer[4];
         read(REPRL_CRFD, buffer, sizeof(buffer));
-        std::cout << typeid(buffer).name();
 
         if (strcmp(buffer, hello) != 0)
         {
-            //   exit(-1);
+            exit(-1);
         }
 
-        // TODO implement mmap speed optimization
+        // FIXME: possibly implement mmap speed optimization
 
         while (true)
         {
             
+	    // init engine
+            QJSEngine myEngine;
+
             read(REPRL_CRFD, &buffer, sizeof(buffer));
             char cexe[5] = "cexe";
             if (strcmp(buffer,cexe) != 0) {
-                exit(-1);
+		fprintf(stderr, "cexe not present in REPRL_CRFD\n");
+                break;
             }
+	    // get size of fuzzed js byte array
             int64_t size;
+	    // read size
             read(REPRL_CRFD,&size,8);
+	    // initialize fuzzed js byte array
             char * input = (char *) malloc(size+1);
             // TODO if mmap then read from mmap io
             read(REPRL_DRFD,input,sizeof(input));
 
+	    // convert input into a raw byte array
             const QByteArray ba = QByteArray::fromRawData(input, sizeof(input));
 
-            QApplication app(argc, argv);
-            QJSEngine myEngine;
-            myEngine.globalObject().setProperty("myNumber", 123);
-            QJSValue three = myEngine.evaluate(ba);
+	    // evaluate byte array
+            QJSValue result = myEngine.evaluate(ba);
+	    int status = 0;
+	    if (result.isError()){
+		    fprintf(stderr, "Failed to evaluate byte array reprl\n");
+		    status = 1;
+	   } 
             
-            //flush stdin, stdout
-            //fflush(0)
-            //fflush(1)
-
-
+            //flush stderr, stdout
+            fflush(stderr);
+            fflush(stdout);
+    	    // bitmask with 0xff
+	    status = (status & 0XFF) << 8;
+	    // write our error code
+	    if (write(REPRL_CWFD, &status, 4) != 4)
+               exit(1);
+	    // collect garbage
             myEngine.collectGarbage();
-
-            __sanitizer_cov_reset_edgeguards();
-            
-
-            exit(0);
-            return app.exec();
+	    // destroy engine
+	    myEngine.~QJSEngine();
+	    // reset coverage guards
+	    __sanitizer_cov_reset_edgeguards();
         }
+
+    return app.exec();
     }
 }
 
