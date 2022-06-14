@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
             myEngine.globalObject().setProperty("SegFault", segvalue);
 
             // register function to trigger a segfault
-            QJSValue fun = myEngine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { print(SegFault.fault()); } })");
+            QJSValue fun = myEngine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) {print(SegFault.fault()); }} })");
             myEngine.globalObject().setProperty("fuzzilli", fun);
 
             read(REPRL_CRFD, &buffer, sizeof(buffer));
