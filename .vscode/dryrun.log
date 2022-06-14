@@ -1,6 +1,5 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/emma/qjs'
- 
-make: Nothing to be done for 'first'.
+g++ -Wl,-O1 -o qjs testmain.o moc_segfault.o   /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Qml.so /usr/lib/x86_64-linux-gnu/libQt5Network.so /usr/lib/x86_64-linux-gnu/libQt5Core.so -lGL -lpthread    -lrt
 make: Leaving directory '/home/emma/qjs'
  

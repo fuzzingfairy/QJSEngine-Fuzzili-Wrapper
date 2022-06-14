@@ -32,7 +32,7 @@ let qtjsProfile (
 
     // JavaScript code snippets that cause a crash in the target engine.
     // Used to verify that crashes can be detected.
-    crashTests: ["SegFault.fault()"],
+    crashTests: ["fuzzilli('FUZZILLI_CRASH', 0)"],
     
     additionalCodeGenerators: WeightedList<CodeGenerator>([]), // TODO: add jit compilation triggerS
     additionalProgramTemplates: WeightedList<ProgramTemplate>([]),

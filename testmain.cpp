@@ -39,7 +39,6 @@ extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size)
 }
 */
 
-
 int main(int argc, char *argv[])
 {
     bool doReprl = false;
@@ -72,30 +71,20 @@ int main(int argc, char *argv[])
 
             // init engine
             QJSEngine myEngine;
-	    // install console extension
-            //myEngine.installExtensions(QJSEngine::ConsoleExtension);
+            // install console extension
+            // myEngine.installExtensions(QJSEngine::ConsoleExtension);
 
-            
-	    // create a newQMetaObject
-            //QJSValue jsMetaObject = myEngine.newQMetaObject(&SegFault::staticMetaObject);
-	    // make newQMetaObject accessible to javascript via global object
-            //myEngine.globalObject().setProperty("Segfault", jsMetaObject); // FIXME: could this be because we arent correctly referencing the global object in our evaluation
+            // make a segfault object
+            QObject *instance = new SegFault;
+            // turn it into a javascript object
+            QJSValue segvalue = myEngine.newQObject(instance);
+            // make it accessible via the global property
+            myEngine.globalObject().setProperty("SegFault", segvalue);
 
-	    // make a segfault object
-	    QObject *instance = new SegFault;
-	    // turn it into a javascript object
-	    QJSValue segvalue = myEngine.newQObject(instance);
-	    // make it accessible via the global property
-	    myEngine.globalObject().setProperty("SegFault", segvalue);
+            // register function to trigger a segfault
+            QJSValue fun = myEngine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) {print(SegFault.fault()); }} })");
+            myEngine.globalObject().setProperty("fuzzilli", fun);
 
-	    // trigger a segfault
-            QJSValue segfault = myEngine.evaluate("print(SegFault.fault());");
-
-
-            QJSValue fun = myEngine.evaluate("(function(a) { if (a === 'FUZZILI_CRASH') { new Segfault()}  })");
-            myEngine.globalObject().setProperty("fuzzili", fun);
-            std::cout << segfault.isError();
-            myEngine.evaluate("print(1 + 3)");
             read(REPRL_CRFD, &buffer, sizeof(buffer));
             char cexe[5] = "cexe";
             if (strcmp(buffer, cexe) != 0)
