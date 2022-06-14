@@ -9,6 +9,7 @@ class JSConsole : public QObject
 public:
     explicit JSConsole(QObject *parent = 0);
 
+
 signals:
 
 public slots:

@@ -20,31 +20,23 @@ let qtjsProfile (
     processArguments: ["-reprl"],
     processEnv: ["UBSAN_OPTIONS":"handle_segv=0"]
     codePrefix: """
-                function placeholder(){}
-                function main() {
                 """,
 
-    codeSuffix: """
-                gc();
-                }
-                main();
-                """,
+    codeSuffix: """ """,
 
     ecmaVersion: ECMAScriptVersion.es7,
 
     // JavaScript code snippets that cause a crash in the target engine.
     // Used to verify that crashes can be detected.
-    crashTests: ["fuzzilli('FUZZILLI_CRASH')"],
+    crashTests: ["SegFault.fault()"],
     
-    additionalCodeGenerators: WeightedList<CodeGenerator>([]),
+    additionalCodeGenerators: WeightedList<CodeGenerator>([]), // TODO: add jit compilation triggerS
     additionalProgramTemplates: WeightedList<ProgramTemplate>([]),
     
     disabledCodeGenerators: [],
    
     additionalBuiltins: [
-        "gc"                  : .function([] => .undefined),
-        "print"               : .function([.plain(.jsString)] => .undefined),
-        "placeholder"         : .function([] => .undefined),
+
                         ])
 
 

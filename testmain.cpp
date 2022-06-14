@@ -10,7 +10,7 @@
 #include <fcntl.h>    /* For O_* constants */
 #include <string>
 #include <stdint.h>
-#include <./jsconsole.h>
+#include <segfault.h>
 
 #include <QDebug>
 
@@ -25,6 +25,7 @@ void __sanitizer_cov_reset_edgeguards();
 
 // libfuzzer test for QJSEngine::evaluate()
 
+/*
 extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size)
 {
     const QByteArray ba = QByteArray::fromRawData(Data, Size);
@@ -36,18 +37,7 @@ extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size)
     QJSEngine().evaluate(ba);
     return 0;
 }
-
-class SegFault : public QObject
-{
-public:
-    Q_INVOKABLE SegFault()
-    {
-        std::cout << "CALLED";
-        *((int *)0x41414141) = 0x1337;
-    }
-
-};
-
+*/
 
 
 int main(int argc, char *argv[])
@@ -75,7 +65,6 @@ int main(int argc, char *argv[])
         {
             // exit(-1);
         }
-
         // FIXME: possibly implement mmap speed optimization
 
         while (true)
@@ -83,12 +72,24 @@ int main(int argc, char *argv[])
 
             // init engine
             QJSEngine myEngine;
-            myEngine.installExtensions(QJSEngine::ConsoleExtension);
+	    // install console extension
+            //myEngine.installExtensions(QJSEngine::ConsoleExtension);
 
             
-            QJSValue jsMetaObject = myEngine.newQMetaObject(&SegFault::staticMetaObject);
-            myEngine.globalObject().setProperty("Segfault", jsMetaObject);
-            QJSValue segfault = myEngine.evaluate("var myObject = new Segfault(); print(myObject); print('done');");
+	    // create a newQMetaObject
+            //QJSValue jsMetaObject = myEngine.newQMetaObject(&SegFault::staticMetaObject);
+	    // make newQMetaObject accessible to javascript via global object
+            //myEngine.globalObject().setProperty("Segfault", jsMetaObject); // FIXME: could this be because we arent correctly referencing the global object in our evaluation
+
+	    // make a segfault object
+	    QObject *instance = new SegFault;
+	    // turn it into a javascript object
+	    QJSValue segvalue = myEngine.newQObject(instance);
+	    // make it accessible via the global property
+	    myEngine.globalObject().setProperty("SegFault", segvalue);
+
+	    // trigger a segfault
+            QJSValue segfault = myEngine.evaluate("print(SegFault.fault());");
 
 
             QJSValue fun = myEngine.evaluate("(function(a) { if (a === 'FUZZILI_CRASH') { new Segfault()}  })");

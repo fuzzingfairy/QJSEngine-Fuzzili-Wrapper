@@ -5,7 +5,7 @@
 TEMPLATE = app
 TARGET = qjs
 INCLUDEPATH += .
-QT += gui widgets qml
+QT += core gui widgets qml
 
 # You can make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -16,3 +16,4 @@ QT += gui widgets qml
 
 # Input
 SOURCES += testmain.cpp
+HEADERS += segfault.h
