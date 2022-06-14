@@ -20,9 +20,13 @@ let qtjsProfile (
     processArguments: ["-reprl"],
     processEnv: ["UBSAN_OPTIONS":"handle_segv=0"]
     codePrefix: """
+                function main() { 
                 """,
 
-    codeSuffix: """ """,
+    codeSuffix: """ 
+                }
+                main();
+                """,
 
     ecmaVersion: ECMAScriptVersion.es7,
 
@@ -36,6 +40,23 @@ let qtjsProfile (
     disabledCodeGenerators: [],
    
     additionalBuiltins: [
+        "importModule"                : .function([.plain(.jsString)] => .unknown),
+        "installExtensions"           : .function([.plain(.jsString)] => .undefined),
+        "setUiLanguage"               : .function([.plain(.jsString)] => .undefined),
+        "fromScriptValue"             : .function([.plain(.anything)] => .object()),
+        "toScriptValue"               : .function([.plain(.object())] => .unknown),
+        "newQMetaObject"              : .function([.plain(.anything)] => .unknown),
+        "QJSEngine"                   : .function([.plain(.anything)] => .unknown),
+        "globalObject"                : .function([.plain(.anything)] => .unknown),
+        "collectGarbage"              : .function([] => .undefined),
+        "newArray"                    : .function([.plain(.number)] => .unknown),
+        "newErrorObject"              : .function([.plain(.anything), .plain(.jsString)] => .unknown),
+        "newObject"                   : .function([] => .unknown),
+        "isInterrupted"               : .function([] => .bool), 
+        "setInterrupted"              : .function([.plain(.bool)] => .undefined),
+        "throwError"                  : .function([.plain(.jsString)] => .undefined),
+        "~QJSEngine"                  : .function([] => .undefined),
+        "uiLanguage"                  : .function([] => .jsString)
 
                         ])
 
