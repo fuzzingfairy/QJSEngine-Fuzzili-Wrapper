@@ -22,7 +22,8 @@ let qtjsProfile (
     codePrefix: """
                 """,
 
-    codeSuffix: """ """,
+    codeSuffix: """
+                """,
 
     ecmaVersion: ECMAScriptVersion.es7,
 
