@@ -141,7 +141,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		qjs.pro segfault.h testmain.cpp
 QMAKE_TARGET  = qjs
 DESTDIR       = 
-TARGET        = qjs
+TARGET        = fuzzilli-intstrumentation
 
 
 first: all
