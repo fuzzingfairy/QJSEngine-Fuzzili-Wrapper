@@ -11,24 +11,23 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//FIXME: make sure to put the following line in profile.swift profiles array
-// "qtjs": qtjsProfile
 
 import Fuzzilli
 
-let qtjsProfile (
+let qtjsProfile = Profile(
     processArguments: ["-reprl"],
-    processEnv: ["UBSAN_OPTIONS":"handle_segv=0"]
+    processEnv: ["UBSAN_OPTIONS":"handle_segv=0"],
+
     codePrefix: """
                 function main() { 
                 """,
 
-    codeSuffix: """ 
+    codeSuffix: """
                 }
                 main();
                 """,
 
-    ecmaVersion: ECMAScriptVersion.es7,
+    ecmaVersion: ECMAScriptVersion.es6,
 
     // JavaScript code snippets that cause a crash in the target engine.
     // Used to verify that crashes can be detected.
@@ -52,12 +51,11 @@ let qtjsProfile (
         "newArray"                    : .function([.plain(.number)] => .unknown),
         "newErrorObject"              : .function([.plain(.anything), .plain(.jsString)] => .unknown),
         "newObject"                   : .function([] => .unknown),
-        "isInterrupted"               : .function([] => .bool), 
-        "setInterrupted"              : .function([.plain(.bool)] => .undefined),
+        "isInterrupted"               : .function([] => .number), 
+        "setInterrupted"              : .function([.plain(.number)] => .undefined),
         "throwError"                  : .function([.plain(.jsString)] => .undefined),
         "~QJSEngine"                  : .function([] => .undefined),
         "uiLanguage"                  : .function([] => .jsString)
 
                         ])
-
 
