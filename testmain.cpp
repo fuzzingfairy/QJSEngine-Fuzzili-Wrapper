@@ -11,7 +11,6 @@
 #include <string>
 #include <stdint.h>
 #include <segfault.h>
-
 #include <QDebug>
 
 #define REPRL_CRFD 100
@@ -22,8 +21,6 @@
 #include <QJSEngine>
 
 void __sanitizer_cov_reset_edgeguards();
-
-// libfuzzer test for QJSEngine::evaluate()
 
 /*
 extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size)
@@ -52,20 +49,18 @@ int main(int argc, char *argv[])
 
     if (doReprl)
     {
-        // init app
-        QApplication app(argc, argv);
         char hello[] = "HELO";
         write(REPRL_CWFD, hello, sizeof(hello));
-
-        char buffer[4];
+       
+	QApplication app(argc, argv);
+	char buffer[4];
         read(REPRL_CRFD, buffer, sizeof(buffer));
-
+	
         if (strcmp(buffer, hello) != 0)
-        {
-            // exit(-1);
+	{
+	//	exit(-1);
         }
         // FIXME: possibly implement mmap speed optimization
-
         while (true)
         {
 
@@ -105,19 +100,20 @@ int main(int argc, char *argv[])
             const QByteArray ba = QByteArray::fromRawData(input, sizeof(input));
 
             // evaluate byte array
-            QJSValue result = myEngine.evaluate(ba);
-            int status = 0;
+            QJSValue result = myEngine.evaluate("");
+            int status = 100;
             if (result.isError())
             {
                 fprintf(stderr, "Failed to evaluate byte array reprl\n");
                 status = 1;
             }
-
+	    printf("status %d\n",status);
+	    qDebug() << result.toString();
             // flush stderr, stdout
             fflush(stderr);
             fflush(stdout);
             // bitmask with 0xff
-            status = (status & 0XFF) << 8;
+            //status = (status & 0XFF) << 8;
             // write our error code
             if (write(REPRL_CWFD, &status, 4) != 4)
                 exit(1);
