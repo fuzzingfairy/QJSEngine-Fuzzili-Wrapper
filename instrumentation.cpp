@@ -11,9 +11,12 @@
 #include <string>
 #include <stdint.h>
 #include <segfault.h>
+#include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 
 #include <QDebug>
-
 #define REPRL_CRFD 100
 #define REPRL_CWFD 101
 #define REPRL_DRFD 102
@@ -21,11 +24,17 @@
 #include <QCoreApplication>
 #include <QJSEngine>
 
+// logging configuration
+#define DEBUG true
+FILE* logFile = fopen("./logs/output.log", "w+");
+int LOG = fileno(logFile);
+
 void __sanitizer_cov_reset_edgeguards();
 
-// libfuzzer test for QJSEngine::evaluate()
 
 /*
+//libfuzzer test for QJSEngine::evaluate() from Qt repo
+//
 extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size)
 {
     const QByteArray ba = QByteArray::fromRawData(Data, Size);
@@ -39,77 +48,75 @@ extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size)
 }
 */
 
-int main(int argc, char *argv[])
-{
-    bool doReprl = false;
-    for (int i = 1; i < argc; i++)
-    {
-        if (strcmp(argv[i], "-reprl") == 0)
-        {
-            doReprl = true;
-        }
+QJSEngine initializeEnvironment(int argc, char *argv[]){
+    // begin communication with the parent process
+    char hello[] = "HELO";
+    write(REPRL_CWFD, &hello, sizeof(hello));
+    char buffer[4];
+    read(REPRL_CRFD, &buffer, sizeof(buffer));
+    if (strcmp(buffer, hello) != 0) {
+        exit(-1);
     }
 
-    if (doReprl)
-    {
-        // init app
-        QApplication app(argc, argv);
-        char hello[] = "HELO";
-        write(REPRL_CWFD, hello, sizeof(hello));
+    //initialize the application and its js engine
+    QJSEngine engine;
+    // install console extension
+    // engine.installExtensions(QJSEngine::ConsoleExtension);
 
-        char buffer[4];
-        read(REPRL_CRFD, buffer, sizeof(buffer));
+    // make a segfault object so fuzzilli can tell what a segfault looks like
+    QObject *instance = new SegFault;
+    // turn it into a javascript object
+    QJSValue segvalue = engine.newQObject(instance);
+    // make it accessible via the global property
+    engine.globalObject().setProperty("SegFault", segvalue);
 
-        if (strcmp(buffer, hello) != 0)
-        {
-            // exit(-1);
-        }
-        // FIXME: possibly implement mmap speed optimization
+    // register function to trigger a segfault
+    QJSValue fun = engine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) {print(SegFault.fault()); }} })");
+    engine.globalObject().setProperty("fuzzilli", fun);
 
-        while (true)
-        {
+    if (DEBUG) {
+    char debug[] = "\n[!] finished initialization\n";
+    write(LOG, &debug, sizeof(debug));
+    }
+}
 
-            // init engine
-            QJSEngine myEngine;
-            // install console extension
-            // myEngine.installExtensions(QJSEngine::ConsoleExtension);
 
-            // make a segfault object
-            QObject *instance = new SegFault;
-            // turn it into a javascript object
-            QJSValue segvalue = myEngine.newQObject(instance);
-            // make it accessible via the global property
-            myEngine.globalObject().setProperty("SegFault", segvalue);
-
-            // register function to trigger a segfault
-            QJSValue fun = myEngine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) {print(SegFault.fault()); }} })");
-            myEngine.globalObject().setProperty("fuzzilli", fun);
-
+int main(int argc, char *argv[]) {
+    // check command line args
+    bool doReprl = false;
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-reprl") == 0) {
+            doReprl = true;
+	}
+    }
+    if (doReprl) {
+	// initialize environment
+        QCoreApplication app(argc, argv);
+	QJSEngine engine = initializeEnvironment(argc, argv);
+        while (true) {
+	    // check first 4 bytes of command from parent
+      	    char buffer[4];
             read(REPRL_CRFD, &buffer, sizeof(buffer));
             char cexe[5] = "cexe";
-            if (strcmp(buffer, cexe) != 0)
-            {
-                fprintf(stderr, "cexe not present in REPRL_CRFD\n");
+            if (strcmp(buffer, cexe) != 0) {
+                char debug[] =  "\n[INFO] cexe not present in REPRL_CRFD\n";
+		write(LOG, debug, sizeof(debug));
                 break;
             }
             // get size of fuzzed js byte array
             int64_t size;
-            // read size
             read(REPRL_CRFD, &size, 8);
-            // initialize fuzzed js byte array
-            char *input = (char *)malloc(size + 1);
-            // TODO if mmap then read from mmap io
-            read(REPRL_DRFD, input, sizeof(input));
-
-            // convert input into a raw byte array
+            // read fuzzed javascript from parent
+            char *input = (char *)malloc(size + 1); read(REPRL_DRFD, &input, sizeof(input));
             const QByteArray ba = QByteArray::fromRawData(input, sizeof(input));
 
             // evaluate byte array
-            QJSValue result = myEngine.evaluate(ba);
+            QJSValue result = engine.evaluate(ba);
             int status = 0;
             if (result.isError())
             {
-                fprintf(stderr, "Failed to evaluate byte array reprl\n");
+                char debug[] =  "\n[INFO] check result of engine evaluation\n";
+		write(LOG, debug, sizeof(debug));
                 status = 1;
             }
 
@@ -118,13 +125,13 @@ int main(int argc, char *argv[])
             fflush(stdout);
             // bitmask with 0xff
             status = (status & 0XFF) << 8;
-            // write our error code
+            // write our status code
             if (write(REPRL_CWFD, &status, 4) != 4)
                 exit(1);
             // collect garbage
-            myEngine.collectGarbage();
+            engine.collectGarbage();
             // destroy engine
-            myEngine.~QJSEngine();
+            engine.~QJSEngine();
             // reset coverage guards
             __sanitizer_cov_reset_edgeguards();
         }
