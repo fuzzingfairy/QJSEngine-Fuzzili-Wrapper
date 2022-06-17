@@ -30,7 +30,6 @@ int LOG = fileno(logFile);
 
 void __sanitizer_cov_reset_edgeguards();
 
-
 int main(int argc, char *argv[])
 {
     // check command line args
@@ -44,14 +43,16 @@ int main(int argc, char *argv[])
     }
     if (doReprl)
     {
-        char hello[] = "HELO";
-        write(REPRL_CWFD, &hello, sizeof(hello));
-
-        char buffer[4];
-        read(REPRL_CRFD, &buffer, sizeof(buffer));
-        if (strcmp(buffer, hello) != 0)
+        char helo[] = "HELO";
+        if (write(REPRL_CWFD, helo, 4) != 4 || read(REPRL_CRFD, helo, 4) != 4)
         {
-            //exit(-1);
+            printf("Invalid HELO response from parent\n");
+        }
+
+        if (memcmp(helo, "HELO", 4) != 0)
+        {
+            printf("Invalid response from parent\n");
+            _exit(-1);
         }
 
         QCoreApplication app(argc, argv);
@@ -81,23 +82,42 @@ int main(int argc, char *argv[])
         // initialize environment
         while (true)
         {
-            // check first 4 bytes of command from parent
-            char buffer[4];
-            read(REPRL_CRFD, &buffer, sizeof(buffer));
-            char cexe[5] = "cexe";
-            if (strcmp(buffer, cexe) != 0)
+            size_t script_size = 0;
+            unsigned action;
+            if (read(REPRL_CRFD, &action, 4) != 4)
             {
-                char debug[] = "\n[INFO] cexe not present in REPRL_CRFD\n";
-                write(LOG, debug, sizeof(debug));
-                break;
+                printf("Failed reading caction\n");
             }
-            // get size of fuzzed js byte array
-            int64_t size;
-            read(REPRL_CRFD, &size, 8);
-            // read fuzzed javascript from parent
-            char *input = (char *)malloc(size + 1);
-            read(REPRL_DRFD, &input, sizeof(input));
-            const QByteArray ba = QByteArray::fromRawData(input, sizeof(input));
+            if (action == 'cexe')
+            {
+                if (read(REPRL_CRFD, &script_size, 8) == 8)
+                {
+                    printf("error reading script size\n");
+                }
+            }
+            else
+            {
+                fprintf(stderr, "Unknown action: %u\n", action);
+                _exit(-1);
+            }
+            char *script_src = (char *)(malloc(script_size + 1));
+
+            char *ptr = script_src;
+            size_t remaining = script_size;
+            while (remaining > 0)
+            {
+                ssize_t rv = read(REPRL_DRFD, ptr, remaining);
+                if (rv <= 0)
+                {
+                    fprintf(stderr, "Failed to load script\n");
+                    _exit(-1);
+                }
+                remaining -= rv;
+                ptr += rv;
+            }
+            script_src[script_size] = '\0';
+
+            const QByteArray ba = QByteArray::fromRawData(script_src, sizeof(script_src));
 
             // evaluate byte array
             QJSValue result = engine.evaluate(ba);
@@ -108,18 +128,18 @@ int main(int argc, char *argv[])
                 write(LOG, debug, sizeof(debug));
                 status = 1;
             }
-
+            free(script_src);
             // flush stderr, stdout
             fflush(stderr);
             fflush(stdout);
             // bitmask with 0xff
-            status = (status & 0XFF) << 8;
-            // write our status code
-            if (write(REPRL_CWFD, &status, 4) != 4) {
-                char debug[] = "\n[INFO] didn't write 4 bytes\n";
-                write(LOG, debug, sizeof(debug));
-                exit(-1);
+            // Send return code to parent and reset edge counters.
+
+
+            if(write(REPRL_CWFD, &status, 4) == 4){
+                printf("Failed to write status\n");
             }
+            __sanitizer_cov_reset_edgeguards();
             // collect garbage
             engine.collectGarbage();
             // destroy engine
