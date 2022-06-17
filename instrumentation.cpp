@@ -91,8 +91,8 @@ int main(int argc, char *argv[]) {
     }
     if (doReprl) {
 	// initialize environment
-        QCoreApplication app(argc, argv);
 	QJSEngine engine = initializeEnvironment(argc, argv);
+        QCoreApplication app(argc, argv);
         while (true) {
 	    // check first 4 bytes of command from parent
       	    char buffer[4];

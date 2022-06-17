@@ -139,9 +139,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		instrumentation.pro segfault.h instrumentation.cpp
-QMAKE_TARGET  = qjs
+QMAKE_TARGET  = instrumentation
 DESTDIR       = 
-TARGET        = qjs
+TARGET        = instrumentation
 
 
 first: all
