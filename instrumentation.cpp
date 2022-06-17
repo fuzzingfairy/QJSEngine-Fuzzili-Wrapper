@@ -134,7 +134,6 @@ int main(int argc, char *argv[])
             fflush(stdout);
             // bitmask with 0xff
             // Send return code to parent and reset edge counters.
-            status = (status & 0xff) << 8;
 
             if (write(REPRL_CWFD, &status, 4) == 4)
             {
