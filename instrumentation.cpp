@@ -121,18 +121,19 @@ int main(int argc, char *argv[])
 
             // evaluate byte array
             QJSValue result = engine.evaluate(ba);
-            int status = 1;
+            int status = 0;
             if (result.isError())
             {
                 char debug[] = "\n[INFO] check result of engine evaluation\n";
                 write(LOG, debug, sizeof(debug));
-                status = 0;
+                status = 1;
             }
             free(script_src);
             // flush stderr, stdout
             fflush(stderr);
             fflush(stdout);
             // bitmask with 0xff
+
             // Send return code to parent and reset edge counters.
 
             if (write(REPRL_CWFD, &status, 4) == 4)
