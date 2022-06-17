@@ -121,12 +121,12 @@ int main(int argc, char *argv[])
 
             // evaluate byte array
             QJSValue result = engine.evaluate(ba);
-            int status = 0;
+            int status = 1;
             if (result.isError())
             {
                 char debug[] = "\n[INFO] check result of engine evaluation\n";
                 write(LOG, debug, sizeof(debug));
-                status = 1;
+                status = 0;
             }
             free(script_src);
             // flush stderr, stdout
@@ -134,9 +134,10 @@ int main(int argc, char *argv[])
             fflush(stdout);
             // bitmask with 0xff
             // Send return code to parent and reset edge counters.
+            status = (status & 0xff) << 8;
 
-
-            if(write(REPRL_CWFD, &status, 4) == 4){
+            if (write(REPRL_CWFD, &status, 4) == 4)
+            {
                 printf("Failed to write status\n");
             }
             // collect garbage
@@ -145,7 +146,6 @@ int main(int argc, char *argv[])
             engine.~QJSEngine();
             // reset coverage guards
             __sanitizer_cov_reset_edgeguards();
-
         }
 
         return app.exec();
