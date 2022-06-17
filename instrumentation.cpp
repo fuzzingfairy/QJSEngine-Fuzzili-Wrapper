@@ -139,13 +139,13 @@ int main(int argc, char *argv[])
             if(write(REPRL_CWFD, &status, 4) == 4){
                 printf("Failed to write status\n");
             }
-            __sanitizer_cov_reset_edgeguards();
             // collect garbage
             engine.collectGarbage();
             // destroy engine
             engine.~QJSEngine();
             // reset coverage guards
             __sanitizer_cov_reset_edgeguards();
+
         }
 
         return app.exec();
