@@ -30,15 +30,10 @@ int LOG = fileno(logFile);
 
 void __sanitizer_cov_reset_edgeguards();
 
-
-
 QJSEngine initializeEnvironment(int argc, char *argv[])
 {
     // begin communication with the parent process
     char hello[] = "HELO";
-    write(REPRL_CWFD, &hello, sizeof(hello));
-    
-    QCoreApplication app(argc, argv);
 
     char buffer[4];
     read(REPRL_CRFD, &buffer, sizeof(buffer));
@@ -68,6 +63,8 @@ QJSEngine initializeEnvironment(int argc, char *argv[])
         char debug[] = "\n[!] finished initialization\n";
         write(LOG, &debug, sizeof(debug));
     }
+
+    return engine;
 }
 
 int main(int argc, char *argv[])
@@ -83,6 +80,10 @@ int main(int argc, char *argv[])
     }
     if (doReprl)
     {
+        char hello[] = "HELO";
+        write(REPRL_CWFD, &hello, sizeof(hello));
+
+        QCoreApplication app(argc, argv);
         // initialize environment
         QJSEngine engine = initializeEnvironment(argc, argv);
         while (true)
