@@ -78,7 +78,6 @@ int main(int argc, char *argv[])
 
         QCoreApplication app(argc, argv);
         // initialize environment
-        QJSEngine engine = initializeEnvironment(argc, argv);
         while (true)
         {
             // check first 4 bytes of command from parent
