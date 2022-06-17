@@ -25,7 +25,7 @@
 
 // logging configuration
 #define DEBUG true
-FILE *logFile = fopen("./logs/output.log", "w+");
+FILE *logFile = fopen("./output.log", "w+");
 int LOG = fileno(logFile);
 
 void __sanitizer_cov_reset_edgeguards();
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
         read(REPRL_CRFD, &buffer, sizeof(buffer));
         if (strcmp(buffer, hello) != 0)
         {
-            exit(-1);
+            //exit(-1);
         }
 
         // initialize the application and its js engine
