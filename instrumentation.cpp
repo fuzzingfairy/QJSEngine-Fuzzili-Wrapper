@@ -115,8 +115,11 @@ int main(int argc, char *argv[])
             // bitmask with 0xff
             status = (status & 0XFF) << 8;
             // write our status code
-            if (write(REPRL_CWFD, &status, 4) != 4)
-                exit(1);
+            if (write(REPRL_CWFD, &status, 4) != 4) {
+                char debug[] = "\n[INFO] didn't write 4 bytes\n";
+                write(LOG, debug, sizeof(debug));
+                exit(-1);
+            }
             // collect garbage
             engine.collectGarbage();
             // destroy engine
