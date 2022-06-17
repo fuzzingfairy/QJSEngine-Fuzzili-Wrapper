@@ -30,42 +30,6 @@ int LOG = fileno(logFile);
 
 void __sanitizer_cov_reset_edgeguards();
 
-QJSEngine initializeEnvironment(int argc, char *argv[])
-{
-    // begin communication with the parent process
-    char hello[] = "HELO";
-
-    char buffer[4];
-    read(REPRL_CRFD, &buffer, sizeof(buffer));
-    if (strcmp(buffer, hello) != 0)
-    {
-        exit(-1);
-    }
-
-    // initialize the application and its js engine
-    QJSEngine engine;
-    // install console extension
-    // engine.installExtensions(QJSEngine::ConsoleExtension);
-
-    // make a segfault object so fuzzilli can tell what a segfault looks like
-    QObject *instance = new SegFault;
-    // turn it into a javascript object
-    QJSValue segvalue = engine.newQObject(instance);
-    // make it accessible via the global property
-    engine.globalObject().setProperty("SegFault", segvalue);
-
-    // register function to trigger a segfault
-    QJSValue fun = engine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) {print(SegFault.fault()); }} })");
-    engine.globalObject().setProperty("fuzzilli", fun);
-
-    if (DEBUG)
-    {
-        char debug[] = "\n[!] finished initialization\n";
-        write(LOG, &debug, sizeof(debug));
-    }
-
-    return engine;
-}
 
 int main(int argc, char *argv[])
 {
@@ -82,6 +46,35 @@ int main(int argc, char *argv[])
     {
         char hello[] = "HELO";
         write(REPRL_CWFD, &hello, sizeof(hello));
+
+        char buffer[4];
+        read(REPRL_CRFD, &buffer, sizeof(buffer));
+        if (strcmp(buffer, hello) != 0)
+        {
+            exit(-1);
+        }
+
+        // initialize the application and its js engine
+        QJSEngine engine;
+        // install console extension
+        // engine.installExtensions(QJSEngine::ConsoleExtension);
+
+        // make a segfault object so fuzzilli can tell what a segfault looks like
+        QObject *instance = new SegFault;
+        // turn it into a javascript object
+        QJSValue segvalue = engine.newQObject(instance);
+        // make it accessible via the global property
+        engine.globalObject().setProperty("SegFault", segvalue);
+
+        // register function to trigger a segfault
+        QJSValue fun = engine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) {print(SegFault.fault()); }} })");
+        engine.globalObject().setProperty("fuzzilli", fun);
+
+        if (DEBUG)
+        {
+            char debug[] = "\n[!] finished initialization\n";
+            write(LOG, &debug, sizeof(debug));
+        }
 
         QCoreApplication app(argc, argv);
         // initialize environment
