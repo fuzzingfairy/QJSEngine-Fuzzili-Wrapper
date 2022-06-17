@@ -54,6 +54,8 @@ int main(int argc, char *argv[])
             //exit(-1);
         }
 
+        QCoreApplication app(argc, argv);
+
         // initialize the application and its js engine
         QJSEngine engine;
         // install console extension
@@ -76,7 +78,6 @@ int main(int argc, char *argv[])
             write(LOG, &debug, sizeof(debug));
         }
 
-        QCoreApplication app(argc, argv);
         // initialize environment
         while (true)
         {
