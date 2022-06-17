@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 #include <QDebug>
 #define REPRL_CRFD 100
 #define REPRL_CWFD 101
@@ -26,39 +25,29 @@
 
 // logging configuration
 #define DEBUG true
-FILE* logFile = fopen("./logs/output.log", "w+");
+FILE *logFile = fopen("./logs/output.log", "w+");
 int LOG = fileno(logFile);
 
 void __sanitizer_cov_reset_edgeguards();
 
 
-/*
-//libfuzzer test for QJSEngine::evaluate() from Qt repo
-//
-extern "C" int LLVMFuzzerTestOneInput(const char *Data, size_t Size)
-{
-    const QByteArray ba = QByteArray::fromRawData(Data, Size);
-    // avoid potential endless loops
-    if (ba.contains("for") || ba.contains("while"))
-        return 1;
-    int c = 0;
-    QCoreApplication a(c, nullptr);
-    QJSEngine().evaluate(ba);
-    return 0;
-}
-*/
 
-QJSEngine initializeEnvironment(int argc, char *argv[]){
+QJSEngine initializeEnvironment(int argc, char *argv[])
+{
     // begin communication with the parent process
     char hello[] = "HELO";
     write(REPRL_CWFD, &hello, sizeof(hello));
+    
+    QCoreApplication app(argc, argv);
+
     char buffer[4];
     read(REPRL_CRFD, &buffer, sizeof(buffer));
-    if (strcmp(buffer, hello) != 0) {
+    if (strcmp(buffer, hello) != 0)
+    {
         exit(-1);
     }
 
-    //initialize the application and its js engine
+    // initialize the application and its js engine
     QJSEngine engine;
     // install console extension
     // engine.installExtensions(QJSEngine::ConsoleExtension);
@@ -74,40 +63,46 @@ QJSEngine initializeEnvironment(int argc, char *argv[]){
     QJSValue fun = engine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) {print(SegFault.fault()); }} })");
     engine.globalObject().setProperty("fuzzilli", fun);
 
-    if (DEBUG) {
-    char debug[] = "\n[!] finished initialization\n";
-    write(LOG, &debug, sizeof(debug));
+    if (DEBUG)
+    {
+        char debug[] = "\n[!] finished initialization\n";
+        write(LOG, &debug, sizeof(debug));
     }
 }
 
-
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     // check command line args
     bool doReprl = false;
-    for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-reprl") == 0) {
+    for (int i = 1; i < argc; i++)
+    {
+        if (strcmp(argv[i], "-reprl") == 0)
+        {
             doReprl = true;
-	}
+        }
     }
-    if (doReprl) {
-	// initialize environment
-	QJSEngine engine = initializeEnvironment(argc, argv);
-        QCoreApplication app(argc, argv);
-        while (true) {
-	    // check first 4 bytes of command from parent
-      	    char buffer[4];
+    if (doReprl)
+    {
+        // initialize environment
+        QJSEngine engine = initializeEnvironment(argc, argv);
+        while (true)
+        {
+            // check first 4 bytes of command from parent
+            char buffer[4];
             read(REPRL_CRFD, &buffer, sizeof(buffer));
             char cexe[5] = "cexe";
-            if (strcmp(buffer, cexe) != 0) {
-                char debug[] =  "\n[INFO] cexe not present in REPRL_CRFD\n";
-		write(LOG, debug, sizeof(debug));
+            if (strcmp(buffer, cexe) != 0)
+            {
+                char debug[] = "\n[INFO] cexe not present in REPRL_CRFD\n";
+                write(LOG, debug, sizeof(debug));
                 break;
             }
             // get size of fuzzed js byte array
             int64_t size;
             read(REPRL_CRFD, &size, 8);
             // read fuzzed javascript from parent
-            char *input = (char *)malloc(size + 1); read(REPRL_DRFD, &input, sizeof(input));
+            char *input = (char *)malloc(size + 1);
+            read(REPRL_DRFD, &input, sizeof(input));
             const QByteArray ba = QByteArray::fromRawData(input, sizeof(input));
 
             // evaluate byte array
@@ -115,8 +110,8 @@ int main(int argc, char *argv[]) {
             int status = 0;
             if (result.isError())
             {
-                char debug[] =  "\n[INFO] check result of engine evaluation\n";
-		write(LOG, debug, sizeof(debug));
+                char debug[] = "\n[INFO] check result of engine evaluation\n";
+                write(LOG, debug, sizeof(debug));
                 status = 1;
             }
 
