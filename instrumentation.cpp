@@ -139,8 +139,7 @@ int main(int argc, char *argv[])
 
             // Send return code to parent and reset edge counters.
 
-	    printf("%d", status);
-            if (write(REPRL_CWFD, &status, 4) == 4)
+            if (write(REPRL_CWFD, &status, 4) != 4)
             {
                 printf("Failed to write status\n");
             }
