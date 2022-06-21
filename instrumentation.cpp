@@ -64,7 +64,6 @@ int main(int argc, char *argv[])
             write(LOG, &debug, sizeof(debug));
         }
 
-	int iteration = 0;
         while (true)
         {
 	    // initialize the application and its js engine
@@ -83,8 +82,6 @@ int main(int argc, char *argv[])
 	     QJSValue fun = engine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) {print(SegFault.fault()); }} })");
 	    engine.globalObject().setProperty("fuzzilli", fun);
 
-	    printf("iteration: %d", iteration);
-	    iteration += 1;
             size_t script_size = 0;
             unsigned action;
             if (read(REPRL_CRFD, &action, 4) != 4)
