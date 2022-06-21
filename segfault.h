@@ -10,7 +10,6 @@ class SegFault : public QObject
 
 public:
     Q_INVOKABLE SegFault(){
-	std::cout << "here";
     };
     virtual ~SegFault(){
 	    //destruct

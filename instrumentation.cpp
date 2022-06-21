@@ -57,21 +57,6 @@ int main(int argc, char *argv[])
 
         QCoreApplication app(argc, argv);
 
-        // initialize the application and its js engine
-        QJSEngine engine;
-        // install console extension
-        // engine.installExtensions(QJSEngine::ConsoleExtension);
-
-        // make a segfault object so fuzzilli can tell what a segfault looks like
-        QObject *instance = new SegFault;
-        // turn it into a javascript object
-        QJSValue segvalue = engine.newQObject(instance);
-        // make it accessible via the global property
-        engine.globalObject().setProperty("SegFault", segvalue);
-
-        // register function to trigger a segfault
-        QJSValue fun = engine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) {print(SegFault.fault()); }} })");
-        engine.globalObject().setProperty("fuzzilli", fun);
 
         if (DEBUG)
         {
@@ -79,9 +64,27 @@ int main(int argc, char *argv[])
             write(LOG, &debug, sizeof(debug));
         }
 
-        // initialize environment
+	int iteration = 0;
         while (true)
         {
+	    // initialize the application and its js engine
+	    QJSEngine engine;
+	    // install console extension
+	    // engine.installExtensions(QJSEngine::ConsoleExtension);
+
+	    // make a segfault object so fuzzilli can tell what a segfault looks like
+	    QObject *instance = new SegFault;
+	    // turn it into a javascript object
+	    QJSValue segvalue = engine.newQObject(instance);
+	    // make it accessible via the global property
+	    engine.globalObject().setProperty("SegFault", segvalue);
+
+	    // register function to trigger a segfault
+	     QJSValue fun = engine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) {print(SegFault.fault()); }} })");
+	    engine.globalObject().setProperty("fuzzilli", fun);
+
+	    printf("iteration: %d", iteration);
+	    iteration += 1;
             size_t script_size = 0;
             unsigned action;
             if (read(REPRL_CRFD, &action, 4) != 4)
@@ -90,7 +93,7 @@ int main(int argc, char *argv[])
             }
             if (action == 'cexe')
             {
-                if (read(REPRL_CRFD, &script_size, 8) == 8)
+                if (read(REPRL_CRFD, &script_size, 8) != 8)
                 {
                     printf("error reading script size\n");
                 }
@@ -116,7 +119,6 @@ int main(int argc, char *argv[])
                 ptr += rv;
             }
             script_src[script_size] = '\0';
-
             const QByteArray ba = QByteArray::fromRawData(script_src, sizeof(script_src));
 
             // evaluate byte array
@@ -129,6 +131,7 @@ int main(int argc, char *argv[])
                 status = 1;
             }
             free(script_src);
+	    //free(instance);
             // flush stderr, stdout
             fflush(stderr);
             fflush(stdout);
@@ -136,6 +139,7 @@ int main(int argc, char *argv[])
 
             // Send return code to parent and reset edge counters.
 
+	    printf("%d", status);
             if (write(REPRL_CWFD, &status, 4) == 4)
             {
                 printf("Failed to write status\n");
@@ -143,7 +147,7 @@ int main(int argc, char *argv[])
             // collect garbage
             engine.collectGarbage();
             // destroy engine
-            engine.~QJSEngine();
+            //engine.~QJSEngine();
             // reset coverage guards
             __sanitizer_cov_reset_edgeguards();
         }
