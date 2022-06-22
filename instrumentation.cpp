@@ -88,6 +88,7 @@ int main(int argc, char *argv[])
             {
                 printf("Failed reading caction\n");
             }
+	    // TODO: why is this an int and why dont we need double quotes
             if (action == 'cexe')
             {
                 if (read(REPRL_CRFD, &script_size, 8) != 8)
@@ -116,17 +117,31 @@ int main(int argc, char *argv[])
                 ptr += rv;
             }
             script_src[script_size] = '\0';
+
+	    std::cout << script_src;
             const QByteArray ba = QByteArray::fromRawData(script_src, sizeof(script_src));
 
+	    QStringList* exceptions;
             // evaluate byte array
-            QJSValue result = engine.evaluate(ba);
+            //QJSValue result = engine.evaluate(ba, NULL, 1, exceptions);
+            QJSValue result = engine.evaluate(script_src);
+
+	    std::cout << result.toString().toStdString();
             int status = 0;
-            if (result.isError())
+	    if (exceptions != NULL){
+		    if (exceptions->isEmpty()){
+			    std::cout << "exception st empty";
+		    }
+		    QString str_exceptions = exceptions->join("\n");
+		    std::cout << str_exceptions.toStdString();
+	    }
+            if (result.isError() || engine.hasError())
             {
                 char debug[] = "\n[INFO] check result of engine evaluation\n";
                 write(LOG, debug, sizeof(debug));
                 status = 1;
             }
+
             free(script_src);
 	    //free(instance);
             // flush stderr, stdout
@@ -135,6 +150,9 @@ int main(int argc, char *argv[])
             // bitmask with 0xff
 
             // Send return code to parent and reset edge counters.
+	    if (script_size == 0){
+		    status = 0;
+	    }
 
             if (write(REPRL_CWFD, &status, 4) != 4)
             {
