@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 	    // initialize the application and its js engine
 	    QJSEngine engine;
 	    // install console extension
-	    // engine.installExtensions(QJSEngine::ConsoleExtension);
+	    engine.installExtensions(QJSEngine::GarbageCollectionExtension);
 
 	    // make a segfault object so fuzzilli can tell what a segfault looks like
 	    QObject *instance = new SegFault;
@@ -118,29 +118,49 @@ int main(int argc, char *argv[])
             }
             script_src[script_size] = '\0';
 
+	    std::cout << "\nsource: ";
 	    std::cout << script_src;
-            const QByteArray ba = QByteArray::fromRawData(script_src, sizeof(script_src));
 
-	    QStringList* exceptions;
+	    QStringList* exceptions = new QStringList();
             // evaluate byte array
-            //QJSValue result = engine.evaluate(ba, NULL, 1, exceptions);
-            QJSValue result = engine.evaluate(script_src);
+            QJSValue result = engine.evaluate(script_src, NULL, 1, exceptions);
 
+	    std::cout << "\nresult value: ";
 	    std::cout << result.toString().toStdString();
+
             int status = 0;
+
 	    if (exceptions != NULL){
 		    if (exceptions->isEmpty()){
 			    std::cout << "exception st empty";
 		    }
 		    QString str_exceptions = exceptions->join("\n");
+		    std::cout << "\ncaught exceptions: ";
 		    std::cout << str_exceptions.toStdString();
 	    }
-            if (result.isError() || engine.hasError())
+            if (result.isError() || engine.hasError() || !exceptions->isEmpty())
             {
                 char debug[] = "\n[INFO] check result of engine evaluation\n";
                 write(LOG, debug, sizeof(debug));
                 status = 1;
             }
+
+	    /*
+	    // handle throw case
+	    // add in the status code to be the character or string after throw 
+	    if (strstr(script_src,"throw")){
+		// find next string ( or number??idk)
+		//int throwidx = script_src.find("throw");
+		//status = script_src[throwidx]
+
+		status = 42;
+		
+	    }
+	    */
+	    // handle empty script case
+	    if (script_size == 0){
+		    status = 0;
+	    }
 
             free(script_src);
 	    //free(instance);
@@ -148,11 +168,9 @@ int main(int argc, char *argv[])
             fflush(stderr);
             fflush(stdout);
             // bitmask with 0xff
+	    status = (status & 0XFF) << 8;
 
             // Send return code to parent and reset edge counters.
-	    if (script_size == 0){
-		    status = 0;
-	    }
 
             if (write(REPRL_CWFD, &status, 4) != 4)
             {
