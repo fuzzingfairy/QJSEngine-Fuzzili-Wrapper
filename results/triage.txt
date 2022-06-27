@@ -1,0 +1,1615 @@
+(1 of 2) - Hash: e3a98b7a46a48c7e4fe18c27df0613a5.ee3ff145983b53c0040050838cc2cd8f
+---CRASH SUMMARY---
+(1 of 4) - Hash: 63506b338d0d972eb4ebcf4a9e4b86f2.65f12f8a55b9638be8aa5643472f8795
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220623130756_37503870-737E-40D4-9C3A-FDBD9015417C_deterministic.js
+SHA1: 208d3bc271eb292082a6fdcda7cd7b7d0aae1a01
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: 63506b338d0d972eb4ebcf4a9e4b86f2.65f12f8a55b9638be8aa5643472f8795
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220623130756_37503870-737E-40D4-9C3A-FDBD9015417C_deterministic.js
+Faulting Frame:
+   QV4::ExecutionEngine::newPromiseObject(QV4::FunctionObject const*, QV4::PromiseCapability const*) @ 0x00007ffff6ecf370: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (14 entries):
+   QV4::ExecutionEngine::new @ 0x00007ffff6ecf370: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7d79f: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f2f3b4: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallPropert @ 0x00007ffff6f89232: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f70cea: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   main                      @ 0x0000000000402474: in /home/kali/Summer22/qjs-eval/instrumentation/harness/harness
+Registers:
+rax=0x00007ffff25d6b00 rbx=0x00007ffff2b99690 rcx=0x0000000000000009 rdx=0x00007ffff25d6b00 
+rsi=0x00007ffff7220260 rdi=0x0003800000000002 rbp=0x00007ffff2b99688 rsp=0x00007fffffffd5d0 
+ r8=0x000000000044f260  r9=0x00007ffff6275c00 r10=0x000000000044de00 r11=0x0000000000000000 
+r12=0x00000000004255c0 r13=0x0000000000000000 r14=0x00000000004255c0 r15=0x00007ffff2b99688 
+rip=0x00007ffff6ecf370 efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+(1 of 1) - Hash: 0ce1d97b3840601729fbdda6c1463a82.1cf0fd72d7461a8d476ee634d113fb1e
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220623142923_522439E8-F4B7-4C45-8A82-2351B34EFA83_deterministic.js
+SHA1: 7d666bdc6e518a2894c1e16b16bd57529fbf57c7
+Classification: UNKNOWN
+Hash: 0ce1d97b3840601729fbdda6c1463a82.1cf0fd72d7461a8d476ee634d113fb1e
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220623142923_522439E8-F4B7-4C45-8A82-2351B34EFA83_deterministic.js
+Faulting Frame:
+   QV4::ExecutionEngine::newString(QString const&) @ 0x00007ffff6ec64e2: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   QV4::ExecutionEngine::new @ 0x00007ffff6ec64e2: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebd8e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff7149d40 rbx=0x00000000004255c0 rcx=0x0000000000000000 rdx=0x00007ffff2cee738 
+rsi=0x00007fffff7ff030 rdi=0x00000000004255c0 rbp=0x00007ffff2cee730 rsp=0x00007fffff7ff000 
+ r8=0x00007ffff25b0ce8  r9=0x0000000000000002 r10=0x00007ffff25b6140 r11=0x00007ffff25a9200 
+r12=0x0000000000000000 r13=0x0000000000000000 r14=0x00007ffff2cee730 r15=0x00007ffff2cee728 
+rip=0x00007ffff6ec64e2 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 3) - Hash: 2ea4bc8fb6939fa8ddf24094f77d855d.a216384f32f76b4bd52f803499eba5a7
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623131135_871C67C7-AEF9-45C6-81D7-D66CDC041287_deterministic.js
+SHA1: 8753a2b8644a80a643a5c80d7c831d4721d8ecf6
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: 2ea4bc8fb6939fa8ddf24094f77d855d.a216384f32f76b4bd52f803499eba5a7
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623131135_871C67C7-AEF9-45C6-81D7-D66CDC041287_deterministic.js
+Faulting Frame:
+   QV4::ExecutionEngine::newPromiseObject(QV4::FunctionObject const*, QV4::PromiseCapability const*) @ 0x00007ffff6ecf370: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (14 entries):
+   QV4::ExecutionEngine::new @ 0x00007ffff6ecf370: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7a09d: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f2f3b4: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallPropert @ 0x00007ffff6f89232: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f70cea: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   main                      @ 0x0000000000402474: in /home/kali/Summer22/qjs-eval/instrumentation/harness/harness
+Registers:
+rax=0x00007ffff25d6660 rbx=0x00007ffff2b99658 rcx=0x0000000000000009 rdx=0x00007ffff25d6660 
+rsi=0x00007ffff7220260 rdi=0x0003800000000002 rbp=0x00007ffff2b99650 rsp=0x00007fffffffd680 
+ r8=0x000000000044d420  r9=0x0035554c03fb33ad r10=0x0000000000000002 r11=0x0000000000000004 
+r12=0x00000000004255c0 r13=0x0000000000000000 r14=0x00000000004255c0 r15=0x00007ffff2b99650 
+rip=0x00007ffff6ecf370 efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+(1 of 1) - Hash: d00fd695eefac683a9fe00a092bc9449.8c42ee744c376cf9dd8cfee2fdaca9ae
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220623105010_63EC20F7-0E6B-4BD7-9CBF-60F0C3A55A2E_deterministic.js
+SHA1: 74509ad2cc92cfee5e0fa6e1b93aeca6d9ad38fe
+Classification: UNKNOWN
+Hash: d00fd695eefac683a9fe00a092bc9449.8c42ee744c376cf9dd8cfee2fdaca9ae
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220623105010_63EC20F7-0E6B-4BD7-9CBF-60F0C3A55A2E_deterministic.js
+Faulting Frame:
+   qdtoa(double, int*, int*) @ 0x00007ffff67ef790: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   qdtoa(double,             @ 0x00007ffff67ef790: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x0000000000000000 rbx=0x41ec1548cee00000 rcx=0x00000000fffffff0 rdx=0x00007fffff7ff044 
+rsi=0x00007fffff7ff040 rdi=0x00007fffff7ff050 rbp=0x00007fffff7ff090 rsp=0x00007fffff7ff000 
+ r8=0x00007ffff25d6498  r9=0x00007fffff7ff070 r10=0xbe101548cee00000 r11=0x00007ffff25a0f80 
+r12=0x00007fffff7ff050 r13=0x00007fffff7ff044 r14=0x0000000000000008 r15=0x0000000000000000 
+rip=0x00007ffff67ef790 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 3) - Hash: b3721d5f2f5fe961573aae2a5a802ee2.8050dae1451fdb68e948a19930052fa9
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623124214_BD8DAA03-7EA6-4487-94FE-6235D04848D4_deterministic.js
+SHA1: f242fb3bb53a3fa13945cc901df902d31b8baa42
+Classification: UNKNOWN
+Hash: b3721d5f2f5fe961573aae2a5a802ee2.8050dae1451fdb68e948a19930052fa9
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623124214_BD8DAA03-7EA6-4487-94FE-6235D04848D4_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6e5aed2: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   None                      @ 0x00007ffff6e5aed2: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::MemoryManager::alloc @ 0x00007ffff6e5d981: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::ExecutionEngine::new @ 0x00007ffff6ec651e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebd8e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff7149d40 rbx=0x0000000000423800 rcx=0x0000000000000000 rdx=0x0000000000000000 
+rsi=0x0000000000000020 rdi=0x0000000000423810 rbp=0x0000000000423800 rsp=0x00007fffff7ff000 
+ r8=0x00007ffff25b0ce8  r9=0x00007fffff7ff170 r10=0x00007ffff25b6140 r11=0x00007ffff25a9200 
+r12=0x0000000000423810 r13=0x0000000000000000 r14=0x00007ffff2ccf700 r15=0x00007ffff2ccf6f8 
+rip=0x00007ffff6e5aed2 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 1) - Hash: 98d128a35d21e1c4348e1e3a7ce096a1.205477995fcf72c48eaf1a0aee2205db
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623111038_E07008F9-7C2C-4512-87BA-06E132CAF6D1_deterministic.js
+SHA1: bd8d526d06c686d2c2eb00f27dca928035763fa3
+Classification: UNKNOWN
+Hash: 98d128a35d21e1c4348e1e3a7ce096a1.205477995fcf72c48eaf1a0aee2205db
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623111038_E07008F9-7C2C-4512-87BA-06E132CAF6D1_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6f281cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   None                      @ 0x00007ffff6f281cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Object::internalGet( @ 0x00007ffff6f1e880: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f28256: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Object::internalGet( @ 0x00007ffff6f1e880: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f28256: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Object::internalGet( @ 0x00007ffff6f1e880: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f28256: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Object::internalGet( @ 0x00007ffff6f1e880: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f28256: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Object::internalGet( @ 0x00007ffff6f1e880: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f28256: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Object::internalGet( @ 0x00007ffff6f1e880: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f28256: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Object::internalGet( @ 0x00007ffff6f1e880: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f28256: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Object::internalGet( @ 0x00007ffff6f1e880: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff721d680 rbx=0xffffff00ffffffff rcx=0x0000000000000000 rdx=0x00007ffff2c43ee8 
+rsi=0x00007ffff25b07c0 rdi=0x00007fffff7ff040 rbp=0x00007ffff2c43ee0 rsp=0x00007fffff7ff000 
+ r8=0x0000000000451980  r9=0x00007ffff2b99630 r10=0x00007ffff2b99638 r11=0x00007ffff25c7580 
+r12=0x00007ffff2c43ee8 r13=0x00007ffff25b07c0 r14=0x00007ffff2c43ee8 r15=0x00007ffff2b992d8 
+rip=0x00007ffff6f281cc efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 1) - Hash: 3e953426ab4577c3d06f5b04b34a76d8.227c6695bf64d99fc4f3ad419460c001
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623124540_2354AD33-37BD-495F-A6F8-103159B087EB_deterministic.js
+SHA1: 326d46f85a0362dbf92a094b4be7499563f3909f
+Classification: UNKNOWN
+Hash: 3e953426ab4577c3d06f5b04b34a76d8.227c6695bf64d99fc4f3ad419460c001
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623124540_2354AD33-37BD-495F-A6F8-103159B087EB_deterministic.js
+Faulting Frame:
+   QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const @ 0x00007ffff6f1e759: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   QV4::Object::internalGet( @ 0x00007ffff6f1e759: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef0ea9: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff25b0640 rbx=0x00000000004255c0 rcx=0x0000000000000000 rdx=0x00007ffff2cee748 
+rsi=0x00007ffff25b0640 rdi=0x00007ffff2cee748 rbp=0x00007ffff2cee748 rsp=0x00007fffff7ff000 
+ r8=0x00007ffff6ef0de0  r9=0x00007ffff6f1ea50 r10=0x00007ffff25b66e0 r11=0x00007ffff25a9200 
+r12=0x00007ffff2b992d8 r13=0x00007ffff25b0640 r14=0x00007ffff2cee748 r15=0x00007ffff2cee748 
+rip=0x00007ffff6f1e759 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 5) - Hash: 15d6cabf7c1f5793c3fd5507f52b3311.c40a6e31c77e8c3e2d742560070672a6
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623123500_9F6FF0F2-2BCB-4B75-B17E-DCE96D3007C6_deterministic.js
+SHA1: d92f1e8ba7cd859bed47c78388e109ac8a7aa326
+Classification: EXPLOITABLE
+Hash: 15d6cabf7c1f5793c3fd5507f52b3311.c40a6e31c77e8c3e2d742560070672a6
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623123500_9F6FF0F2-2BCB-4B75-B17E-DCE96D3007C6_deterministic.js
+Faulting Frame:
+   QString::arg(QStringView, int, QChar) const @ 0x00007ffff6808f0b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   QString::arg(QStringView, @ 0x00007ffff6808f0b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QString::arg(QString      @ 0x00007ffff6809053: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::ObjectPrototype::met @ 0x00007ffff6f23a82: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff714e458 rbx=0x00007fffff7ff0c8 rcx=0x0000000000429018 rdx=0x0000000000000006 
+rsi=0x00007ffff714e458 rdi=0x000000000000000b rbp=0x0000000000000000 rsp=0x00007fffff7feff0 
+ r8=0x0000000000000000  r9=0x0000000000000020 r10=0x000000000000000b r11=0x00007ffff25a5200 
+r12=0x0000000000000006 r13=0x0000000000429018 r14=0x00007fffff7ff0d0 r15=0x00007ffff714e458 
+rip=0x00007ffff6808f0b efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Possible stack corruption
+   Short description: PossibleStackCorruption (7/22)
+   Explanation: GDB generated an error while unwinding the stack and/or the stack contained return addresses that were not mapped in the inferior's process address space and/or the stack pointer is pointing to a location outside the default stack region. These conditions likely indicate stack corruption, which is generally considered exploitable.
+---END SUMMARY---
+(1 of 1) - Hash: 4f6df789785d70e9f5a169f439cbf148.f64763b144cd646c994544a1c5df9ada
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623114237_5DA18E1D-B00B-425C-8D49-E01C6AF02537_deterministic.js
+SHA1: 8612a945f0034882ab23f1229c4a7f4f52adaf35
+Classification: EXPLOITABLE
+Hash: 4f6df789785d70e9f5a169f439cbf148.f64763b144cd646c994544a1c5df9ada
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623114237_5DA18E1D-B00B-425C-8D49-E01C6AF02537_deterministic.js
+Faulting Frame:
+   qdtoa(double, int*, int*) @ 0x00007ffff67ef7b9: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   qdtoa(double,             @ 0x00007ffff67ef7b9: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x0000000000000000 rbx=0x00007fffff7ff060 rcx=0x00000000fffffff8 rdx=0x00007fffff7ff064 
+rsi=0x00007fffff7ff060 rdi=0x00007fffff7ff070 rbp=0x00007fffff7ff0b0 rsp=0x00007fffff7fefe0 
+ r8=0x00007ffff25d6498  r9=0x00007fffff7ff090 r10=0x00038000ffffffff r11=0x00007ffff25a0f80 
+r12=0x00007fffff7ff070 r13=0x00007fffff7ff064 r14=0x0000000000000004 r15=0x0000000000000000 
+rip=0x00007ffff67ef7b9 efl=0x0000000000010203  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Possible stack corruption
+   Short description: PossibleStackCorruption (7/22)
+   Explanation: GDB generated an error while unwinding the stack and/or the stack contained return addresses that were not mapped in the inferior's process address space and/or the stack pointer is pointing to a location outside the default stack region. These conditions likely indicate stack corruption, which is generally considered exploitable.
+---END SUMMARY---
+(1 of 2) - Hash: 04ecccd64cb94c40913a717237f93730.90ef270243be6bc4ee588c57f7074a65
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623120021_A487D6A7-1900-44EE-BE41-5B5FC606D9E3_deterministic.js
+SHA1: 6911735f848036ef282bbfc780bafbe5028c7d37
+Classification: UNKNOWN
+Hash: 04ecccd64cb94c40913a717237f93730.90ef270243be6bc4ee588c57f7074a65
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623120021_A487D6A7-1900-44EE-BE41-5B5FC606D9E3_deterministic.js
+Faulting Frame:
+   double_conversion::DoubleToStringConverter::DoubleToAscii(double, double_conversion::DoubleToStringConverter::DtoaMode, int, char*, int, bool*, int*, int*) @ 0x00007ffff5eecaf7: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   double_conversion::Double @ 0x00007ffff5eecaf7: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qdtoa(double,             @ 0x00007ffff67ef80b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007fffff7ff048 rbx=0x00007fffff7ff0c0 rcx=0x0000000000000012 rdx=0x00007fffff7ff050 
+rsi=0x00000000ffffff80 rdi=0x0000000000000000 rbp=0x0000000000000000 rsp=0x00007fffff7ff000 
+ r8=0x00007fffff7ff047  r9=0x00007fffff7ff04c r10=0x3ee338f9653fcccf r11=0x00007ffff25a0f80 
+r12=0x00000000ffffff80 r13=0x00007fffff7ff050 r14=0x00007fffff7ff04c r15=0x0000000000000012 
+rip=0x00007ffff5eecaf7 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 5) - Hash: f730dc92ac9b6e5256834a9382b3ea5d.93a89bcfef1c7876f2e836a49840864e
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623124600_DC05F731-AC2A-4D13-A798-CE8EFA9C4D95_deterministic.js
+SHA1: a9af6ca658acebbbb36ee2a319ca1c58cedc0266
+Classification: UNKNOWN
+Hash: f730dc92ac9b6e5256834a9382b3ea5d.93a89bcfef1c7876f2e836a49840864e
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623124600_DC05F731-AC2A-4D13-A798-CE8EFA9C4D95_deterministic.js
+Faulting Frame:
+   QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const @ 0x00007ffff6f1e752: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   QV4::Object::internalGet( @ 0x00007ffff6f1e752: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef0ea9: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff25b0640 rbx=0x00000000004255c0 rcx=0x0000000000000000 rdx=0x00007ffff2cee738 
+rsi=0x00007ffff25b0640 rdi=0x00007ffff2cee738 rbp=0x00007ffff2cee738 rsp=0x00007fffff7ff000 
+ r8=0x00007ffff6ef0de0  r9=0x00007ffff6f1ea50 r10=0x00007ffff25b66e0 r11=0x00007ffff25a9200 
+r12=0x00007ffff2b992d8 r13=0x00007ffff6f1ea50 r14=0x00007ffff2cee738 r15=0x00007ffff2cee738 
+rip=0x00007ffff6f1e752 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 1) - Hash: 111d989a45a87c9e75adb9d28b28fd93.1fdc1985391427de634d8f3866e0f8e7
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220625190211_FAA3F053-16F9-420F-A9D4-F72E7A32F3DB_deterministic.js
+SHA1: a2b5f5de8a4dececb505d8493350c907becc6564
+Classification: EXPLOITABLE
+Hash: 111d989a45a87c9e75adb9d28b28fd93.1fdc1985391427de634d8f3866e0f8e7
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220625190211_FAA3F053-16F9-420F-A9D4-F72E7A32F3DB_deterministic.js
+Faulting Frame:
+   QV4::TypedArray::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) @ 0x00007ffff6f5dcda: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (13 entries):
+   QV4::TypedArray::virtualG @ 0x00007ffff6f5dcda: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f6103e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallPropert @ 0x00007ffff6f89232: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f70cea: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   main                      @ 0x0000000000402474: in /home/kali/Summer22/qjs-eval/instrumentation/harness/harness
+Registers:
+rax=0x00007ffff2fd7008 rbx=0x00000000004255c0 rcx=0x0000000000000000 rdx=0x00007ffff2b99600 
+rsi=0x00007ffff25d64e0 rdi=0x00007ffff2b99600 rbp=0x00007ffff2b99600 rsp=0x00007fffffffd720 
+ r8=0x00007ffff25d63e0  r9=0x0000000000000001 r10=0x00007ffff25d0ae0 r11=0x00007ffff25c2780 
+r12=0x00007ffff2fd7000 r13=0x0000000000000000 r14=0x0000000000000000 r15=0x00007ffff2b995f0 
+rip=0x00007ffff6f5dcda efl=0x0000000000010203  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation on destination operand
+   Short description: DestAv (8/22)
+   Explanation: The target crashed on an access violation at an address matching the destination operand of the instruction. This likely indicates a write access violation, which means the attacker may control the write address and/or value.
+---END SUMMARY---
+(1 of 3) - Hash: fb31d7a523ae41725d7cce1812898526.d1a2dabc28e0cbf97262e659ddf0f256
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623113821_CB59E06A-7665-4BB9-9CA2-8DF819169B63_deterministic.js
+SHA1: 21c80d93a26c0ab1b0629ead9a3e9a64bfa1d5a3
+Classification: EXPLOITABLE
+Hash: fb31d7a523ae41725d7cce1812898526.d1a2dabc28e0cbf97262e659ddf0f256
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623113821_CB59E06A-7665-4BB9-9CA2-8DF819169B63_deterministic.js
+Faulting Frame:
+   double_conversion::FastDtoa(double, double_conversion::FastDtoaMode, int, double_conversion::Vector<char>, int*, int*) @ 0x00007ffff5eed93e: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   double_conversion::FastDt @ 0x00007ffff5eed93e: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::Double @ 0x00007ffff5eeccbd: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qdtoa(double,             @ 0x00007ffff67ef80b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x7ff0000000000001 rbx=0x0000000000000012 rcx=0x0000000000000012 rdx=0x00007fffff7ff100 
+rsi=0x0000000000000000 rdi=0x0000000000000000 rbp=0x0000000000000000 rsp=0x00007fffff7feff0 
+ r8=0x00007fffff7ff0fc  r9=0x00007fffff7ff0f8 r10=0x00038000ffffffff r11=0x00007ffff25a0f80 
+r12=0x00000000ffffff80 r13=0x00007fffff7ff100 r14=0x00007fffff7ff0fc r15=0x0000000000000012 
+rip=0x00007ffff5eed93e efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Possible stack corruption
+   Short description: PossibleStackCorruption (7/22)
+   Explanation: GDB generated an error while unwinding the stack and/or the stack contained return addresses that were not mapped in the inferior's process address space and/or the stack pointer is pointing to a location outside the default stack region. These conditions likely indicate stack corruption, which is generally considered exploitable.
+---END SUMMARY---
+(1 of 1) - Hash: c46f95edebcc20d1e9ed8af1657d4453.6c20ddaae9ac2967bfe699b069157d15
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220626043901_8973A057-55B3-431B-AB5E-A041608E4963_deterministic.js
+SHA1: 4c462c7147050a3749b7c37a9612d26acf5833ba
+Classification: UNKNOWN
+Hash: c46f95edebcc20d1e9ed8af1657d4453.6c20ddaae9ac2967bfe699b069157d15
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220626043901_8973A057-55B3-431B-AB5E-A041608E4963_deterministic.js
+Faulting Frame:
+   QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const @ 0x00007ffff6f1e759: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   QV4::Object::internalGet( @ 0x00007ffff6f1e759: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f86960: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff25b08a0 rbx=0x00000000004255c0 rcx=0x0000000000000000 rdx=0x00007ffff2ccf778 
+rsi=0x00007ffff25b08a0 rdi=0x00007ffff2ccf778 rbp=0x00007ffff2ccf778 rsp=0x00007fffff7ff000 
+ r8=0x00007ffff25d64f8  r9=0x00007fffff7ff0c0 r10=0x0000000000000000 r11=0x00007ffff25a5200 
+r12=0x00007ffff2ccf788 r13=0x00007ffff25b08a0 r14=0x00007ffff2b993d0 r15=0x00007ffff6f1ea50 
+rip=0x00007ffff6f1e759 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 2) - Hash: 99fe86bf2533c5c76213a0fde049e35d.e0bff1a7dd51420b92baee9a95d993c7
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623112239_84BEADD6-9D11-4E49-A735-965B07919EE5_deterministic.js
+SHA1: 00380d568a0dc1d601730b569601bfb43d27227a
+Classification: UNKNOWN
+Hash: 99fe86bf2533c5c76213a0fde049e35d.e0bff1a7dd51420b92baee9a95d993c7
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623112239_84BEADD6-9D11-4E49-A735-965B07919EE5_deterministic.js
+Faulting Frame:
+   double_conversion::FastDtoa(double, double_conversion::FastDtoaMode, int, double_conversion::Vector<char>, int*, int*) @ 0x00007ffff5eed939: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   double_conversion::FastDt @ 0x00007ffff5eed939: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::Double @ 0x00007ffff5eeccbd: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qdtoa(double,             @ 0x00007ffff67ef80b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x7ff0000000000001 rbx=0x0000000000000012 rcx=0x0000000000000012 rdx=0x00007fffff7ff0a0 
+rsi=0x0000000000000000 rdi=0x0000000000000000 rbp=0x0000000000000000 rsp=0x00007fffff7ff000 
+ r8=0x00007fffff7ff09c  r9=0x00007fffff7ff098 r10=0x3d911a94a2000000 r11=0x00007ffff25a0f80 
+r12=0x00000000ffffff80 r13=0x00007fffff7ff0a0 r14=0x00007fffff7ff09c r15=0x0000000000000012 
+rip=0x00007ffff5eed939 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 6) - Hash: b30e6f9f57fb665ccc603c75408f1687.e52f5754c2bdff0959b0888ac3004e63
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623124711_5D882756-A937-41AA-8EFF-C61C8969CFBD_deterministic.js
+SHA1: da43df2f66e7b484654d1e67f215289cd2c26fb2
+Classification: EXPLOITABLE
+Hash: b30e6f9f57fb665ccc603c75408f1687.e52f5754c2bdff0959b0888ac3004e63
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623124711_5D882756-A937-41AA-8EFF-C61C8969CFBD_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6ef0ea6: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   None                      @ 0x00007ffff6ef0ea6: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff25b0640 rbx=0x00000000004255c0 rcx=0x0000000000000000 rdx=0x00007ffff2cee738 
+rsi=0x00007ffff25b0640 rdi=0x00007ffff2cee738 rbp=0x00007ffff2cee738 rsp=0x00007fffff7ff000 
+ r8=0x00007ffff6ef0de0  r9=0x00007ffff6f1ea50 r10=0x00007ffff25b66e0 r11=0x00007ffff25a9200 
+r12=0x00007ffff2b992d8 r13=0x00007ffff6f1ea50 r14=0x00007ffff2cee738 r15=0x00007ffff2cee738 
+rip=0x00007ffff6ef0ea6 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
+(1 of 1) - Hash: e72719227dbf6c1427e71a2830465f0a.40cfb16f76bf6f4c81af00634408e976
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220623212541_E9AE58F9-78D5-4F6C-BB12-F9392BE51B70_deterministic.js
+SHA1: d495a4c337f238b159dc0ad8073e655e1e8dedae
+Classification: UNKNOWN
+Hash: e72719227dbf6c1427e71a2830465f0a.40cfb16f76bf6f4c81af00634408e976
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220623212541_E9AE58F9-78D5-4F6C-BB12-F9392BE51B70_deterministic.js
+Faulting Frame:
+   double_conversion::DoubleToStringConverter::DoubleToAscii(double, double_conversion::DoubleToStringConverter::DtoaMode, int, char*, int, bool*, int*, int*) @ 0x00007ffff5eecaef: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   double_conversion::Double @ 0x00007ffff5eecaef: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qdtoa(double,             @ 0x00007ffff67ef80b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007fffff7ff038 rbx=0x00007fffff7ff0b0 rcx=0x0000000000000012 rdx=0x00007fffff7ff040 
+rsi=0x00000000ffffff80 rdi=0x0000000000000000 rbp=0x00007fffff7ff100 rsp=0x00007fffff7ff000 
+ r8=0x00007fffff7ff037  r9=0x00007fffff7ff03c r10=0x0003800000006f75 r11=0x00007ffff25a0f80 
+r12=0x00007fffff7ff0c0 r13=0x00007fffff7ff040 r14=0x00007fffff7ff03c r15=0x0000000000000012 
+rip=0x00007ffff5eecaef efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 1) - Hash: c9eb8d3ecd4988053d596e0d81ece4fa.40cd48498320412071cf7be38b86be56
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623111859_8BCDEFB1-CDF5-45F3-B069-EBFCBD839AAB_deterministic.js
+SHA1: 4e6a02bd6c5a8e50d896a2697f7a8ab2a4e54bca
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: c9eb8d3ecd4988053d596e0d81ece4fa.40cd48498320412071cf7be38b86be56
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623111859_8BCDEFB1-CDF5-45F3-B069-EBFCBD839AAB_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6eebcff: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (14 entries):
+   None                      @ 0x00007ffff6eebcff: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ee9c99: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f2f3b4: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallPropert @ 0x00007ffff6f89232: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f70cea: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   main                      @ 0x0000000000402474: in /home/kali/Summer22/qjs-eval/instrumentation/harness/harness
+Registers:
+rax=0x00007ffff25a2b00 rbx=0x00000000004255c0 rcx=0x0000000000000004 rdx=0x00007ffff2b99678 
+rsi=0x0000000000000000 rdi=0x00007ffff2b99650 rbp=0x00007ffff2b99660 rsp=0x00007fffffffd650 
+ r8=0x0000000000000000  r9=0x00007fffffffd670 r10=0x3ee87ab281e6d3ea r11=0x00007ffff25a0f80 
+r12=0x00007ffff2b99678 r13=0x0000000000000004 r14=0x00007ffff2b99668 r15=0x00007ffff2b99650 
+rip=0x00007ffff6eebcff efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+(1 of 1) - Hash: b3721d5f2f5fe961573aae2a5a802ee2.675f7fcc0dd0a0ee3bfa0da4df1d56fd
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623123824_7BAF40EE-93D1-46E7-A0B4-CB19DA296980_deterministic.js
+SHA1: 16f07469208766def193643fc37d0371de5d9902
+Classification: UNKNOWN
+Hash: b3721d5f2f5fe961573aae2a5a802ee2.675f7fcc0dd0a0ee3bfa0da4df1d56fd
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623123824_7BAF40EE-93D1-46E7-A0B4-CB19DA296980_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6e5aed2: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   None                      @ 0x00007ffff6e5aed2: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::MemoryManager::alloc @ 0x00007ffff6e5d981: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::ExecutionEngine::new @ 0x00007ffff6ec651e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebd8e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff7149d40 rbx=0x0000000000423800 rcx=0x0000000000000000 rdx=0x0000000000000000 
+rsi=0x0000000000000020 rdi=0x0000000000423810 rbp=0x0000000000423800 rsp=0x00007fffff7ff000 
+ r8=0x00007ffff25b0ce8  r9=0x0000000000000005 r10=0x00007ffff25b6140 r11=0x00007ffff25a9200 
+r12=0x0000000000423810 r13=0x0000000000000000 r14=0x00007ffff2cee730 r15=0x00007ffff2cee728 
+rip=0x00007ffff6e5aed2 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 3) - Hash: 898fc9b6ac3d788a90e536b89cae42a5.87c5152dc5114543a9fdf6bcb3cf4f59
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220624211636_156BF589-51E0-4B79-80A5-A4DCEE4BF662_deterministic.js
+SHA1: 805226bee1f2a2312d34780079af2002186ef638
+Classification: EXPLOITABLE
+Hash: 898fc9b6ac3d788a90e536b89cae42a5.87c5152dc5114543a9fdf6bcb3cf4f59
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220624211636_156BF589-51E0-4B79-80A5-A4DCEE4BF662_deterministic.js
+Faulting Frame:
+   double_conversion::FastDtoa(double, double_conversion::FastDtoaMode, int, double_conversion::Vector<char>, int*, int*) @ 0x00007ffff5eedd97: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   double_conversion::FastDt @ 0x00007ffff5eedd97: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::Double @ 0x00007ffff5eeccbd: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qdtoa(double,             @ 0x00007ffff67ef80b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x0000000005f5e100 rbx=0x00007fffff7ff11c rcx=0x0000000ffed6cf00 rdx=0x0000000000000011 
+rsi=0x0000000000000012 rdi=0x00007fffff7ff120 rbp=0x00000000fffffff8 rsp=0x00007fffff7ff000 
+ r8=0x0000001ff7b7bd00  r9=0x00000001471e7d00 r10=0x0000000000000009 r11=0xab70fe17c79ac41d 
+r12=0x00007fffff7ff120 r13=0x0000000000000012 r14=0x00000000cccccccd r15=0x0000000fffffffff 
+rip=0x00007ffff5eedd97 efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
+(1 of 1) - Hash: 6108334bd76fac27e0ba3d2869449be2.0c29dcf020f5b7c133120543a9fe6d9b
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623123351_0928F3B2-7360-4E38-9C88-35C0AFC9E167_deterministic.js
+SHA1: 2f0d1c185fd8cb56398041c531d674fd504e6a11
+Classification: EXPLOITABLE
+Hash: 6108334bd76fac27e0ba3d2869449be2.0c29dcf020f5b7c133120543a9fe6d9b
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623123351_0928F3B2-7360-4E38-9C88-35C0AFC9E167_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6e5aef4: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   None                      @ 0x00007ffff6e5aef4: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::MemoryManager::alloc @ 0x00007ffff6e5d981: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::ExecutionEngine::new @ 0x00007ffff6ec651e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebd8e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0xa0397011472f1100 rbx=0x0000000000000001 rcx=0x0000000000000000 rdx=0x0000000000000000 
+rsi=0x0000000000000020 rdi=0x0000000000423810 rbp=0x0000000000423810 rsp=0x00007fffff7fefd0 
+ r8=0x00007ffff25b0ce8  r9=0x0000000000000002 r10=0x00007ffff25b6140 r11=0x00007ffff25a9200 
+r12=0x0000000000423810 r13=0x0000000000000000 r14=0x00007ffff2cee718 r15=0x00007ffff2cee710 
+rip=0x00007ffff6e5aef4 efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Possible stack corruption
+   Short description: PossibleStackCorruption (7/22)
+   Explanation: GDB generated an error while unwinding the stack and/or the stack contained return addresses that were not mapped in the inferior's process address space and/or the stack pointer is pointing to a location outside the default stack region. These conditions likely indicate stack corruption, which is generally considered exploitable.
+---END SUMMARY---
+(1 of 2) - Hash: f5ad599b22dee293557ee509c72db1ae.c79b295d34555c085ceba3fcc6c5bcd3
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623141846_E4670C9C-B308-4D2D-BC4E-C7AA3D3C587F_deterministic.js
+SHA1: 81bee7737500e2cf15a4e37224fcacb1ba9da4b2
+Classification: UNKNOWN
+Hash: f5ad599b22dee293557ee509c72db1ae.c79b295d34555c085ceba3fcc6c5bcd3
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623141846_E4670C9C-B308-4D2D-BC4E-C7AA3D3C587F_deterministic.js
+Faulting Frame:
+   double_conversion::FastDtoa(double, double_conversion::FastDtoaMode, int, double_conversion::Vector<char>, int*, int*) @ 0x00007ffff5eed932: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   double_conversion::FastDt @ 0x00007ffff5eed932: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::Double @ 0x00007ffff5eeccbd: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qdtoa(double,             @ 0x00007ffff67ef80b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x0000000000000000 rbx=0x0000000000000012 rcx=0x0000000000000012 rdx=0x00007fffff7ff080 
+rsi=0x0000000000000000 rdi=0x0000000000000000 rbp=0x0000000000000000 rsp=0x00007fffff7ff000 
+ r8=0x00007fffff7ff07c  r9=0x00007fffff7ff078 r10=0xbe101548cee00000 r11=0x00007ffff25a0f80 
+r12=0x00000000ffffff80 r13=0x00007fffff7ff080 r14=0x00007fffff7ff07c r15=0x0000000000000012 
+rip=0x00007ffff5eed932 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 1) - Hash: 4800d671da618f50d95b40245346204f.d0ce527c3a047e537b288bc988941cec
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623105136_E0555D8D-2D75-4AC1-9CAD-1409AAF0F54F_deterministic.js
+SHA1: a917601675c94a2e5ec51e1aa181229cf4c0c8d4
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: 4800d671da618f50d95b40245346204f.d0ce527c3a047e537b288bc988941cec
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623105136_E0555D8D-2D75-4AC1-9CAD-1409AAF0F54F_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6f397aa: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (14 entries):
+   None                      @ 0x00007ffff6f397aa: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f3c7c1: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ee9c99: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallPropert @ 0x00007ffff6f89232: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f70cea: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   main                      @ 0x0000000000402474: in /home/kali/Summer22/qjs-eval/instrumentation/harness/harness
+Registers:
+rax=0x00007ffff25a2b00 rbx=0x0000000000000004 rcx=0x0000000000000004 rdx=0x0000000000000000 
+rsi=0x00000000004255c0 rdi=0x00007fffffffd6a0 rbp=0x00000000004255c0 rsp=0x00007fffffffd660 
+ r8=0x0000000000000000  r9=0x00007fffffffd6c0 r10=0x00007ffff25d6380 r11=0x00007ffff25a0f80 
+r12=0x00007fffffffd6a0 r13=0x00007ffff2b99630 r14=0x00007fffffffd6a0 r15=0x0000000000000000 
+rip=0x00007ffff6f397aa efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+(1 of 1) - Hash: 5b24e34567bb3bc344b482debee1b4fc.be2a0c156ca7d9c36bfe1987e4a2b9ba
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220625013017_DDB95CA7-0A96-4EB3-93F7-5987040E01DD_deterministic.js
+SHA1: ccad01d3cc2fff7addb3a0121bd9cc2c0762e6d8
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: 5b24e34567bb3bc344b482debee1b4fc.be2a0c156ca7d9c36bfe1987e4a2b9ba
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220625013017_DDB95CA7-0A96-4EB3-93F7-5987040E01DD_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6eeccbd: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (13 entries):
+   None                      @ 0x00007ffff6eeccbd: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eee4c4: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallPropert @ 0x00007ffff6f89232: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f70cea: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   main                      @ 0x0000000000402474: in /home/kali/Summer22/qjs-eval/instrumentation/harness/harness
+Registers:
+rax=0x00007ffff25a2b00 rbx=0x00000000004255c0 rcx=0x0000000000000004 rdx=0x00007ffff2b99650 
+rsi=0x0000000000000000 rdi=0x00007ffff2b995a8 rbp=0x0000000000000001 rsp=0x00007fffffffd670 
+ r8=0x0000000000000000  r9=0x00007fffffffd6b0 r10=0xbcbc000000000000 r11=0x00007ffff25a0f80 
+r12=0x00007ffff2b99650 r13=0x00007fffffffd74f r14=0x00007ffff2b99638 r15=0x0000000000000004 
+rip=0x00007ffff6eeccbd efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+(1 of 1) - Hash: a162ac36217a82074613e9838abf904e.f04606fd086b702de01d9432b1497255
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623124223_FEB7DE81-6D64-4358-86D7-817E6A9297C7_deterministic.js
+SHA1: 27ba9cca0e310b5cc1a2aa8c96f1db74b7c973fa
+Classification: EXPLOITABLE
+Hash: a162ac36217a82074613e9838abf904e.f04606fd086b702de01d9432b1497255
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623124223_FEB7DE81-6D64-4358-86D7-817E6A9297C7_deterministic.js
+Faulting Frame:
+   QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const @ 0x00007ffff6f1e76e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   QV4::Object::internalGet( @ 0x00007ffff6f1e76e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f86960: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff25b08a0 rbx=0xffffff00ffffffff rcx=0x0000000000000000 rdx=0x00007ffff2cee740 
+rsi=0x00007ffff25b08a0 rdi=0x00007ffff2cee740 rbp=0x00007ffff2cee740 rsp=0x00007fffff7feff0 
+ r8=0x00007ffff6f1ea50  r9=0x0000000000000002 r10=0x0000000000000000 r11=0x00007ffff25a5200 
+r12=0x00007ffff25d64e0 r13=0x00007ffff25b08a0 r14=0x00007ffff2b993d0 r15=0x00007ffff6f1ea50 
+rip=0x00007ffff6f1e76e efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Possible stack corruption
+   Short description: PossibleStackCorruption (7/22)
+   Explanation: GDB generated an error while unwinding the stack and/or the stack contained return addresses that were not mapped in the inferior's process address space and/or the stack pointer is pointing to a location outside the default stack region. These conditions likely indicate stack corruption, which is generally considered exploitable.
+---END SUMMARY---
+(1 of 1) - Hash: 5eb4f1f1c4fa45a7dd747e68feaa71c8.31180d1adb15eebf569fbf28ca6f7509
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220626204027_F18C34A5-219C-4457-9B73-161BC301CCA5_deterministic.js
+SHA1: f5e4990e35411dd10c79438895a6b1ae977265fd
+Classification: EXPLOITABLE
+Hash: 5eb4f1f1c4fa45a7dd747e68feaa71c8.31180d1adb15eebf569fbf28ca6f7509
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220626204027_F18C34A5-219C-4457-9B73-161BC301CCA5_deterministic.js
+Faulting Frame:
+   QV4::Object::internalPut(QV4::PropertyKey, QV4::Value const&, QV4::Value*) @ 0x00007ffff6f1f383: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (17 entries):
+   QV4::Object::internalPut( @ 0x00007ffff6f1f383: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Object::internalPut( @ 0x00007ffff6f1f253: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f10b26: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f10de6: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef3df4: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::IteratorNex @ 0x00007ffff6f84511: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::Destructure @ 0x00007ffff6f84734: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f6edfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007fffffffd720 rbx=0x00000000004255c0 rcx=0x00000000fffffffe rdx=0x00007ffff2fd6ff8 
+rsi=0x00007ffff2fd6ff0 rdi=0x00007ffff2fd6fa8 rbp=0x00007ffff2fd6ff8 rsp=0x00007fffffffd600 
+ r8=0x000000000042d280  r9=0x00007ffff2fd6fa8 r10=0x00007ffff2fd6fd8 r11=0x00007ffff2610a80 
+r12=0x00007ffff2fd6fd8 r13=0x00000000004255c0 r14=0x00007ffff2fd6fa8 r15=0x00007ffff2fd6fa8 
+rip=0x00007ffff6f1f383 efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation on destination operand
+   Short description: DestAv (8/22)
+   Explanation: The target crashed on an access violation at an address matching the destination operand of the instruction. This likely indicates a write access violation, which means the attacker may control the write address and/or value.
+---END SUMMARY---
+(1 of 1) - Hash: 89e0bd18a57f50e1e56c59e238fc603b.392b53acb81c592806f10de8eca4b253
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623120245_025503E4-F86A-4465-9302-AA77C4487451_deterministic.js
+SHA1: 1c9e7ebac06135b2a1dcccd1767e96672d93df99
+Classification: UNKNOWN
+Hash: 89e0bd18a57f50e1e56c59e238fc603b.392b53acb81c592806f10de8eca4b253
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623120245_025503E4-F86A-4465-9302-AA77C4487451_deterministic.js
+Faulting Frame:
+   QV4::FunctionObject::name() const @ 0x00007ffff6f09c82: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   QV4::FunctionObject::name @ 0x00007ffff6f09c82: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f09d76: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff25a4d00 rbx=0x00000000004255c0 rcx=0x0000000000000000 rdx=0x00007ffff721d4e0 
+rsi=0x00007ffff2ccf700 rdi=0x00007ffff2ccf700 rbp=0x00000000004255c0 rsp=0x00007fffff7ff000 
+ r8=0x00007ffff25d60d8  r9=0x00007fffff7ff120 r10=0x00007ffff25b97e0 r11=0x00007ffff25c7200 
+r12=0x00000000004255c0 r13=0x00007ffff2ccf720 r14=0x00007ffff2ccf718 r15=0x00007ffff6f1ea50 
+rip=0x00007ffff6f09c82 efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 1) - Hash: 827a1c5ac52936c087e85431d195a31c.9a06848fd80346b1ca22ae75fc025738
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623114309_703FB936-B328-47C5-9D0D-C6CBA8CCCD27_deterministic.js
+SHA1: fe7622d95fc3c083217a1a12144f2aef6e7d2e54
+Classification: EXPLOITABLE
+Hash: 827a1c5ac52936c087e85431d195a31c.9a06848fd80346b1ca22ae75fc025738
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623114309_703FB936-B328-47C5-9D0D-C6CBA8CCCD27_deterministic.js
+Faulting Frame:
+   QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const @ 0x00007ffff6f1e76e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   QV4::Object::internalGet( @ 0x00007ffff6f1e76e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f86960: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff25b08a0 rbx=0xffffff00ffffffff rcx=0x0000000000000000 rdx=0x00007ffff2ccf710 
+rsi=0x00007ffff25b08a0 rdi=0x00007ffff2ccf710 rbp=0x00007ffff2ccf710 rsp=0x00007fffff7feff0 
+ r8=0x00007ffff25d64d8  r9=0x00007fffff7ff0f0 r10=0x0000000000000000 r11=0x00007ffff25a5200 
+r12=0x00007ffff25d64c0 r13=0x00007ffff25b08a0 r14=0x00007ffff2b993d0 r15=0x00007ffff6f1ea50 
+rip=0x00007ffff6f1e76e efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Possible stack corruption
+   Short description: PossibleStackCorruption (7/22)
+   Explanation: GDB generated an error while unwinding the stack and/or the stack contained return addresses that were not mapped in the inferior's process address space and/or the stack pointer is pointing to a location outside the default stack region. These conditions likely indicate stack corruption, which is generally considered exploitable.
+---END SUMMARY---
+(1 of 2) - Hash: 13aa0a45ab22dce66307879f66e8f6c5.c16d38c079f61ec97649b1a8af2b1119
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623123628_8CB867EB-199B-4528-B525-3F6451F7F2E0_deterministic.js
+SHA1: cc94a62faf109ebe69f3e92f38e44d139e6a969c
+Classification: EXPLOITABLE
+Hash: 13aa0a45ab22dce66307879f66e8f6c5.c16d38c079f61ec97649b1a8af2b1119
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623123628_8CB867EB-199B-4528-B525-3F6451F7F2E0_deterministic.js
+Faulting Frame:
+   QString::arg(QStringView, int, QChar) const @ 0x00007ffff6808f14: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   QString::arg(QStringView, @ 0x00007ffff6808f14: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QString::arg(QString      @ 0x00007ffff6809053: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::ObjectPrototype::met @ 0x00007ffff6f23a82: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff714e458 rbx=0x00007fffff7ff0d8 rcx=0x0000000000428ea8 rdx=0x0000000000000006 
+rsi=0x00007ffff714e458 rdi=0x000000000000000b rbp=0x0000000000000000 rsp=0x00007fffff7ff000 
+ r8=0x0000000000000000  r9=0x0000000000000020 r10=0x000000000000000b r11=0x00007ffff25a5200 
+r12=0x0000000000000006 r13=0x0000000000428ea8 r14=0x00007fffff7ff0e0 r15=0x00007ffff714e458 
+rip=0x00007ffff6808f14 efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
+(1 of 3) - Hash: 0088c8049e7e38eff2a9e27a25a26754.26b4a4f753412694a0f134890f7ca2f5
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623113759_78C633FB-1F99-4891-86B6-0C8904CC08B8_deterministic.js
+SHA1: c446ec458e8926df117f6fd0755f74991b9bad41
+Classification: UNKNOWN
+Hash: 0088c8049e7e38eff2a9e27a25a26754.26b4a4f753412694a0f134890f7ca2f5
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623113759_78C633FB-1F99-4891-86B6-0C8904CC08B8_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff5eed7c2: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   None                      @ 0x00007ffff5eed7c2: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::FastDt @ 0x00007ffff5eee20d: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::Double @ 0x00007ffff5eeccbd: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qdtoa(double,             @ 0x00007ffff67ef80b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x4e20000000000000 rbx=0x00007fffff7ff12c rcx=0x0000000000000272 rdx=0x0000000000000001 
+rsi=0x0000000000000012 rdi=0x00007fffff7ff130 rbp=0x0000000000000004 rsp=0x00007fffff7ff000 
+ r8=0x00000000000003ab  r9=0x0000000000000272 r10=0x0000000000000001 r11=0x4e20000000000272 
+r12=0x00007fffff7ff130 r13=0x0000000000000012 r14=0x00000000cccccccd r15=0x0001ffffffffffff 
+rip=0x00007ffff5eed7c2 efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 3) - Hash: e46fed10b7aa449bf6fdb42c20a82784.249280c7babf5a15b8000189f63eac62
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220624211324_3C72F0C0-B482-4228-919F-F87008E47C60_deterministic.js
+SHA1: c7db6ca6467f51f2c8959ca0397060e8b55c4ed0
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: e46fed10b7aa449bf6fdb42c20a82784.249280c7babf5a15b8000189f63eac62
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220624211324_3C72F0C0-B482-4228-919F-F87008E47C60_deterministic.js
+Faulting Frame:
+   QV4::ExecutionEngine::newPromiseObject(QV4::FunctionObject const*, QV4::PromiseCapability const*) @ 0x00007ffff6ecf370: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (14 entries):
+   QV4::ExecutionEngine::new @ 0x00007ffff6ecf370: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7c2c3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f2f3b4: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallPropert @ 0x00007ffff6f89232: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f70cea: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   main                      @ 0x0000000000402474: in /home/kali/Summer22/qjs-eval/instrumentation/harness/harness
+Registers:
+rax=0x00007ffff25d6740 rbx=0x00007ffff2b99678 rcx=0x0000000000000009 rdx=0x00007ffff25d6740 
+rsi=0x00007ffff7220260 rdi=0x0003800000000002 rbp=0x00007ffff2b99670 rsp=0x00007fffffffd610 
+ r8=0x000000000044e2e0  r9=0x1a355a9803fb33ad r10=0x0000000000000002 r11=0x0000000000000004 
+r12=0x00000000004255c0 r13=0x0000000000000000 r14=0x00000000004255c0 r15=0x00007ffff2b99670 
+rip=0x00007ffff6ecf370 efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+(1 of 1) - Hash: 4a1651ce798de4a3ba625c24e9f9aef4.026f2e13f6d511ffc149c7acf8c66948
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220625134833_0685D7FF-A5E6-427C-AE96-4D8E3660C07E_deterministic.js
+SHA1: cbbc933a5c7b4931c486abc7ab76fb49fd32b0d7
+Classification: UNKNOWN
+Hash: 4a1651ce798de4a3ba625c24e9f9aef4.026f2e13f6d511ffc149c7acf8c66948
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220625134833_0685D7FF-A5E6-427C-AE96-4D8E3660C07E_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff5eed7c2: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   None                      @ 0x00007ffff5eed7c2: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::FastDt @ 0x00007ffff5eedd9c: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::Double @ 0x00007ffff5eeccbd: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qdtoa(double,             @ 0x00007ffff67ef80b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x0000000000002710 rbx=0x00007fffff7ff12c rcx=0x0000000000802c80 rdx=0x000000000000000a 
+rsi=0x0000000000000012 rdi=0x00007fffff7ff130 rbp=0x00000000fffffffc rsp=0x00007fffff7ff000 
+ r8=0x0000000001005900  r9=0x0000000000802eb0 r10=0x0000000000000006 r11=0xd1b717581062511b 
+r12=0x00007fffff7ff130 r13=0x0000000000000012 r14=0x00000000cccccccd r15=0x00001fffffffffff 
+rip=0x00007ffff5eed7c2 efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 1) - Hash: f730dc92ac9b6e5256834a9382b3ea5d.d38aefd651fd87f3b3cf00c1546c13f9
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220627073614_8757D5E6-A16A-46C7-B373-214AAEE58363_deterministic.js
+SHA1: b645fc8e0a9acdda3229b571850cc32ef70f3219
+Classification: UNKNOWN
+Hash: f730dc92ac9b6e5256834a9382b3ea5d.d38aefd651fd87f3b3cf00c1546c13f9
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220627073614_8757D5E6-A16A-46C7-B373-214AAEE58363_deterministic.js
+Faulting Frame:
+   QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const @ 0x00007ffff6f1e752: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   QV4::Object::internalGet( @ 0x00007ffff6f1e752: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef0ea9: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff25b0640 rbx=0x00000000004255c0 rcx=0x0000000000000000 rdx=0x00007ffff2ccf710 
+rsi=0x00007ffff25b0640 rdi=0x00007ffff2ccf710 rbp=0x00007ffff2ccf710 rsp=0x00007fffff7ff000 
+ r8=0x00007ffff6ef0de0  r9=0x00007ffff6f1ea50 r10=0x00007ffff25b66e0 r11=0x00007ffff25a9200 
+r12=0x00007ffff2b992d8 r13=0x00007ffff6f1ea50 r14=0x00007ffff2ccf710 r15=0x00007ffff2ccf710 
+rip=0x00007ffff6f1e752 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 1) - Hash: 2bfb0f71d6f6c917a6646413dd55d91f.9bb1c185bfb1f9c6a15b2c1f4bbdcad3
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220625015230_4B692595-5C1D-4EDA-84D9-10221C0F7B3E_deterministic.js
+SHA1: cf900cbb7572b1216fd351ccee312b2b5343f58e
+Classification: UNKNOWN
+Hash: 2bfb0f71d6f6c917a6646413dd55d91f.9bb1c185bfb1f9c6a15b2c1f4bbdcad3
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220625015230_4B692595-5C1D-4EDA-84D9-10221C0F7B3E_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff5eed7c6: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   None                      @ 0x00007ffff5eed7c6: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::FastDt @ 0x00007ffff5eee20d: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::Double @ 0x00007ffff5eeccbd: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qdtoa(double,             @ 0x00007ffff67ef80b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x4e20000000000000 rbx=0x00007fffff7ff13c rcx=0x0000000000000272 rdx=0x0000000000000001 
+rsi=0x0000000000000012 rdi=0x00007fffff7ff140 rbp=0x0000000000000004 rsp=0x00007fffff7ff000 
+ r8=0x00000000000003ab  r9=0x0000000000000272 r10=0x0000000000000001 r11=0x4e20000000000272 
+r12=0x00007fffff7ff140 r13=0x0000000000000012 r14=0x00000000cccccccd r15=0x00007fffffffffff 
+rip=0x00007ffff5eed7c6 efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+(1 of 1) - Hash: 1e4fd49361d27d0d0ecd3c20b5fc6d16.175962730dcbb9ec6ff77b3971c57fe1
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623124532_BCA08FE2-8C9B-42C5-8511-0BF414573CFF_deterministic.js
+SHA1: 7178a9e2c0f3fb6cdf74004b268f0bde574a81c8
+Classification: EXPLOITABLE
+Hash: 1e4fd49361d27d0d0ecd3c20b5fc6d16.175962730dcbb9ec6ff77b3971c57fe1
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623124532_BCA08FE2-8C9B-42C5-8511-0BF414573CFF_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6e5aef4: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   None                      @ 0x00007ffff6e5aef4: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::MemoryManager::alloc @ 0x00007ffff6e5d981: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::ExecutionEngine::new @ 0x00007ffff6ec651e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef0f1f: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef13cc: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0xafcffade7ac54300 rbx=0x0000000000000001 rcx=0x0000000000000000 rdx=0x0000000000000000 
+rsi=0x0000000000000020 rdi=0x0000000000423810 rbp=0x0000000000423810 rsp=0x00007fffff7fefd0 
+ r8=0x00007ffff25d6558  r9=0x0000000000000002 r10=0x0003800000000002 r11=0x00007ffff25c7380 
+r12=0x0000000000423810 r13=0x00007ffff6f1ea50 r14=0x00007ffff2cee728 r15=0x00007ffff2cee728 
+rip=0x00007ffff6e5aef4 efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Possible stack corruption
+   Short description: PossibleStackCorruption (7/22)
+   Explanation: GDB generated an error while unwinding the stack and/or the stack contained return addresses that were not mapped in the inferior's process address space and/or the stack pointer is pointing to a location outside the default stack region. These conditions likely indicate stack corruption, which is generally considered exploitable.
+---END SUMMARY---
+(1 of 3) - Hash: 04088dcf28d0901d09d4e9e406462ec0.49662e561b395696773fc95f6c525c85
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623112444_255DA565-79AD-46B9-B988-EE73E194D828_deterministic.js
+SHA1: 40e587f5ec69f613f361c63b0b057c60167ea21a
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: 04088dcf28d0901d09d4e9e406462ec0.49662e561b395696773fc95f6c525c85
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623112444_255DA565-79AD-46B9-B988-EE73E194D828_deterministic.js
+Faulting Frame:
+   QV4::ExecutionEngine::newPromiseObject(QV4::FunctionObject const*, QV4::PromiseCapability const*) @ 0x00007ffff6ecf370: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (14 entries):
+   QV4::ExecutionEngine::new @ 0x00007ffff6ecf370: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f79cfd: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f2f3b4: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallPropert @ 0x00007ffff6f89232: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f70cea: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   main                      @ 0x0000000000402474: in /home/kali/Summer22/qjs-eval/instrumentation/harness/harness
+Registers:
+rax=0x00007ffff25d6780 rbx=0x00007ffff2b99658 rcx=0x0000000000000009 rdx=0x00007ffff25d6780 
+rsi=0x00007ffff7220260 rdi=0x0003800000000002 rbp=0x00007ffff2b99650 rsp=0x00007fffffffd680 
+ r8=0x000000000044ef40  r9=0x0000000000000000 r10=0x0000000000000002 r11=0x0000000000000004 
+r12=0x00000000004255c0 r13=0x0000000000000000 r14=0x00000000004255c0 r15=0x00007ffff2b99650 
+rip=0x00007ffff6ecf370 efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+(1 of 8) - Hash: b30e6f9f57fb665ccc603c75408f1687.dcc6454522c6b85315ab966c7a0efad4
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623110157_5E2B719A-05FC-4D14-8A12-815BE7154BE2_deterministic.js
+SHA1: 8024324ab7e3140a1bf30da0b6bc635613837cc0
+Classification: EXPLOITABLE
+Hash: b30e6f9f57fb665ccc603c75408f1687.dcc6454522c6b85315ab966c7a0efad4
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623110157_5E2B719A-05FC-4D14-8A12-815BE7154BE2_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6ef0ea6: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (1000 entries):
+   None                      @ 0x00007ffff6ef0ea6: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x00007ffff25b0640 rbx=0x00000000004255c0 rcx=0x0000000000000000 rdx=0x00007ffff2ccf718 
+rsi=0x00007ffff25b0640 rdi=0x00007ffff2ccf718 rbp=0x00007ffff2ccf718 rsp=0x00007fffff7feff0 
+ r8=0x00007ffff6ef0de0  r9=0x00007ffff6f1ea50 r10=0x00007ffff25b66e0 r11=0x00007ffff25a9200 
+r12=0x00007ffff2b992d8 r13=0x00007ffff6f1ea50 r14=0x00007ffff2ccf718 r15=0x00007ffff2ccf718 
+rip=0x00007ffff6ef0ea6 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
+(1 of 7) - Hash: 6894c6c3a186d03d6a3b2970205d13df.d69ac02f40d9864857465ad9e52a1664
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623110034_BACD1283-5323-41D4-AD4F-E073A481BE1C_deterministic.js
+SHA1: f014aec96c79103a43f31046beae1949b818da47
+Classification: EXPLOITABLE
+Hash: 6894c6c3a186d03d6a3b2970205d13df.d69ac02f40d9864857465ad9e52a1664
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623110034_BACD1283-5323-41D4-AD4F-E073A481BE1C_deterministic.js
+Faulting Frame:
+   double_conversion::FastDtoa(double, double_conversion::FastDtoaMode, int, double_conversion::Vector<char>, int*, int*) @ 0x00007ffff5eedaed: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   double_conversion::FastDt @ 0x00007ffff5eedaed: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::Double @ 0x00007ffff5eeccbd: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qdtoa(double,             @ 0x00007ffff67ef80b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0x001c1548cee00000 rbx=0x00007fffff7ff10c rcx=0x00007fffff7ff024 rdx=0x00007fffff7ff030 
+rsi=0x00000000ffffffc0 rdi=0x00000000ffffffa4 rbp=0xe0aa467700000400 rsp=0x00007fffff7ff000 
+ r8=0x41e0000000000000  r9=0x000c1548cee00000 r10=0x001c1548cee00000 r11=0x00382a919dc00000 
+r12=0x00007fffff7ff110 r13=0x0000000000000012 r14=0x00000000ffffffe0 r15=0xe0aa4676fffffc00 
+rip=0x00007ffff5eedaed efl=0x0000000000010283  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
+(1 of 2) - Hash: 5b705d67c953b3155dd7bff767176520.cdba341b6946641192b7d682c4aa2a93
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623110222_0EFA2D59-4265-4A08-95E4-C94727A7D3D8_deterministic.js
+SHA1: 8ffe67ef7c7ee68daad0cf831f039e4cb97bb9e4
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: 5b705d67c953b3155dd7bff767176520.cdba341b6946641192b7d682c4aa2a93
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623110222_0EFA2D59-4265-4A08-95E4-C94727A7D3D8_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6eebcff: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (13 entries):
+   None                      @ 0x00007ffff6eebcff: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ee9c99: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallPropert @ 0x00007ffff6f89232: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f70cea: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   main                      @ 0x0000000000402474: in /home/kali/Summer22/qjs-eval/instrumentation/harness/harness
+Registers:
+rax=0x00007ffff25a2b00 rbx=0x00000000004255c0 rcx=0x0000000000000004 rdx=0x00007ffff2b99640 
+rsi=0x0000000000000000 rdi=0x00007ffff2b995b0 rbp=0x00007ffff2b99628 rsp=0x00007fffffffd6a0 
+ r8=0x0000000000000000  r9=0x00007fffffffd6c0 r10=0xbe101548cee00000 r11=0x00007ffff25a0f80 
+r12=0x00007ffff2b99640 r13=0x0000000000000004 r14=0x00007ffff2b99630 r15=0x00007ffff2b995b0 
+rip=0x00007ffff6eebcff efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+(1 of 1) - Hash: 7c0da1ec0b2ef46e779e1977d3ae0fae.097349af4b4e1a60fd92820562bd9ec6
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/program_20220625014802_CC57095D-692D-41FA-B787-73248239EC7F_deterministic.js
+SHA1: e8f80af4c98c83b1eb03d2c315d6276b9af68879
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: 7c0da1ec0b2ef46e779e1977d3ae0fae.097349af4b4e1a60fd92820562bd9ec6
+Command: instrumentation/harness/harness instrumentation/results/crashes/program_20220625014802_CC57095D-692D-41FA-B787-73248239EC7F_deterministic.js
+Faulting Frame:
+   QV4::Runtime::IteratorNext::call(QV4::ExecutionEngine*, QV4::Value const&, QV4::Value*) @ 0x00007ffff6f84445: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (15 entries):
+   QV4::Runtime::IteratorNex @ 0x00007ffff6f84445: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f70a6e: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7d075: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7015d: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   main                      @ 0x0000000000402474: in /home/kali/Summer22/qjs-eval/instrumentation/harness/harness
+Registers:
+rax=0x0000000000000000 rbx=0x00000000004255c0 rcx=0x000000000000000f rdx=0x00007ffff2b996c0 
+rsi=0x00007ffff2b99660 rdi=0x00000000004255c0 rbp=0x00007ffff2b99660 rsp=0x00007fffffffd570 
+ r8=0x00007ffff25d6ce0  r9=0x000000000044d890 r10=0x0003000000000001 r11=0x00007ffff25c7b80 
+r12=0x00007ffff2b996c0 r13=0x00007ffff2b99700 r14=0x00007ffff2b992d8 r15=0x0000000000000000 
+rip=0x00007ffff6f84445 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+(1 of 1) - Hash: c561e007337eaa0d0079162e8dab58fa.86139a3ca21ef86072ed88443208f22d
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623105943_143A35C6-B9A2-440C-841E-EC5E9897C1E8_deterministic.js
+SHA1: 7127f6b33faf665f4461f694e34e7ed418a3d377
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: c561e007337eaa0d0079162e8dab58fa.86139a3ca21ef86072ed88443208f22d
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623105943_143A35C6-B9A2-440C-841E-EC5E9897C1E8_deterministic.js
+Faulting Frame:
+   None @ 0x00007ffff6eebcff: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Disassembly:
+Stack Head (13 entries):
+   None                      @ 0x00007ffff6eebcff: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f08bee: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallPropert @ 0x00007ffff6f89232: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f70cea: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f089b0: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Runtime::CallName::c @ 0x00007ffff6f842b3: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f7125a: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6f74667: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Function::call(QV4:: @ 0x00007ffff6f07bfe: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Script::run(QV4::Val @ 0x00007ffff6f463ec: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QJSEngine::evaluate(QStri @ 0x00007ffff6ebeb72: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   main                      @ 0x0000000000402474: in /home/kali/Summer22/qjs-eval/instrumentation/harness/harness
+Registers:
+rax=0x00007ffff25a2b00 rbx=0x00000000004255c0 rcx=0x0000000000000000 rdx=0x00007ffff2b99560 
+rsi=0x0000000000000000 rdi=0x00007ffff2b995c0 rbp=0x00000000004255c0 rsp=0x00007fffffffd700 
+ r8=0x00007ffff2b995c0  r9=0x0000000000000004 r10=0x00007ffff25b99a0 r11=0x00007ffff25c7200 
+r12=0x00007ffff2b99560 r13=0x0000000000000000 r14=0x0000000000000000 r15=0x00007ffff2b995c0 
+rip=0x00007ffff6eebcff efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+(1 of 1) - Hash: eb75169d360efda5641c3fe5840aad2a.f00e730128c1c6d9bd0e59fed7893570
+---CRASH SUMMARY---
+Filename: instrumentation/results/crashes/duplicates/program_20220623120125_29035406-30AC-4351-9DB2-B50E28615C9A_deterministic.js
+SHA1: 033d1d8cf7b628a2822bfa1d06c196e6a2062827
+Classification: EXPLOITABLE
+Hash: eb75169d360efda5641c3fe5840aad2a.f00e730128c1c6d9bd0e59fed7893570
+Command: instrumentation/harness/harness instrumentation/results/crashes/duplicates/program_20220623120125_29035406-30AC-4351-9DB2-B50E28615C9A_deterministic.js
+Faulting Frame:
+   double_conversion::FastDtoa(double, double_conversion::FastDtoaMode, int, double_conversion::Vector<char>, int*, int*) @ 0x00007ffff5eee208: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   double_conversion::FastDt @ 0x00007ffff5eee208: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::Double @ 0x00007ffff5eeccbd: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qdtoa(double,             @ 0x00007ffff67ef80b: in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.2
+   QV4::RuntimeHelpers::numb @ 0x00007ffff6f86260: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8bf4b: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6eebe74: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff6f869af: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::RuntimeHelpers::obje @ 0x00007ffff6f86d24: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   QV4::Value::toQString()   @ 0x00007ffff6f8c0cb: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+   None                      @ 0x00007ffff6ef1280: in /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.15.2
+Registers:
+rax=0xbebc200000000000 rbx=0x00007fffff7ff11c rcx=0x0000000000000348 rdx=0x0000000000000001 
+rsi=0x0000000000000012 rdi=0x00007fffff7ff120 rbp=0x0000000000000008 rsp=0x00007fffff7ff000 
+ r8=0x0000000000000690  r9=0x0000000000000348 r10=0x0000000000000001 r11=0xbebc200000000348 
+r12=0x00007fffff7ff120 r13=0x0000000000000012 r14=0x00000000cccccccd r15=0x0000001fffffffff 
+rip=0x00007ffff5eee208 efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
