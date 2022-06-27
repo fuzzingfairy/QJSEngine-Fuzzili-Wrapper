@@ -4,6 +4,7 @@ triage = open('./triage.txt' ,'r')
 exploitable = open('./crashes/exploitable/triage.txt', 'w')
 unknown = open('./crashes/unknown/triage.txt', 'w')
 not_exploitable = open('./crashes/not-exploitable/triage.txt', 'w')
+probably_exploitable = open('./crashes/prob-exploitable/triage.txt', 'w')
 
 
 data = triage.readlines()
@@ -21,13 +22,11 @@ for i in range(len(data)):
             if 'Filename: ' in line:
                 file_name = line.split()[1]
                 file_name = file_name.replace('instrumentation/results/', '')
-            if 'Hash: ' in line:
-                _hash = line.split()[1]
             i += 1
             line = data[i]
         crash += '---END SUMMARY---'
         crash.join('\n')
-        new_file_name = _hash[:5] + '.js'
+        new_file_name = file_name.split('-')[-1]
 
         if ' EXPLOITABLE' in crash:
             exploitable.write(crash)
@@ -35,9 +34,12 @@ for i in range(len(data)):
         elif 'PROBABLY_NOT_EXPLOITABLE' in crash:
             not_exploitable.write(crash)
             new_file_name = 'crashes/not-exploitable/' + new_file_name
+        elif 'PROBABLY_EXPLOITABLE' in crash:
+            probably_exploitable.write(crash)
+            new_file_name = 'crashes/prob-exploitable/' + new_file_name
         else:
             unknown.write(crash)
             new_file_name = 'crashes/unknown/' + new_file_name
 
 
-        subprocess.run(['cp', file_name, new_file_name])
+        subprocess.run(['mv', file_name, new_file_name])
