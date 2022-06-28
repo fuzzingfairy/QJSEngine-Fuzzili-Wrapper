@@ -320,14 +320,14 @@ Back trace
 #17 0x0000000000402295 in _start ()
 ````
 #### 3F6451F7F2E0_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#0c8904cc08b8_deterministicjs)
+Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
 
 
 #### 6235D04848D4_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#0c8904cc08b8_deterministicjs)
+Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
 
 #### 815BE7154BE2_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#0c8904cc08b8_deterministicjs)
+Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
 
 #### 817E6A9297C7_deterministic.js
 
