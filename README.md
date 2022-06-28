@@ -275,8 +275,7 @@ back trace
 ````
 
 #### 1CE5346448E5_deterministic.js
-An object, created by `const v0 =/t9/Dj/D/imu;` (TODO: figure out why this is an object... isnt that regex?) is put into an array. the object then has its `__proto__` set to the array it belongs to. dereferencing the values of this array results in the same infinitively recursive looping of calls to `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()`
-
+An object, created by `const v0 =/t9/Dj/D/imu;` (TODO: figure out why this is an object... isnt that regex?) is put into an array. the object then has its `__proto__` set to the array it belongs to. dereferencing the values of this array results in the same infinitively recursive looping of calls to `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()`. Is an array containing object whose `__proto__` references the original array leads to stack overflow due to infinitely recursive looping of calls to `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()` as a result of array access
 ````
 #0  0x00007ffff6d41470 in QV4::RuntimeHelpers::ordinaryToPrimitive(QV4::ExecutionEngine*, QV4::Object const*, QV4::String*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
 #1  0x00007ffff6d418e4 in QV4::RuntimeHelpers::objectDefaultValue(QV4::Object const*, int) ()
@@ -303,47 +302,8 @@ An object, created by `const v0 =/t9/Dj/D/imu;` (TODO: figure out why this is an
 #15 0x0000000000402295 in _start ()
 ````
 #### 35C0AFC9E167_deterministic.js
-array containing object whose `__proto__` references the original array leads to stack overflow due to infinitely recursive looping of calls to `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()` as a result of array access
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
-Source code
-````
-function main() { 
-const v0 = {};
-const v1 = [v0,v0];
-v0.__proto__ = v1;
-const v2 = delete v1[v0];
-}
-main();
-// CRASH INFO
-// ==========
-// TERMSIG: 11
-// STDERR:
-````
-
-
-Back trace
-````
-#0  0x00007ffff6d41470 in QV4::RuntimeHelpers::ordinaryToPrimitive(QV4::ExecutionEngine*, QV4::Object const*, QV4::String*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#1  0x00007ffff6d418e4 in QV4::RuntimeHelpers::objectDefaultValue(QV4::Object const*, int) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#2  0x00007ffff6d7398a in QV4::Value::toPropertyKey(QV4::ExecutionEngine*) const () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#3  0x00007ffff6d3b27b in QV4::Runtime::DeleteProperty_NoThrow::call(QV4::ExecutionEngine*, QV4::Value const&, QV4::Value const&) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#4  0x00007ffff6d3b2e3 in QV4::Runtime::DeleteProperty::call(QV4::ExecutionEngine*, QV4::Function*, QV4::Value const&, QV4::Value const&) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#5  0x00007ffff6d77087 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#6  0x00007ffff6d7bf6f in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#7  0x00007ffff6cd4eb0 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#8  0x00007ffff6d3f707 in QV4::Runtime::CallName::call(QV4::ExecutionEngine*, int, QV4::Value*, int) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#9  0x00007ffff6d75ab5 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#10 0x00007ffff6d7bf6f in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#11 0x00007ffff6cd3ada in QV4::Function::call(QV4::Value const*, QV4::Value const*, int, QV4::ExecutionContext const*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#12 0x00007ffff6d480fc in QV4::Script::run(QV4::Value const*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#13 0x00007ffff6c69b24 in QJSEngine::evaluate(QString const&, QString const&, int, QList<QString>*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#14 0x0000000000402524 in main (argc=<optimized out>, argc@entry=0x2, argv=argv@entry=0x7fffffffe3f8) at harness.cpp:60
-#15 0x00007ffff5ec3d90 in __libc_start_call_main (main=main@entry=0x402360 <main(int, char**)>, argc=argc@entry=0x2, argv=argv@entry=0x7fffffffe3f8)
-    at ../sysdeps/nptl/libc_start_call_main.h:58
-#16 0x00007ffff5ec3e40 in __libc_start_main_impl (main=0x402360 <main(int, char**)>, argc=0x2, argv=0x7fffffffe3f8, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
-    stack_end=0x7fffffffe3e8) at ../csu/libc-start.c:392
-#17 0x0000000000402295 in _start ()
-````
 #### 3F6451F7F2E0_deterministic.js
 Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
 
@@ -355,36 +315,34 @@ Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJS
 Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
 
 #### 817E6A9297C7_deterministic.js
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
-
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
 #### A5A7929C887D_deterministic.js,
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
 #### AA77C4487451_deterministic.js
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
-
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
 #### C1E89367B35D_deterministic.js,
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
 #### C2F77C963AF8_deterministic.js
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
 #### C6CBA8CCCD27_deterministic.js
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
 #### CB19DA296980_deterministic.js, 
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
 #### DCE96D3007C6_deterministic.js,
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
 #### E01C6AF02537_deterministic.js 
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
 #### E073A481BE1C_deterministic.js 
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
 ## Interesting Finds
 
