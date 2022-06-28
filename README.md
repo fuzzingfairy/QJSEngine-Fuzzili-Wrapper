@@ -275,7 +275,27 @@ back trace
 ````
 
 #### 1CE5346448E5_deterministic.js
-An object, created by `const v0 =/t9/Dj/D/imu;` (TODO: figure out why this is an object... isnt that regex?) is put into an array. the object then has its `__proto__` set to the array it belongs to. dereferencing the values of this array results in the same infinitively recursive looping of calls to `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()`. Is an array containing object whose `__proto__` references the original array leads to stack overflow due to infinitely recursive looping of calls to `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()` as a result of array access
+An object, created by `const v0 =/t9/Dj/D/imu;` (TODO: figure out why this is an object... isnt that regex?) is put into an array. the object then has its `__proto__` set to the array it belongs to. dereferencing the values of this array results in calls to `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()`.
+
+````
+function main() { 
+const v0 = /t9\Dj\D/imu;
+console.log(typeof(/t9\DJ\D/imu));
+const v1 = [v0,v0,v0,v0,v0,v0];
+v0.__proto__ = v1;
+
+// what is this value
+//"unicode"[-364680780] -= v0;
+const v2 = [1,0,1,2,3,4,5]
+const v3 = v2 + v0;
+}
+main();
+// CRASH INFO
+// ==========
+// TERMSIG: 11
+// STDERR:
+````
+
 ````
 #0  0x00007ffff6d41470 in QV4::RuntimeHelpers::ordinaryToPrimitive(QV4::ExecutionEngine*, QV4::Object const*, QV4::String*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
 #1  0x00007ffff6d418e4 in QV4::RuntimeHelpers::objectDefaultValue(QV4::Object const*, int) ()
