@@ -329,7 +329,7 @@ Same as 0C8904CC08B8_deterministic
 
 #### 817E6A9297C7_deterministic.js
 
-same backtrace as [35C0AFC9E167_deterministic.js]
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
 
 
 #### A5A7929C887D_deterministic.js,
