@@ -330,42 +330,36 @@ Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJS
 Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
 
 #### 817E6A9297C7_deterministic.js
-
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
 
 
 #### A5A7929C887D_deterministic.js,
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
-
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
 
 #### AA77C4487451_deterministic.js
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
-
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
 
 
 #### C1E89367B35D_deterministic.js,
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
 
 #### C2F77C963AF8_deterministic.js
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
 
-
-#### C6CBA8CCCD27_deterministic.js,
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+#### C6CBA8CCCD27_deterministic.js
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
 
 #### CB19DA296980_deterministic.js, 
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
 
 #### DCE96D3007C6_deterministic.js,
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
 
 #### E01C6AF02537_deterministic.js 
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
 
-
-#### E073A481BE1C_deterministic.js, 
-same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
-
+#### E073A481BE1C_deterministic.js 
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#35c0afc9e167_deterministicjs)
 
 ## Interesting Finds
 
