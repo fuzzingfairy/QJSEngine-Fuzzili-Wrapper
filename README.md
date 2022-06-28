@@ -278,6 +278,8 @@ back trace
 An object, created by `const v0 =/t9/Dj/D/imu;` (TODO: figure out why this is an object... isnt that regex?) is put into an array. the object then has its `__proto__` set to the array it belongs to. dereferencing the values of this array results in the same infinitively recursive looping of calls to `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()`
 
 #### 35C0AFC9E167_deterministic.js
+array containing object whose `__proto__` references the original array leads to stack overflow due to infinitely recursive looping of calls to `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()` as a result of array access
+
 Source code
 ````
 function main() { 
@@ -333,20 +335,36 @@ same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/
 
 
 #### A5A7929C887D_deterministic.js,
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+
 
 #### AA77C4487451_deterministic.js
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+
+
 
 #### C1E89367B35D_deterministic.js,
-Same as 0C8904CC08B8_deterministic
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+
+#### C2F77C963AF8_deterministic.js
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+
 
 #### C6CBA8CCCD27_deterministic.js,
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
 
 #### CB19DA296980_deterministic.js, 
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
 
-#### DCE96D3007C6_deterministic.js, 
+#### DCE96D3007C6_deterministic.js,
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+
 #### E01C6AF02537_deterministic.js 
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
+
+
 #### E073A481BE1C_deterministic.js, 
-array containing object whose `__proto__` references the original array leads to stack overflow due to infinitely recursive looping of calls to `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()` as a result of array access
+same backtrace as [35C0AFC9E167_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#35c0afc9e167_deterministicjs)
 
 
 ## Interesting Finds
