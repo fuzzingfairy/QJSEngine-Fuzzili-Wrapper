@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
     // initialize the application and its js engine
     QJSEngine engine;
 
+    engine.installExtensions(QJSEngine::ConsoleExtension);
     // getting the script from the input file
     size_t script_size;
     char* filename = argv[1];
