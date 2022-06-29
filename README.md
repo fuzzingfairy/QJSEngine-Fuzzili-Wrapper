@@ -367,6 +367,13 @@ backtrace
     rtld_fini=<optimized out>, stack_end=0x7fffffffe3e8) at ../csu/libc-start.c:392
 #15 0x0000000000402295 in _start ()
 ````
+
+#### 2614D258B1CC_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
+
+#### 2AF627313745_deterministic.js
+Same backtrace as [098b393b31c6_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#098b393b31c6_deterministicjs)
+
 #### 35C0AFC9E167_deterministic.js
 Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
