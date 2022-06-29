@@ -510,6 +510,45 @@ Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter
 #### E073A481BE1C_deterministic.js 
 Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
+#### F72E7A32F3DB_deterministic.js
+````
+function main() { 
+const v2 = new Int16Array(2327997106);
+const v3 = v2.includes();
+}
+main();
+// CRASH INFO
+// ==========
+// TERMSIG: 11
+// STDERR:
+````
+
+
+Backtrace
+````
+#0  0x00007ffff6d57e43 in QV4::TypedArray::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#1  0x00007ffff6d5bc5e in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#2  0x00007ffff6d4399a in QV4::Runtime::CallProperty::call(QV4::ExecutionEngine*, QV4::Value const&, int, QV4::Value*, int) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#3  0x00007ffff6d75cb8 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#4  0x00007ffff6d7bf6f in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#5  0x00007ffff6cd4eb0 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#6  0x00007ffff6d3f707 in QV4::Runtime::CallName::call(QV4::ExecutionEngine*, int, QV4::Value*, int) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#7  0x00007ffff6d75ab5 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#8  0x00007ffff6d7bf6f in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#9  0x00007ffff6cd3ada in QV4::Function::call(QV4::Value const*, QV4::Value const*, int, QV4::ExecutionContext const*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#10 0x00007ffff6d480fc in QV4::Script::run(QV4::Value const*) ()
+   from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#11 0x00007ffff6c69b24 in QJSEngine::evaluate(QString const&, QString const&, int, QList<QString>*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
+#12 0x0000000000402524 in main (argc=<optimized out>, argc@entry=0x2, 
+    argv=argv@entry=0x7fffffffe408) at harness.cpp:60
+#13 0x00007ffff5ec3d90 in __libc_start_call_main (
+    main=main@entry=0x402360 <main(int, char**)>, argc=argc@entry=0x2, 
+    argv=argv@entry=0x7fffffffe408) at ../sysdeps/nptl/libc_start_call_main.h:58
+#14 0x00007ffff5ec3e40 in __libc_start_main_impl (main=0x402360 <main(int, char**)>, 
+    argc=0x2, argv=0x7fffffffe408, init=<optimized out>, fini=<optimized out>, 
+    rtld_fini=<optimized out>, stack_end=0x7fffffffe3f8) at ../csu/libc-start.c:392
+#15 0x0000000000402295 in _start ()
+````
 ## Interesting Finds
 
 #### Javascript can access and modify the Engine its running within
