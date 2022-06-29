@@ -374,6 +374,9 @@ Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJS
 #### 2AF627313745_deterministic.js
 Same backtrace as [098b393b31c6_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#098b393b31c6_deterministicjs)
 
+#### 2B8B98C929D6_deterministic.js
+Same backtrace as [098b393b31c6_deterministic.js](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/edit/dev/README.md#098b393b31c6_deterministicjs)
+
 #### 35C0AFC9E167_deterministic.js
 Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
