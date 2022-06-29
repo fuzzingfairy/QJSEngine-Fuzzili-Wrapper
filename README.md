@@ -207,27 +207,20 @@ each containing their own trimmed version of the triage and the crash files for 
 For the exploitable/ directory, we manually debugged each js script using gdb to further subdivide by issue type
 
 
-#### 098B393B31C6_deterministic.js
+#### Promise Handling (098B393B31C6_deterministic.js)
+Looks like a bug with QJSEngine handling of Promises
+
 Code:
-````
-function main() { 
+```
 const v0 = {};
 const v3 = Object();
 const v6 = [Object,v3,v0];
 const v7 = Promise.all;
 const v8 = Reflect.apply(v7,v3,v6);
-}
-main();
-// CRASH INFO
-// ==========
-// TERMSIG: 11
-// STDERR:
-````
-Looks like a bug with QJSEngine handling of Promises
+```
 
-
-backtrace
-````
+Backtrace:
+```
 #0  0x00007ffff6cb1024 in QV4::ExecutionEngine::newPromiseObject(QV4::FunctionObject const*, QV4::PromiseCapability const*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
 #1  0x00007ffff6d09131 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
 #2  0x00007ffff6d2e669 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
@@ -247,23 +240,24 @@ backtrace
 #15 0x00007ffff5ec3e40 in __libc_start_main_impl (main=0x402360 <main(int, char**)>, argc=0x2, argv=0x7fffffffe3f8, init=<optimized out>, fini=<optimized out>, 
     rtld_fini=<optimized out>, stack_end=0x7fffffffe3e8) at ../csu/libc-start.c:392
 #16 0x0000000000402295 in _start ()
-````
+```
 
-#### 0C8904CC08B8_deterministic.js
-Minimized Code
- 
-     function main() { 
-     let v1 = [-1.0,-1.0,-1.0];
-     v1[1] = v1;
-     const v2 = v1--;
-     }
-     main();
+Similar Crashes Folder:
+`results/crashes/reviewed/promise-handling`
 
+
+#### Self-Reference  (0C8904CC08B8_deterministic.js)
 Looks like a self reference issue. Where QJSengine tries to recursively resolve an array that references itself. The recursion is happening in [qv4value](https://code.woboq.org/qt5/qtdeclarative/src/qml/jsruntime/qv4value.cpp.html#_ZNK3QV45Value9toQStringEv) on lines 203-206. This happens because the arrays primitive resolves to itself.
 
+Code:
+```
+let v1 = [-1.0,-1.0,-1.0];
+v1[1] = v1;
+const v2 = v1--;
+```
 
-backtrace
-````
+Backtrace:
+```
  2348 0x00007ffff6f64c13 in QV4::RuntimeHelpers::ordinaryToPrimitive(QV4::ExecutionEngine*, QV4::Object const*, QV4::String*) () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
 #2349 0x00007ffff6f64f84 in QV4::RuntimeHelpers::objectDefaultValue(QV4::Object const*, int) () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
 #2350 0x00007ffff6f6a37b in QV4::Value::toQString() const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
@@ -279,21 +273,22 @@ backtrace
 #2360 0x00007ffff6f6a37b in QV4::Value::toQString() const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
 #2361 0x00007ffff6ecdc60 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
 ````
-#### 161BC301CCA5_deterministic.js
-Looks like a resource exhaustion issue. Crashes in Chrome as well. The spread ... operator copies the v1 array which is where it crashes
 
-minified code
+Similar Crashes Folder:
+`results/crashes/reviewed/self-reference`
+
+#### Array out of bounds write (161BC301CCA5_deterministic.js)
+Looks like the third line is causing an out of bounds array write. Indices greater than 277913 and less than ~32 bit int max will cause arbitrary data to be written outside of the array. Crashes in Chrome as well. The spread ... operator copies the v1 array which is where it crashes
+
+Code:
 ```
-function main() { 
 const v1 = [];
 v1[4145569500] &= v1;
 let [v2,v3,,...v4] = v1;
-}
-main();
 ````
 
-backtrace
-````
+Backtrace:
+```
 #0  0x00007ffff6efc223 in QV4::Object::internalPut(QV4::PropertyKey, QV4::Value const&, QV4::Value*) () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
 #1  0x00007ffff6efc0f3 in QV4::Object::internalPut(QV4::PropertyKey, QV4::Value const&, QV4::Value*) () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
 #2  0x00007ffff6eed7a6 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
@@ -317,75 +312,48 @@ backtrace
     rtld_fini=<optimized out>, stack_end=0x7fffffffe3f8) at ../csu/libc-start.c:392
 
 #19 0x000000000040223a in _start ()
-````
+```
 
-#### 1CE5346448E5_deterministic.js
-An object, created by `const v0 =/t9/Dj/D/imu;` (TODO: figure out why this is an object... isnt that regex?) is put into an array. the object then has its `__proto__` set to the array it belongs to. dereferencing the values of this array results in calls to `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()`.
+Similar Crash Folder:
+`results/crashes/reviewed/OOB-array-write`
 
-````
-function main() { 
-const v0 = /t9\Dj\D/imu;
-console.log(typeof(/t9\DJ\D/imu));
-const v1 = [v0,v0,v0,v0,v0,v0];
-v0.__proto__ = v1;
 
-// what is this value
-//"unicode"[-364680780] -= v0;
-const v2 = [1,0,1,2,3,4,5]
-const v3 = v2 + v0;
-}
-main();
-// CRASH INFO
-// ==========
-// TERMSIG: 11
-// STDERR:
-````
+### 06E132CAF6D1_deterministic.js
 
-backtrace
-````
-#0  0x00007ffff6d41470 in QV4::RuntimeHelpers::ordinaryToPrimitive(QV4::ExecutionEngine*, QV4::Object const*, QV4::String*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#1  0x00007ffff6d418e4 in QV4::RuntimeHelpers::objectDefaultValue(QV4::Object const*, int) ()
-   from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#2  0x00007ffff6d43fab in QV4::RuntimeHelpers::addHelper(QV4::ExecutionEngine*, QV4::Value const&, QV4::Value const&) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#3  0x00007ffff6d76337 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#4  0x00007ffff6d7bf6f in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#5  0x00007ffff6cd4eb0 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#6  0x00007ffff6d3f707 in QV4::Runtime::CallName::call(QV4::ExecutionEngine*, int, QV4::Value*, int) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#7  0x00007ffff6d75ab5 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#8  0x00007ffff6d7bf6f in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#9  0x00007ffff6cd3ada in QV4::Function::call(QV4::Value const*, QV4::Value const*, int, QV4::ExecutionContext const*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#10 0x00007ffff6d480fc in QV4::Script::run(QV4::Value const*) ()
-   from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#11 0x00007ffff6c69b24 in QJSEngine::evaluate(QString const&, QString const&, int, QList<QString>*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
-#12 0x0000000000402524 in main (argc=<optimized out>, argc@entry=0x2, 
-    argv=argv@entry=0x7fffffffe3f8) at harness.cpp:60
-#13 0x00007ffff5ec3d90 in __libc_start_call_main (
-    main=main@entry=0x402360 <main(int, char**)>, argc=argc@entry=0x2, 
-    argv=argv@entry=0x7fffffffe3f8) at ../sysdeps/nptl/libc_start_call_main.h:58
-#14 0x00007ffff5ec3e40 in __libc_start_main_impl (main=0x402360 <main(int, char**)>, 
-    argc=0x2, argv=0x7fffffffe3f8, init=<optimized out>, fini=<optimized out>, 
-    rtld_fini=<optimized out>, stack_end=0x7fffffffe3e8) at ../csu/libc-start.c:392
-#15 0x0000000000402295 in _start ()
-````
+seems to be a resource exhaustion issue where `QV4::Object::internalGet` gets called repeatedly (due to the do while loop) until crash due to the creation of a proxy whose handler has its `__proto__` property set to the original proxy within a do while loop.
 
-#### 2614D258B1CC_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
+An interesting feature of this crash is that removing the loop causes the execution to succeed, so it doesn't seem to be simply an issue with the self-reference in the form of the proxy's handler having a property which points to the original proxy, but instead only crashes when v9.__proto__ is set to v11 **repeatedly**.
 
-#### 2AF627313745_deterministic.js
-Same backtrace as [098b393b31c6_deterministic.js](#098b393b31c6_deterministicjs)
+Code:
+```
+const v2 = [3769255543,3769255543,3769255543,3769255543];
+let {"constructor":v3,"length":v4,"toString":v5,} = v2;
+const v9 = {"call":v5,"defineProperty":v5,"isExtensible":v5};
+const v11 = new Proxy(Object,v9);
+do {
+    v9.__proto__ = v11;
+} while (0 < 4);
+```
 
-#### 2B8B98C929D6_deterministic.js
-Same backtrace as [098b393b31c6_deterministic.js](#098b393b31c6_deterministicjs)
-
-#### 34CAED2B55E7_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
- 
-
-#### 35C0AFC9E167_deterministic.js
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### 3F6451F7F2E0_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
+Backtrace:
+```
+#0  0x00007ffff6f281c6 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#1  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#2  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#3  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#4  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#5  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#6  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#7  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#8  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#9  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#10 0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#11 0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#12 0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#13 0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#14 0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#15 0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+```
 
 #### 570A23225EA1_deterministic.js
 Crash invovling calling functions
@@ -432,84 +400,6 @@ Backtrace
 #15 0x0000000000402295 in _start ()
 ````
 
-#### 5987040E01DD_deterministic.js
-Same backtrace as [570a23225ea1_deterministic.js](#570a23225ea1_deterministicjs)
-
-#### 6235D04848D4_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
-
-#### 6D70B60F04EA_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
-
-#### 70D242BD3C9D_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
-
-#### 73248239EC7F_deterministic.js
-Same backtrace as [161BC301CCA5_deterministic](#161BC301CCA5_deterministicjs)
-
-#### 7471ECFB5369_deterministic.js
-Same backtrace as [098B393B31C6_deterministic](#098B393B31C6_deterministicjs)
-
-#### 80972CEACBC4_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
-
-#### 815BE7154BE2_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
-
-#### 817E6A9297C7_deterministic.js
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### 8508D78844D7_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
-
-#### 899AF35B6935_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
-
-#### 89F1A26FA43A_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
-
-#### 8A8F7A41CA19_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
-
-#### 95D239421414_deterministic.js
-Same backtrace as [098B393B31C6_deterministic](#098B393B31C6_deterministicjs)
-
-#### 98D02E6C9146_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
-
-#### A118A7DD7E8D_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0C8904CC08B8_deterministicjs)
-
-#### A5A7929C887D_deterministic.js,
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### AA77C4487451_deterministic.js
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### BB62EEC6E3FA_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0C8904CC08B8_deterministicjs)
-
-#### C1E89367B35D_deterministic.js,
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### C2F77C963AF8_deterministic.js
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### C6CBA8CCCD27_deterministic.js
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### CB19DA296980_deterministic.js, 
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### DCE96D3007C6_deterministic.js,
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### E01C6AF02537_deterministic.js 
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### E073A481BE1C_deterministic.js 
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
 #### F72E7A32F3DB_deterministic.js
 ````
 const v2 = new Int16Array(2327997106);
@@ -543,41 +433,51 @@ Backtrace
 #15 0x0000000000402295 in _start ()
 ````
 
-### 06E132CAF6D1_deterministic.js
 
-seems to be a resource exhaustion issue where `QV4::Object::internalGet` gets called repeatedly (due to the do while loop) until crash due to the creation of a proxy whose handler has its `__proto__` property set to the original proxy within a do while loop.
+#### 5987040E01DD_deterministic.js
+Same backtrace as [570a23225ea1_deterministic.js](#570a23225ea1_deterministicjs)
 
-An interesting feature of this crash is that removing the loop causes the execution to succeed, so it doesn't seem to be simply an issue with the self-reference in the form of the proxy's handler having a property which points to the original proxy, but instead only crashes when v9.__proto__ is set to v11 **repeatedly**.
-```
-const v2 = [3769255543,3769255543,3769255543,3769255543];
-let {"constructor":v3,"length":v4,"toString":v5,} = v2;
-const v9 = {"call":v5,"defineProperty":v5,"isExtensible":v5};
-const v11 = new Proxy(Object,v9);
-do {
-    v9.__proto__ = v11;
-} while (0 < 4);
-```
 
-backtrace
-```
-#0  0x00007ffff6f281c6 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#1  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#2  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#3  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#4  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#5  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#6  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#7  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#8  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#9  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#10 0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#11 0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#12 0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#13 0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#14 0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
-#15 0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#### 817E6A9297C7_deterministic.js
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
-```
+#### A5A7929C887D_deterministic.js,
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+
+#### AA77C4487451_deterministic.js
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+
+
+#### C1E89367B35D_deterministic.js,
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+
+#### C2F77C963AF8_deterministic.js
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+
+#### C6CBA8CCCD27_deterministic.js
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+
+#### CB19DA296980_deterministic.js, 
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+
+#### DCE96D3007C6_deterministic.js,
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+
+#### E01C6AF02537_deterministic.js 
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+
+#### E073A481BE1C_deterministic.js 
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+
+#### 34CAED2B55E7_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
+ 
+
+#### 35C0AFC9E167_deterministic.js
+Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+
+#### 3F6451F7F2E0_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
 
 ## Interesting Finds
 
