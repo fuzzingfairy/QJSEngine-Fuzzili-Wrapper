@@ -447,17 +447,47 @@ Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
 #### 73248239EC7F_deterministic.js
 Same backtrace as [161BC301CCA5_deterministic](#161BC301CCA5_deterministicjs)
 
+#### 7471ECFB5369_deterministic.js
+Same backtrace as [098B393B31C6_deterministic](#098B393B31C6_deterministicjs)
+
+#### 80972CEACBC4_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
+
 #### 815BE7154BE2_deterministic.js
 Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
 
 #### 817E6A9297C7_deterministic.js
 Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
+#### 8508D78844D7_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
+
+#### 899AF35B6935_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
+
+#### 89F1A26FA43A_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
+
+#### 8A8F7A41CA19_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
+
+#### 95D239421414_deterministic.js
+Same backtrace as [098B393B31C6_deterministic](#098B393B31C6_deterministicjs)
+
+#### 98D02E6C9146_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
+
+#### A118A7DD7E8D_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](#0C8904CC08B8_deterministicjs)
+
 #### A5A7929C887D_deterministic.js,
 Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
 
 #### AA77C4487451_deterministic.js
 Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+
+#### BB62EEC6E3FA_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](#0C8904CC08B8_deterministicjs)
 
 #### C1E89367B35D_deterministic.js,
 Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
