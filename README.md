@@ -431,11 +431,24 @@ Backtrace
     rtld_fini=<optimized out>, stack_end=0x7fffffffe3f8) at ../csu/libc-start.c:392
 #15 0x0000000000402295 in _start ()
 ````
+
+#### 5987040E01DD_deterministic.js
+Same backtrace as [570a23225ea1_deterministic.js](#570a23225ea1_deterministicjs)
+
 #### 6235D04848D4_deterministic.js
 Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
 
+#### 6D70B60F04EA_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
+
+#### 70D242BD3C9D_deterministic.js
+Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
+
+#### 73248239EC7F_deterministic.js
+Same backtrace as [161BC301CCA5_deterministic](#161BC301CCA5_deterministicjs)
+
 #### 815BE7154BE2_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
+Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
 
 #### 817E6A9297C7_deterministic.js
 Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
