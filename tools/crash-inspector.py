@@ -74,7 +74,6 @@ for i in range(len(data)):
 crash_files = crash_dir + '/*'
 subprocess.run(['rm', 'crashwalk.db'], shell=False)
 subprocess.run(['rm', triage_file], shell=False)
-subprocess.run(['rm', crash_files], shell=False)
 
 # push to github
 subprocess.run(['git', '-C', '/home/thmorale/qtjs/fuzzer/instrumentation', 'add', '.'], shell=False)
