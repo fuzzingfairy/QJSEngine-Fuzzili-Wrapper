@@ -1,22 +1,29 @@
-import subprocess
-
 # run this script as a cronjob from the instrumentation/results directory
 
-crash_dir = '/home/thmorale/qtjs/results/crashes'
-harness_path = '/home/thmorale/qtjs/fuzzer/instrumentation/tools/harness/harness'
-dupe_path = '/home/thmorale/qtjs/fuzzer/instrumentation/results/crashes/duplicates'
-triage_file = '/tmp/triage.txt'
+import subprocess
+import time
 
+crash_dir = '/home/thmorale/qtjs/results/crashes' 
+harness_path = '/home/thmorale/qtjs/fuzzer/instrumentation/tools/harness/harness'
+dupe_path = '/home/thmorale/qtjs/results/crashes/duplicates'
+triage_file = '/home/thmorale/qtjs/results/triage.txt'
+
+# pull before making changes
+subprocess.run(['git', '-C', '/home/thmorale/qtjs/fuzzer/instrumentation', 'pull'], shell=False)
+#  delete protobuf files
+subprocess.run(['rm', '-rf', '/home/thmorale/qtjs/results/*.protobuf'], shell=False)
 # run crashwalk
-cwtriage_cmd = ['/home/thmorale/qtjs/fuzzer/instrumentation/tools/cwtriage', '-tidy','-ignore', dupe_path, '-root', crash_dir, harness_path, '@@']
+cwtriage_cmd = ['/home/thmorale/qtjs/fuzzer/instrumentation/tools/crashwalk/cwtriage', '-tidy','-ignore', dupe_path, '-root', crash_dir, harness_path, '@@']
 subprocess.run(cwtriage_cmd, shell=False)
 print('[...]running crashwalk')
 
-# run cwdump
-cwdump_cmd = ['/home/thmorale/qtjs/fuzzer/instrumentation/tools/cwdump', './crashwalk.db', '>', triage_file]
-subprocess.run(cwdump_cmd, shell=False)
+# ru cwdump
+with open(triage_file, 'w') as outfile:
+    cwdump_cmd = ['/home/thmorale/qtjs/fuzzer/instrumentation/tools/crashwalk/cwdump', './crashwalk.db']
+    subprocess.run(cwdump_cmd, stdout=outfile)
 print('[INFO] finished crashwalk')
 
+time.sleep(2)
 # seperate into files
 triage = open(triage_file ,'r')
 exploitable = open('./crashes/exploitable/triage.txt', 'a')
@@ -26,6 +33,7 @@ probably_exploitable = open('./crashes/prob-exploitable/triage.txt', 'a')
 
 
 data = triage.readlines()
+
 print('...seperating results')
 
 
@@ -62,5 +70,14 @@ for i in range(len(data)):
 
         subprocess.run(['mv', file_name, new_file_name], shell=False)
 
-# remove the old artifacts (crashwalk,db)
-subprocess.run(['rm', 'crashwalk,db'], shell=False)
+# remove the old artifacts (crashwalk,db and crash files)
+crash_files = crash_dir + '/*'
+subprocess.run(['rm', 'crashwalk.db'], shell=False)
+subprocess.run(['rm', triage_file], shell=False)
+subprocess.run(['rm', crash_files], shell=False)
+
+# push to github
+subprocess.run(['git', '-C', '/home/thmorale/qtjs/fuzzer/instrumentation', 'add', '.'], shell=False)
+subprocess.run(['git', '-C', '/home/thmorale/qtjs/fuzzer/instrumentation', 'commit', '-am', '"new crashes to review"'], shell=False)
+subprocess.run(['git', '-C', '/home/thmorale/qtjs/fuzzer/instrumentation', 'push'], shell=False)
+
