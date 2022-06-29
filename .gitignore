@@ -1,3 +1,4 @@
 *.o
 instrumentation
 moc_*
+tools/swift

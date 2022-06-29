@@ -512,15 +512,8 @@ Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter
 
 #### F72E7A32F3DB_deterministic.js
 ````
-function main() { 
 const v2 = new Int16Array(2327997106);
 const v3 = v2.includes();
-}
-main();
-// CRASH INFO
-// ==========
-// TERMSIG: 11
-// STDERR:
 ````
 
 
@@ -549,6 +542,43 @@ Backtrace
     rtld_fini=<optimized out>, stack_end=0x7fffffffe3f8) at ../csu/libc-start.c:392
 #15 0x0000000000402295 in _start ()
 ````
+
+### 06E132CAF6D1_deterministic.js
+
+seems to be a resource exhaustion issue where `QV4::Object::internalGet` gets called repeatedly (due to the do while loop) until crash due to the creation of a proxy whose handler has its `__proto__` property set to the original proxy within a do while loop.
+
+An interesting feature of this crash is that removing the loop causes the execution to succeed, so it doesn't seem to be simply an issue with the self-reference in the form of the proxy's handler having a property which points to the original proxy, but instead only crashes when v9.__proto__ is set to v11 **repeatedly**.
+```
+const v2 = [3769255543,3769255543,3769255543,3769255543];
+let {"constructor":v3,"length":v4,"toString":v5,} = v2;
+const v9 = {"call":v5,"defineProperty":v5,"isExtensible":v5};
+const v11 = new Proxy(Object,v9);
+do {
+    v9.__proto__ = v11;
+} while (0 < 4);
+```
+
+backtrace
+```
+#0  0x00007ffff6f281c6 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#1  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#2  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#3  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#4  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#5  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#6  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#7  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#8  0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#9  0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#10 0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#11 0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#12 0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#13 0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#14 0x00007ffff6f28256 in ?? () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+#15 0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
+
+```
+
 ## Interesting Finds
 
 #### Javascript can access and modify the Engine its running within
