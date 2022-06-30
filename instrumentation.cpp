@@ -79,8 +79,9 @@ int main(int argc, char *argv[])
 	    engine.globalObject().setProperty("SegFault", segvalue);
 
 	    // register function to trigger a segfault
-	     QJSValue fun = engine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) {print(SegFault.fault()); }} })");
-	    engine.globalObject().setProperty("fuzzilli", fun);
+	    QJSValue fun = engine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) { print(SegFault.fault()); } } else  { SegFault.print(b); }})");
+	                                       
+        engine.globalObject().setProperty("fuzzilli", fun);
 
             size_t script_size = 0;
             unsigned action;
