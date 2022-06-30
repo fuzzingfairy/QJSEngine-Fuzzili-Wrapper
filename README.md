@@ -280,6 +280,30 @@ Similar Crashes Folder:
 #### Array Iterator Error (161BC301CCA5_deterministic.js)
  Indices greater than 277913 and less than ~32 bit int max will cause arbitrary data to be written outside of the array. When the data is deref'd by the spread operator, we segfault. Crashes in Chrome as well. The spread ... operator copies the v1 array which is where it crashes
 
+````
+ReturnedValue Runtime::DestructureRestElement::call(ExecutionEngine *engine, const Value &iterator)
+{
+    Q_ASSERT(iterator.isObject());
+    Scope scope(engine);
+    ScopedArrayObject array(scope, engine->newArrayObject());
+    array->arrayCreate();
+    uint index = 0;
+    while (1) {
+        ScopedValue n(scope);
+        ScopedValue done(scope, IteratorNext::call(engine, iterator, n));
+        if (engine->hasException)
+            return Encode::undefined();
+        Q_ASSERT(done->isBoolean());
+        if (done->booleanValue())
+            break;
+        array->arraySet(index, n);
+        ++index;
+    }
+    return array->asReturnedValue();
+}
+````
+note uint max size is 0 to 4 294 967 295. Limiting the size of the array
+
 Code:
 ```
 const v1 = [];
