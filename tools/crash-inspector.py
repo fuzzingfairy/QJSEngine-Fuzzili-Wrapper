@@ -3,27 +3,32 @@
 import subprocess
 import time
 
+## CHANGE THESE
 crash_dir = '/home/thmorale/qtjs/results/crashes' 
 harness_path = '/home/thmorale/qtjs/fuzzer/instrumentation/tools/harness/harness'
 dupe_path = '/home/thmorale/qtjs/results/crashes/duplicates'
 triage_file = '/home/thmorale/qtjs/results/triage.txt'
+master_triage_file = '/home/thmorale/qtjs/fuzzer/instrumentation/results/traige.txt'
+repo_path = '/home/thmorale/qtjs/fuzzer/instrumentation'
+protobuf_files = '/home/thmorale/qtjs/results/*.protobuf'
+cwtriage = '/home/thmorale/qtjs/fuzzer/instrumentation/tools/crashwalk/cwtriage'
+cwdump = '/home/thmorale/qtjs/fuzzer/instrumentation/tools/crashwalk/cwdump'
 
 # pull before making changes
-subprocess.run(['git', '-C', '/home/thmorale/qtjs/fuzzer/instrumentation', 'pull'], shell=False)
+subprocess.run(['git', '-C', repo_path, 'pull'], shell=False)
 #  delete protobuf files
-subprocess.run(['rm', '-rf', '/home/thmorale/qtjs/results/*.protobuf'], shell=False)
+subprocess.run(['rm', '-rf', protobuf_files], shell=False)
 # run crashwalk
-cwtriage_cmd = ['/home/thmorale/qtjs/fuzzer/instrumentation/tools/crashwalk/cwtriage', '-tidy','-ignore', dupe_path, '-root', crash_dir, harness_path, '@@']
+cwtriage_cmd = [cwtriage, '-tidy','-ignore', dupe_path, '-root', crash_dir, harness_path, '@@']
 subprocess.run(cwtriage_cmd, shell=False)
-print('[...]running crashwalk')
+print('[...] running crashwalk')
 
 # ru cwdump
 with open(triage_file, 'w') as outfile:
-    cwdump_cmd = ['/home/thmorale/qtjs/fuzzer/instrumentation/tools/crashwalk/cwdump', './crashwalk.db']
+    cwdump_cmd = [cwdump, './crashwalk.db']
     subprocess.run(cwdump_cmd, stdout=outfile)
 print('[INFO] finished crashwalk')
 
-time.sleep(2)
 # seperate into files
 triage = open(triage_file ,'r')
 exploitable = open('./crashes/exploitable/triage.txt', 'a')

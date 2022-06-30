@@ -277,8 +277,8 @@ Backtrace:
 Similar Crashes Folder:
 `results/crashes/reviewed/self-reference`
 
-#### Array out of bounds write (161BC301CCA5_deterministic.js)
-Looks like the third line is causing an out of bounds array write. Indices greater than 277913 and less than ~32 bit int max will cause arbitrary data to be written outside of the array. Crashes in Chrome as well. The spread ... operator copies the v1 array which is where it crashes
+#### Array Iterator Error (161BC301CCA5_deterministic.js)
+ Indices greater than 277913 and less than ~32 bit int max will cause arbitrary data to be written outside of the array. When the data is deref'd by the spread operator, we segfault. Crashes in Chrome as well. The spread ... operator copies the v1 array which is where it crashes
 
 Code:
 ```
