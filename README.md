@@ -314,11 +314,12 @@ Backtrace:
 #19 0x000000000040223a in _start ()
 ```
 
-Similar Crash Folder:
+Similar Crashes Folder:
 `results/crashes/reviewed/OOB-array-write`
 
 
-### 06E132CAF6D1_deterministic.js
+### Proxy Looped Self Reference (06E132CAF6D_deterministic.js)
+
 
 seems to be a resource exhaustion issue where `QV4::Object::internalGet` gets called repeatedly (due to the do while loop) until crash due to the creation of a proxy whose handler has its `__proto__` property set to the original proxy within a do while loop.
 
@@ -355,27 +356,23 @@ Backtrace:
 #15 0x00007ffff6f1e880 in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const () from /lib/x86_64-linux-gnu/libQt5Qml.so.5
 ```
 
-#### 570A23225EA1_deterministic.js
-Crash invovling calling functions
-Code
-````
-function main() { 
-const v1 = {};
-const v2 = [v1,v1,-1000000.0,v1,v1];
-const v4 = Symbol.iterator;
-const v5 = v2[v4];
-const v7 = [-9007199254740992,-9007199254740992,-9007199254740992,-9007199254740992,-9007199254740992];
-const v9 = v7["reduce"](v5);
-}
-main();
-// CRASH INFO
-// ==========
-// TERMSIG: 11
-// STDERR:
-````
+Similar Crashes Folder:
+`results/crashes/reviewed/proxy-looped-self-reference`
 
-Backtrace
-````
+
+#### Invalid Symbol.iterator Reduction (570A23225EA1_deterministic.js)
+The Symbol.iterator provides a way to define the default iterator for an object. v5 stores the default iterator for v2 and when reduce is called, an attempt it made to reduce v7 to a single value according to the function provided by v5
+
+Code:
+```
+const v2 = [1,1,1,1];
+const v5 = v2[Symbol.iterator];
+const v7 = [2,2,2,2];
+const v9 = v7["reduce"](v5);
+```
+
+Backtrace:
+```
 #0  0x00007ffff6c77a84 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
 #1  0x00007ffff6c79f04 in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
 #2  0x00007ffff6d4399a in QV4::Runtime::CallProperty::call(QV4::ExecutionEngine*, QV4::Value const&, int, QV4::Value*, int) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
@@ -398,16 +395,21 @@ Backtrace
     argc=0x2, argv=0x7fffffffe408, init=<optimized out>, fini=<optimized out>, 
     rtld_fini=<optimized out>, stack_end=0x7fffffffe3f8) at ../csu/libc-start.c:392
 #15 0x0000000000402295 in _start ()
-````
+```
 
-#### F72E7A32F3DB_deterministic.js
+Similar Crashes Folder:
+`results/crashes/reviewed/invalid-iterator-reduction`
+
+#### Array OOB Read (F72E7A32F3DB_deterministic.js
+It seems like due to the segfault only occuring when the length of the array is greater than 555840, we are accessing memory that is out of bounds of the allocated memory we obtained for the array. The call to .includes() seems to search the whole arrray and lead to a search within an unauthorized region of memory
+
+Code:
 ````
-const v2 = new Int16Array(2327997106);
+const v2 = new Int16Array(555840);
 const v3 = v2.includes();
 ````
 
-
-Backtrace
+Backtrace:
 ````
 #0  0x00007ffff6d57e43 in QV4::TypedArray::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
 #1  0x00007ffff6d5bc5e in ?? () from /lib/x86_64-linux-gnu/libQt6Qml.so.6
@@ -433,51 +435,10 @@ Backtrace
 #15 0x0000000000402295 in _start ()
 ````
 
-
-#### 5987040E01DD_deterministic.js
-Same backtrace as [570a23225ea1_deterministic.js](#570a23225ea1_deterministicjs)
-
-
-#### 817E6A9297C7_deterministic.js
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### A5A7929C887D_deterministic.js,
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### AA77C4487451_deterministic.js
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
+Similar Crashes Folder:
+`results/crashes/reviewed/OOB-array-read`
 
 
-#### C1E89367B35D_deterministic.js,
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### C2F77C963AF8_deterministic.js
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### C6CBA8CCCD27_deterministic.js
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### CB19DA296980_deterministic.js, 
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### DCE96D3007C6_deterministic.js,
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### E01C6AF02537_deterministic.js 
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### E073A481BE1C_deterministic.js 
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### 34CAED2B55E7_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](#0c8904cc08b8_deterministicjs)
- 
-
-#### 35C0AFC9E167_deterministic.js
-Same backtrace as [1ce5346448e5_deterministic.js)](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/blob/dev/README.md#1ce5346448e5_deterministicjs)
-
-#### 3F6451F7F2E0_deterministic.js
-Same backtrace as [0C8904CC08B8_deterministic](https://github.com/EmmaReuter/QJSEngine-Fuzzili-Wrapper/tree/dev#0c8904cc08b8_deterministicjs)
 
 ## Interesting Finds
 
