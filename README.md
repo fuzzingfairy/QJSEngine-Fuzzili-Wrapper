@@ -318,7 +318,7 @@ Similar Crashes Folder:
 `results/crashes/reviewed/OOB-array-write`
 
 
-### Proxy Looped Self Reference (06E132CAF6D_deterministic.js)
+#### Proxy Looped Self Reference (06E132CAF6D_deterministic.js)
 
 
 seems to be a resource exhaustion issue where `QV4::Object::internalGet` gets called repeatedly (due to the do while loop) until crash due to the creation of a proxy whose handler has its `__proto__` property set to the original proxy within a do while loop.
