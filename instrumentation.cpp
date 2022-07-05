@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
 
 	    if (exceptions != NULL){
 		    if (exceptions->isEmpty()){
-			    std::cout << "exception st empty";
+			    std::cout << "exception list not empty";
 		    }
 		    QString str_exceptions = exceptions->join("\n");
 		    std::cout << "\ncaught exceptions: ";
