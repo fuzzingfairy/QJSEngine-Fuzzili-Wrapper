@@ -466,6 +466,10 @@ Similar Crashes Folder:
 
 ## Interesting Finds
 
+### CET
+
+It looks like CET is enabled in the [library](https://stackoverflow.com/questions/56905811/what-does-the-endbr64-instruction-actually-do) which would greatly restrict our ability to do ROP.
+
 #### Javascript can access and modify the Engine its running within
 
 ![qjsengine.cpp line 159](./assets/engine-mod.png)
