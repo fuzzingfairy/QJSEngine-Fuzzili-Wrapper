@@ -1,6 +1,10 @@
 # QJS-Eval-Documentation
 Documentation for Summer 2022 Qt-QJSEngine Evaluation
 
+### RoomOS Usage
+QJSEngine is used by RoomOS to execute PAC files. Proxy Auto-Configuration (PAC) is a method used by Web browsers to select a proxy for a given URL. The method for choosing a proxy is written as a JavaScript function contained in a PAC file. This file can be hosted locally or on a network.
+
+The javascript within these PAC files is parsed and executed by QJSEngine. Though the general use prescribes for a web-server maintained by an administrator to host a centralized version of the PAC file, it is also possible to setup a DHCP server within the victim's LAN to advertise malicious PAC files via WPAD.
 
 ### Resources
 Target Resources
