@@ -33,7 +33,7 @@ Fuzzer Resources
     - [X] Create Fuzzilli Profile
     - [X] create and apply patch on the jsshell
         - [ ] (optional) mmap optimization for reading within reprl
-        - [ ] implement FUZZILLI_PRINT
+        - [X] implement FUZZILLI_PRINT
     - [X] figure out which executale is gonna be jsshell... is it qjsengine? update the full path in this readme and future fuzzili commands
 - [X] Fuzz 
 - [X] Convert notes to markdown -> clean and make into report
@@ -214,7 +214,9 @@ For the exploitable/ directory, we manually debugged each js script using gdb to
 #### Promise Handling (098B393B31C6_deterministic.js)
 The Promise.all() method takes an iterable of promises as an input, and returns a single Promise that resolves to an array of the results of the input promises. This returned promise will resolve when all of the input's promises have resolved, or if the input iterable contains no promises. It rejects immediately upon any of the input promises rejecting or non-promises throwing an error, and will reject with this first rejection message / error. 
 
-This code seems to only break when Reflect.apply is used. Replacing the third line with a regular call to `Promise.all(v1,v2)` executes successfully.
+The static Reflect.apply() method calls a target function with arguments as specified. 
+
+This code will only crash when Reflect.apply is used. Replacing the third line with a regular call to `Promise.all(v1,v2)` executes successfully.
 
 In other sample crashes, `Promise.reject` could be used in place of `Promise.all` to also trigger a segfault (see promise-handling/2AF627313745_deterministic.js)
 
