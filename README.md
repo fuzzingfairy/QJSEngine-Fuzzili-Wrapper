@@ -355,7 +355,7 @@ Similar Crashes Folder:
 
 seems to be a resource exhaustion issue where `QV4::Object::internalGet` gets called repeatedly (due to the do while loop) until crash due to the creation of a proxy whose handler has its `__proto__` property set to the original proxy within a do while loop.
 
-An interesting feature of this crash is that removing the loop causes the execution to succeed, so it doesn't seem to be simply an issue with the self-reference in the form of the proxy's handler having a property which points to the original proxy, but instead only crashes when v9.__proto__ is set to v11 **repeatedly**.
+An interesting feature of this crash is that removing the loop causes the execution to succeed, so it doesn't seem to be simply an issue with the self-reference in the form of the proxy's handler having a property which points to the original proxy, but instead only crashes when v9.__proto__ is set to v11 **repeatedly**. The function executes through [VME::Exec](https://code.woboq.org/qt5/qtdeclarative/src/qml/jsruntime/qv4vme_moth.cpp.html#_ZN3QV44Moth3VME4execEPNS_13CppStackFrameEPNS_15ExecutionEngineE) and then VME:: interpret it then crashes in an call to Object::internalGet.
 
 Code:
 ```
