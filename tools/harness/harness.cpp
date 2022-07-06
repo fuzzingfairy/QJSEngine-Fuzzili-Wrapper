@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QPushButton>
 #include <QLabel>
 #include <QWidget>
 #include <QJSEngine>
@@ -51,6 +52,7 @@ int main(int argc, char *argv[])
 
     // add null terminator
     script_src[script_size] = '\0';
+
 
     std::cout << "\n\n[INFO] Input: ";
     std::cout << script_src;

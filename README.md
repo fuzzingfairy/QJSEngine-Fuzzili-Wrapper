@@ -254,7 +254,9 @@ Similar Crashes Folder:
 `results/crashes/reviewed/promise-handling`
 
 
-#### Self-Reference  (0C8904CC08B8_deterministic.js)
+#### Uncontrolled Recursion (0C8904CC08B8_deterministic.js)
+Vulnerability Type: CWE-674 Uncontrolled Recursion
+
 Looks like a self reference issue. Where QJSengine tries to recursively resolve an array that references itself. The recursion is happening in [qv4value](https://code.woboq.org/qt5/qtdeclarative/src/qml/jsruntime/qv4value.cpp.html#_ZNK3QV45Value9toQStringEv) on lines 203-206. This happens because the arrays primitive resolves to itself.
 
 Code:

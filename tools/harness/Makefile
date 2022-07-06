@@ -437,7 +437,7 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-harness.o: harness.cpp 
+harness.o: harness.cpp segfault.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o harness.o harness.cpp
 
 ####### Install
