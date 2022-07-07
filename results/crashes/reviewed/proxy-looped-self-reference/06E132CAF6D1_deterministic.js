@@ -1,7 +1,5 @@
 function main() { 
-const v2 = [3769255543,3769255543,3769255543,3769255543];
-let {"constructor":v3,"length":v4,"toString":v5,} = v2;
-const v9 = {"call":v5,"defineProperty":v5,"isExtensible":v5};
+const v9 = {};
 // take a target object (new blank object) and create v9 which acts like the blank object with the additional defined functions
 const v11 = new Proxy(Object,v9);
 do {
