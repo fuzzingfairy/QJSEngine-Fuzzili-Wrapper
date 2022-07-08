@@ -1,0 +1,22 @@
+break QV4::PromiseCtor::method_all
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
