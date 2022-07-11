@@ -1,0 +1,3 @@
+break QV4::RuntimeHelpers::objectDefaultValue
+
+

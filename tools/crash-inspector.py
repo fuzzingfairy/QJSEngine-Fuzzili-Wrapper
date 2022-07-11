@@ -4,16 +4,16 @@ import subprocess
 import time
 
 ## CHANGE THESE
-crash_dir = '/home/thmorale/qtjs/results/crashes' 
-harness_path = '/home/thmorale/qtjs/fuzzer/instrumentation/tools/harness/harness'
-dupe_path = '/home/thmorale/qtjs/results/crashes/duplicates'
-triage_file = '/home/thmorale/qtjs/results/triage.txt'
-global_triage_file = '/home/thmorale/qtjs/fuzzer/instrumentation/results/traige.txt'
-repo_path = '/home/thmorale/qtjs/fuzzer/instrumentation'
-protobuf_files = '/home/thmorale/qtjs/results/*.protobuf'
-cwtriage = '/home/thmorale/qtjs/fuzzer/instrumentation/tools/crashwalk/cwtriage'
-cwdump = '/home/thmorale/qtjs/fuzzer/instrumentation/tools/crashwalk/cwdump'
-stack_hash_path = '/home/thmorale/qtjs/fuzzer/instrumentation/results/stack.hashes'
+crash_dir = '/home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed' 
+harness_path = '/home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness'
+dupe_path = '/home/kali/Summer22/qjs-eval/instrumentation/results/crashes/duplicates'
+triage_file = '/home/kali/Summer22/qjs-eval/instrumentation/results/triage.txt'
+global_triage_file = '/home/kali/Summer22/qjs-eval/instrumentation/results/global-triage.txt'
+repo_path = '/home/kali/Summer22/qjs-eval/instrumentation'
+protobuf_files = '/home/kali/Summer22/qjs-eval/instrumentation/results/*.protobuf'
+cwtriage = '/home/kali/Summer22/qjs-eval/instrumentation/tools/crashwalk/cwtriage'
+cwdump = '/home/kali/Summer22/qjs-eval/instrumentation/tools/crashwalk/cwdump'
+stack_hash_path = '/home/kali/Summer22/qjs-eval/instrumentation/results/stack.hashes'
 
 def isDupe(crash, _hash, stack_hashes):
     '''
@@ -66,11 +66,14 @@ def main():
     triage = open(triage_file ,'r')
     global_triage = open(global_triage_file, 'a')
 
+    stack_hash_file = open(stack_hash_path, 'r')
+    # get the database of stack hashes
+    stack_hashes = stack_hash_file.readlines()
+    stack_hash_file.close()
 
     data = triage.readlines()
 
     print('[...] removing duplicates')
-
 
     for i in range(len(data)):
         line = data[i]
@@ -87,10 +90,6 @@ def main():
             crash += '---END SUMMARY---\n'
             # turn it into a single string
             crash.join('\n')
-            stack_hash_file = open(stack_hash_path, 'r')
-            # get the database of stack hashes
-            stack_hashes = hash_file.readlines()
-            stack_hash_file.close()
 
             # skip the addition of duplicates to our crashes
             if isDupe(crash, _hash, stack_hashes):
@@ -112,13 +111,13 @@ def main():
 
             # write to hash file
             stack_hashes.append(_hash)
-            stack_hash_file = open(stack_hash_path, 'w')
+            stack_hash_file = open(stack_hash_path, 'a')
             stack_hash_file.writelines("%s\n" % item for item in stack_hashes)
-            STACK_Hash_file.close()
+            stack_hash_file.close()
 
             # write crash to global triage
             global_triage.write(crash)
-            global_triage.close()
+            
             
 
     clean()

@@ -1,21 +1,5 @@
-break QV4::PromiseCtor::method_all
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+break malloc
+  ignore $bpnum 649
 
 
 
