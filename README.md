@@ -323,6 +323,8 @@ let [v2,v3,,...v4] = v1;
 Attacker that can advertise a malicious PAC file to the device can trigger a DoS
 
 **Description**
+CWE-476: NULL Pointer Dereference
+
 QV4::ExecutionEngine::newPromiseObject dereferences the parameterized object in order to create a ScopedObject from it without first checking if the pointer is NULL. This results in a null-dereference that crashes the process
 
 **Reproduction**
@@ -336,6 +338,27 @@ const v8 = Reflect.apply(v7,v4,v6);
 
 **Remediation**
 Within `QV4::ExecutionEngine::newPromiseObject`, the parameter `thisObject` should be verified to be non-NULL before it is dereferenced in the creation of a `ScopedObject` on the 10th line of the function.
+
+**References**
+
+#### Null Pointer Dereference (qv4stringobject.cpp - getThisString)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+the getThisString function within the qv4stringobject.cpp file contains the potential for a null-dereference due to a lack of input validation before dereferencing its `thisObject` parameter when creating a string representation of it in the first line of the function
+
+**Reproduction**
+```
+const v2 = ["i68jdS1zZC"];
+const v3 = "i68jdS1zZC".endsWith;
+const v4 = v2.reduceRight(v3,3769255543);
+```
+
+**Remediation**
+Before attempting to dereference a member of the `thisObject` parameter in the first line of the function, the input should be validated to guarantee that it is not null
 
 **References**
 
