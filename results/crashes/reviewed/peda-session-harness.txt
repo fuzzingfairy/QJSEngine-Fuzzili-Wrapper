@@ -1,6 +1,0 @@
-break malloc
-  ignore $bpnum 649
-
-
-
-
