@@ -252,8 +252,6 @@ To avoid this error two mitigations can be taken:
 - use a `depth` variable that is passed as a parameter between `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()` and incremented with each call so it can be used to dissalow recursion past a certain depth
 - perform a check within `QArrayDataPointer<char16_t>::reallocateAndGrow()` to make sure reallocation of an array does not continue indefinitely when the array contains a pointer to itself as an element
 
-**References**
-
 #### Null Pointer Dereference (QV4::ArrayPrototype::method_values)
 **Impact**
 Attacker that can advertise a malicious PAC file to the device can trigger a DoS
@@ -273,8 +271,6 @@ const v9 = v7["reduce"](v5);
 
 **Remediation**
 Addition of a null-pointer check before dereferencing it in `QV4::ArrayPrototype::method_values()`
-
-**References**
 
 
 #### Null-Pointer Dereference (QV4::ExecutionEngine::newPromiseObject)
@@ -298,8 +294,6 @@ const v8 = Reflect.apply(v7,v4,v6);
 **Remediation**
 Within `QV4::ExecutionEngine::newPromiseObject`, the parameter `thisObject` should be verified to be non-NULL before it is dereferenced in the creation of a `ScopedObject` on the 10th line of the function.
 
-**References**
-
 
 #### Null Pointer Dereference (qv4stringobject.cpp - getThisString)
 **Impact**
@@ -319,8 +313,6 @@ const v4 = v2.reduceRight(v3,3769255543);
 
 **Remediation**
 Before attempting to dereference a member of the `thisObject` parameter in the first line of the function, the input should be validated to guarantee that it is not null
-
-**References**
 
 
 #### Null Pointer Dereference (QV4::RegExpPrototype::method_compile)
@@ -349,7 +341,28 @@ const v7 = v4["reduceRight"](v5,v1);
 **Remediation**
 Before attempting to dereference a member of the `thisObject` parameter in the first line of the function, the input should be validated to guarantee that it is not null
 
-**References**
+
+#### Null Pointer Dereference (QV4::ArrayPrototype::method_toString)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+Defect Location: qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4arrayobject.cpp:360
+
+`QV4::ArrayPrototype::method_toString` dereferences its `toObject` parameter to create a `ScopedObject` on the second line of the function before first validating the input to guarantee it is not null, leading to the possibility for a null-dereference and subsequent crash of the process.
+
+**Reproduction**
+```
+const v1 = [3769255543,3769255543,3769255543,3769255543];
+let {"constructor":v2,"length":v3,"toString":v4,} = v1;
+const v6 = [3769255543,3769255543,3769255543,3769255543];
+const v7 = v6.reduce(v4);
+```
+
+**Remediation**
+Addition of input validation to guarantee against the parameter being null before dereferencing it in the second line `QV4::ArrayPrototype::method_toString()`
 
 #### Uncontrolled Recursion (QV4::ProxyObject::virtualGet <-> QV4::Object::internalGet)
 *Vulnerability Type*:
