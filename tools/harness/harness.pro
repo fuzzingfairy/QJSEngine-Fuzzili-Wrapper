@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = instrumentation
+TARGET = harness
 INCLUDEPATH += .
 QT += core gui widgets qml
 CONFIG += qml_debug
