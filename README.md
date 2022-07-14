@@ -277,47 +277,6 @@ Addition of a null-pointer check before dereferencing it in `QV4::ArrayPrototype
 **References**
 
 
-#### User-Controlled Null-Dereference (F72E7A32F3DB_deterministic.js
-
-**Impact**
-Attacker that can advertise a malicious PAC file to the device can trigger a DoS
-
-**Description**
-CWE-476: NULL Pointer Dereference
-
-It seems like due to the segfault only occuring when the length of the array is greater than 555840, we are accessing memory that is out of bounds of the allocated memory we obtained for the array. The call to .includes() seems to search the whole arrray and lead to a search within an unauthorized region of memory
-
-**Reproduction**
-```
-const v1 = [];
-v1[277913] = 2;
-// 277913 is the smallest number that it will seg fault with 
-let [...v4] = v1;
-```
-
-**Remediation**
-
-**References**
-
-#### Array Iterator Error (161BC301CCA5_deterministic.js)
-**Impact**
-
-**Description**
- Indices greater than 277913 and less than ~32 bit int max will cause arbitrary data to be written outside of the array. When the data is deref'd by the spread operator, we segfault. Crashes in Chrome as well. The spread ... operator copies the v1 array which is where it crashes
-note uint max size is 0 to 4 294 967 295. Limiting the size of the array
-
-**Reproduction**
-```
-const v1 = [];
-v1[4145569500] &= v1;
-let [v2,v3,,...v4] = v1;
-````
-
-**Remediation**
-
-**References**
-
-
 #### Null-Pointer Dereference (QV4::ExecutionEngine::newPromiseObject)
 **Impact**
 Attacker that can advertise a malicious PAC file to the device can trigger a DoS
@@ -341,6 +300,7 @@ Within `QV4::ExecutionEngine::newPromiseObject`, the parameter `thisObject` shou
 
 **References**
 
+
 #### Null Pointer Dereference (qv4stringobject.cpp - getThisString)
 **Impact**
 Attacker that can advertise a malicious PAC file to the device can trigger a DoS
@@ -355,6 +315,35 @@ the getThisString function within the qv4stringobject.cpp file contains the pote
 const v2 = ["i68jdS1zZC"];
 const v3 = "i68jdS1zZC".endsWith;
 const v4 = v2.reduceRight(v3,3769255543);
+```
+
+**Remediation**
+Before attempting to dereference a member of the `thisObject` parameter in the first line of the function, the input should be validated to guarantee that it is not null
+
+**References**
+
+
+#### Null Pointer Dereference (QV4::RegExpPrototype::method_compile)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+Defect Location: qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4regexpobject.cpp:941
+
+The QV4::RegExpPrototype::method_compile function contains the potential for null-dereference due to a lack of input validation before dereferencing its `thisObject` parameter in the following line of code:
+
+`Scoped<RegExpObject> r(scope, thisObject->as<RegExpObject>());`
+
+**Reproduction**
+```
+const v0 = {};
+const v1 = [v0,v0,v0,v0,v0];
+const v3 = /[\d(Y)?]/ui;
+const v4 = ["species"];
+const v5 = v3.compile;
+const v7 = v4["reduceRight"](v5,v1);
 ```
 
 **Remediation**
@@ -465,6 +454,45 @@ const v8 = Reflect.apply(Promise.all, v1, v2);
 *Similar Crashes Folder*:
 `results/crashes/reviewed/promise-handling`
 
+#### User-Controlled Null-Dereference (F72E7A32F3DB_deterministic.js
+
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+It seems like due to the segfault only occuring when the length of the array is greater than 555840, we are accessing memory that is out of bounds of the allocated memory we obtained for the array. The call to .includes() seems to search the whole arrray and lead to a search within an unauthorized region of memory
+
+**Reproduction**
+```
+const v1 = [];
+v1[277913] = 2;
+// 277913 is the smallest number that it will seg fault with 
+let [...v4] = v1;
+```
+
+**Remediation**
+
+**References**
+
+#### Array Iterator Error (161BC301CCA5_deterministic.js)
+**Impact**
+
+**Description**
+ Indices greater than 277913 and less than ~32 bit int max will cause arbitrary data to be written outside of the array. When the data is deref'd by the spread operator, we segfault. Crashes in Chrome as well. The spread ... operator copies the v1 array which is where it crashes
+note uint max size is 0 to 4 294 967 295. Limiting the size of the array
+
+**Reproduction**
+```
+const v1 = [];
+v1[4145569500] &= v1;
+let [v2,v3,,...v4] = v1;
+````
+
+**Remediation**
+
+**References**
 ### CET
 
 It looks like CET is enabled in the [library](https://stackoverflow.com/questions/56905811/what-does-the-endbr64-instruction-actually-do) which would greatly restrict our ability to do ROP.
