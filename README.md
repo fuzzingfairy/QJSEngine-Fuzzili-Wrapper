@@ -318,6 +318,27 @@ let [v2,v3,,...v4] = v1;
 **References**
 
 
+#### Null-Pointer Dereference (QV4::ExecutionEngine::newPromiseObject)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+QV4::ExecutionEngine::newPromiseObject dereferences the parameterized object in order to create a ScopedObject from it without first checking if the pointer is NULL. This results in a null-dereference that crashes the process
+
+**Reproduction**
+```
+const v1 = Object();                                                     
+const v4 = Object();                                                     
+const v6 = [v1];                                                         
+const v7 = Promise.resolve;                                              
+const v8 = Reflect.apply(v7,v4,v6);  
+```
+
+**Remediation**
+Within `QV4::ExecutionEngine::newPromiseObject`, the parameter `thisObject` should be verified to be non-NULL before it is dereferenced in the creation of a `ScopedObject` on the 10th line of the function.
+
+**References**
+
 #### Uncontrolled Recursion (QV4::ProxyObject::virtualGet <-> QV4::Object::internalGet)
 *Vulnerability Type*:
 CWE-674 Uncontrolled Recursion
