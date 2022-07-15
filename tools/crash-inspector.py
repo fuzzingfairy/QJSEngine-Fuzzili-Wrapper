@@ -52,7 +52,7 @@ def main():
     #  delete protobuf files
     subprocess.run(['rm', '-rf', protobuf_files], shell=False)
     # run crashwalk
-    cwtriage_cmd = [cwtriage, '-tidy','-ignore', dupe_path, '-root', crash_dir, harness_path, '@@']
+    cwtriage_cmd = [cwtriage, '-tidy', '-t', '20', '-workers', '5', '-ignore', dupe_path, '-root', crash_dir, harness_path, '@@']
     subprocess.run(cwtriage_cmd, shell=False)
     print('[...] running crashwalk')
 
