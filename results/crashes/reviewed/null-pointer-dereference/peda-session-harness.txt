@@ -1,9 +1,0 @@
-break QV4::Scoped<QV4::TypedArray>::Scoped
-
-
-
-
-
-
-
-

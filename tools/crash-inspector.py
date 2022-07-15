@@ -23,7 +23,7 @@ def isDupe(crash, _hash, stack_hashes):
     if (_hash in stack_hashes):
         return True
     # self-reference (ordinaryToPrimitive <-> objectDefaultValue)
-    if (crash.count('QV4::RuntimeHelpers::ordi') == 2 and crash.count('QV4::RuntimeHelpers::obje') == 2):
+    if (crash.count('QV4::RuntimeHelpers::ordi') >= 2 and crash.count('QV4::RuntimeHelpers::obje') >= 2):
         return True
     # TODO: add more here! 
 

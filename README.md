@@ -252,8 +252,6 @@ To avoid this error two mitigations can be taken:
 - use a `depth` variable that is passed as a parameter between `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()` and incremented with each call so it can be used to dissalow recursion past a certain depth
 - perform a check within `QArrayDataPointer<char16_t>::reallocateAndGrow()` to make sure reallocation of an array does not continue indefinitely when the array contains a pointer to itself as an element
 
-**References**
-
 #### Null Pointer Dereference (QV4::ArrayPrototype::method_values)
 **Impact**
 Attacker that can advertise a malicious PAC file to the device can trigger a DoS
@@ -274,49 +272,97 @@ const v9 = v7["reduce"](v5);
 **Remediation**
 Addition of a null-pointer check before dereferencing it in `QV4::ArrayPrototype::method_values()`
 
-**References**
 
-
-#### User-Controlled Null-Dereference (F72E7A32F3DB_deterministic.js
-
+#### Null-Pointer Dereference (QV4::ExecutionEngine::newPromiseObject)
 **Impact**
 Attacker that can advertise a malicious PAC file to the device can trigger a DoS
 
 **Description**
 CWE-476: NULL Pointer Dereference
 
-It seems like due to the segfault only occuring when the length of the array is greater than 555840, we are accessing memory that is out of bounds of the allocated memory we obtained for the array. The call to .includes() seems to search the whole arrray and lead to a search within an unauthorized region of memory
+QV4::ExecutionEngine::newPromiseObject dereferences the parameterized object in order to create a ScopedObject from it without first checking if the pointer is NULL. This results in a null-dereference that crashes the process
 
 **Reproduction**
 ```
-const v1 = [];
-v1[277913] = 2;
-// 277913 is the smallest number that it will seg fault with 
-let [...v4] = v1;
+const v1 = Object();                                                     
+const v4 = Object();                                                     
+const v6 = [v1];                                                         
+const v7 = Promise.resolve;                                              
+const v8 = Reflect.apply(v7,v4,v6);  
 ```
 
 **Remediation**
+Within `QV4::ExecutionEngine::newPromiseObject`, the parameter `thisObject` should be verified to be non-NULL before it is dereferenced in the creation of a `ScopedObject` on the 10th line of the function.
 
-**References**
 
-#### Array Iterator Error (161BC301CCA5_deterministic.js)
+#### Null Pointer Dereference (qv4stringobject.cpp - getThisString)
 **Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
 
 **Description**
- Indices greater than 277913 and less than ~32 bit int max will cause arbitrary data to be written outside of the array. When the data is deref'd by the spread operator, we segfault. Crashes in Chrome as well. The spread ... operator copies the v1 array which is where it crashes
-note uint max size is 0 to 4 294 967 295. Limiting the size of the array
+CWE-476: NULL Pointer Dereference
+
+the getThisString function within the qv4stringobject.cpp file contains the potential for a null-dereference due to a lack of input validation before dereferencing its `thisObject` parameter when creating a string representation of it in the first line of the function
 
 **Reproduction**
 ```
-const v1 = [];
-v1[4145569500] &= v1;
-let [v2,v3,,...v4] = v1;
-````
+const v2 = ["i68jdS1zZC"];
+const v3 = "i68jdS1zZC".endsWith;
+const v4 = v2.reduceRight(v3,3769255543);
+```
 
 **Remediation**
+Before attempting to dereference a member of the `thisObject` parameter in the first line of the function, the input should be validated to guarantee that it is not null
 
-**References**
 
+#### Null Pointer Dereference (QV4::RegExpPrototype::method_compile)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+Defect Location: qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4regexpobject.cpp:941
+
+The QV4::RegExpPrototype::method_compile function contains the potential for null-dereference due to a lack of input validation before dereferencing its `thisObject` parameter in the following line of code:
+
+`Scoped<RegExpObject> r(scope, thisObject->as<RegExpObject>());`
+
+**Reproduction**
+```
+const v0 = {};
+const v1 = [v0,v0,v0,v0,v0];
+const v3 = /[\d(Y)?]/ui;
+const v4 = ["species"];
+const v5 = v3.compile;
+const v7 = v4["reduceRight"](v5,v1);
+```
+
+**Remediation**
+Before attempting to dereference a member of the `thisObject` parameter in the first line of the function, the input should be validated to guarantee that it is not null
+
+
+#### Null Pointer Dereference (QV4::ArrayPrototype::method_toString)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+Defect Location: qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4arrayobject.cpp:360
+
+`QV4::ArrayPrototype::method_toString` dereferences its `toObject` parameter to create a `ScopedObject` on the second line of the function before first validating the input to guarantee it is not null, leading to the possibility for a null-dereference and subsequent crash of the process.
+
+**Reproduction**
+```
+const v1 = [3769255543,3769255543,3769255543,3769255543];
+let {"constructor":v2,"length":v3,"toString":v4,} = v1;
+const v6 = [3769255543,3769255543,3769255543,3769255543];
+const v7 = v6.reduce(v4);
+```
+
+**Remediation**
+Addition of input validation to guarantee against the parameter being null before dereferencing it in the second line `QV4::ArrayPrototype::method_toString()`
 
 #### Uncontrolled Recursion (QV4::ProxyObject::virtualGet <-> QV4::Object::internalGet)
 *Vulnerability Type*:
@@ -421,6 +467,45 @@ const v8 = Reflect.apply(Promise.all, v1, v2);
 *Similar Crashes Folder*:
 `results/crashes/reviewed/promise-handling`
 
+#### User-Controlled Null-Dereference (F72E7A32F3DB_deterministic.js
+
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+It seems like due to the segfault only occuring when the length of the array is greater than 555840, we are accessing memory that is out of bounds of the allocated memory we obtained for the array. The call to .includes() seems to search the whole arrray and lead to a search within an unauthorized region of memory
+
+**Reproduction**
+```
+const v1 = [];
+v1[277913] = 2;
+// 277913 is the smallest number that it will seg fault with 
+let [...v4] = v1;
+```
+
+**Remediation**
+
+**References**
+
+#### Array Iterator Error (161BC301CCA5_deterministic.js)
+**Impact**
+
+**Description**
+ Indices greater than 277913 and less than ~32 bit int max will cause arbitrary data to be written outside of the array. When the data is deref'd by the spread operator, we segfault. Crashes in Chrome as well. The spread ... operator copies the v1 array which is where it crashes
+note uint max size is 0 to 4 294 967 295. Limiting the size of the array
+
+**Reproduction**
+```
+const v1 = [];
+v1[4145569500] &= v1;
+let [v2,v3,,...v4] = v1;
+````
+
+**Remediation**
+
+**References**
 ### CET
 
 It looks like CET is enabled in the [library](https://stackoverflow.com/questions/56905811/what-does-the-endbr64-instruction-actually-do) which would greatly restrict our ability to do ROP.
