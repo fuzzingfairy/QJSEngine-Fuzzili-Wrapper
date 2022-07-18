@@ -1,5 +1,2 @@
-break Function::call
-
-
-
+break ExecutionEngine::newPromiseObject
 

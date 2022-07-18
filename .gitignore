@@ -2,3 +2,5 @@
 instrumentation
 moc_*
 tools/swift
+*/.gdb_history
+*/peda-session*

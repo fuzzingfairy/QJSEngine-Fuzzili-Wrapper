@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QPushButton>
 #include <QLabel>
 #include <QWidget>
 #include <QJSEngine>
@@ -52,15 +53,21 @@ int main(int argc, char *argv[])
     // add null terminator
     script_src[script_size] = '\0';
 
-    std::cout << "\ninput script size: ";
-    std::cout << script_size;
-    std::cout << "\ninput script: ";
-    std::cout << script_src;
-    // evaluate byte array
-    QJSValue result = engine.evaluate(script_src);
 
-    std::cout << "\n[INFO] Evaluation Successful\n";
-    std::cout << "result value: ";
+    std::cout << "\n\n[INFO] Input: ";
+    std::cout << script_src;
+    QStringList* exceptions = new QStringList();
+    // evaluate byte array
+    QJSValue result = engine.evaluate(script_src, NULL, 1, exceptions);
+
+    if (result.isError() || engine.hasError() || !exceptions->isEmpty()) {
+	    std::cout << "\n\n[ERROR] Exception Occured:\nresult: ";
+	    std::cout << result.toString().toStdString();
+	    std::cout << "\nexceptions: ";
+	    QString str_exceptions = exceptions->join("\n");
+	    std::cout << str_exceptions.toStdString();
+    }
+    std::cout << "\n\n[INFO] Result: ";
     std::cout << result.toString().toStdString();
 
     free(script_src);

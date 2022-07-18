@@ -1,3 +1,2 @@
-break Function::call
-
+break QV4::ProxyObject::virtualGet
 
