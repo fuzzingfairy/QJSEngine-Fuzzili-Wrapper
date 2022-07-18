@@ -6,11 +6,9 @@ import time
 ## CHANGE THESE
 crash_dir = '/home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed' 
 harness_path = '/home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness'
-dupe_path = '/home/kali/Summer22/qjs-eval/instrumentation/results/crashes/duplicates'
 triage_file = '/home/kali/Summer22/qjs-eval/instrumentation/results/triage.txt'
 global_triage_file = '/home/kali/Summer22/qjs-eval/instrumentation/results/global-triage.txt'
 repo_path = '/home/kali/Summer22/qjs-eval/instrumentation'
-protobuf_files = '/home/kali/Summer22/qjs-eval/instrumentation/results/*.protobuf'
 cwtriage = '/home/kali/Summer22/qjs-eval/instrumentation/tools/crashwalk/cwtriage'
 cwdump = '/home/kali/Summer22/qjs-eval/instrumentation/tools/crashwalk/cwdump'
 stack_hash_path = '/home/kali/Summer22/qjs-eval/instrumentation/results/stack.hashes'
@@ -49,10 +47,8 @@ def clean():
 def main():
     # pull before making changes
     subprocess.run(['git', '-C', repo_path, 'pull'], shell=False)
-    #  delete protobuf files
-    subprocess.run(['rm', '-rf', protobuf_files], shell=False)
     # run crashwalk
-    cwtriage_cmd = [cwtriage, '-tidy', '-workers', '5', '-ignore', dupe_path, '-root', crash_dir, harness_path, '@@']
+    cwtriage_cmd = [cwtriage, '-tidy', '-workers', '5', '-root', crash_dir, harness_path, '@@']
     subprocess.run(cwtriage_cmd, shell=False)
     print('[...] running crashwalk')
 
@@ -85,6 +81,8 @@ def main():
                 crash += line
                 if 'Filename: ' in line:
                     file_name = line.split()[1]
+                elif 'Hash: ' in line:
+                    _hash = line.split()[1]
                 i += 1
                 line = data[i]
             crash += '---END SUMMARY---\n'

@@ -514,8 +514,8 @@ It looks like CET is enabled in the [library](https://stackoverflow.com/question
 
 ![qjsengine.cpp line 159](./assets/engine-mod.png)
 
-Code to recreate overwriting of global objects
- 
+
+    // Code to recreate overwriting of global objects
     myEngine.globalObject().setProperty("value", 123);
     myEngine.evaluate("value = 1337;");
     myEngine.evaluate("print(value)");
@@ -526,11 +526,11 @@ QJSEngine has no [abort](https://bugreports.qt.io/browse/QTBUG-49080) function. 
  
     myEngine.evaluate("while(1) {}");
 
+#### Note about application security
+![app sec](./assets/app-sec.png)
+
 #### Can cause the engine to run out of memory
 [link](https://stackoverflow.com/questions/16797423/how-to-handle-v8-engine-crash-when-process-runs-out-of-memory)
-#### Note about application security
-
-![app sec](./assets/app-sec.png)
 
 
 #### Code from one evaluation can pollute the global object used by the next evaluation
