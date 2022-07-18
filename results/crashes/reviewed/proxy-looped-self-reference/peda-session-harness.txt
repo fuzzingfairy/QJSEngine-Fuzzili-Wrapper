@@ -1,2 +1,9 @@
 break QV4::ProxyObject::virtualGet
 
+
+
+
+
+
+
+

