@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QCoreApplication>
 #include <QLabel>
 #include <QWidget>
 #include <QJSEngine>
@@ -20,49 +21,31 @@
 #define REPRL_CWFD 101
 #define REPRL_DRFD 102
 #define REPRL_DWFD 103
-#include <QCoreApplication>
-#include <QJSEngine>
 
-// logging configuration
-#define DEBUG true
-FILE *logFile = fopen("./output.log", "w+");
-int LOG = fileno(logFile);
 
+/* START OF FUZZING CODE */
 void __sanitizer_cov_reset_edgeguards();
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     // check command line args
     bool doReprl = false;
-    for (int i = 1; i < argc; i++)
-    {
-        if (strcmp(argv[i], "-reprl") == 0)
-        {
-            doReprl = true;
-        }
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-reprl") == 0){
+	       	doReprl = true;
+	}
     }
-    if (doReprl)
-    {
+
+    if (doReprl) {
         char helo[] = "HELO";
-        if (write(REPRL_CWFD, helo, 4) != 4 || read(REPRL_CRFD, helo, 4) != 4)
-        {
-            printf("Invalid HELO response from parent\n");
+        if (write(REPRL_CWFD, helo, 4) != 4 || read(REPRL_CRFD, helo, 4) != 4) {
+            printf("Invalid HELLO response from parent\n");
         }
 
-        if (memcmp(helo, "HELO", 4) != 0)
-        {
+        if (memcmp(helo, "HELO", 4) != 0) {
             printf("Invalid response from parent\n");
             _exit(-1);
         }
-
         QCoreApplication app(argc, argv);
-
-
-        if (DEBUG)
-        {
-            char debug[] = "\n[!] finished initialization\n";
-            write(LOG, &debug, sizeof(debug));
-        }
 
         while (true)
         {
@@ -80,37 +63,29 @@ int main(int argc, char *argv[])
 
 	    // register function to trigger a segfault
 	    QJSValue fun = engine.evaluate("(function(a,b) { if (a === 'FUZZILLI_CRASH') { if (b === 0) { print(SegFault.fault()); } } else  { SegFault.print(b); }})");
-	                                       
-        engine.globalObject().setProperty("fuzzilli", fun);
+
+	    engine.globalObject().setProperty("fuzzilli", fun);
 
             size_t script_size = 0;
             unsigned action;
-            if (read(REPRL_CRFD, &action, 4) != 4)
-            {
+            if (read(REPRL_CRFD, &action, 4) != 4) {
                 printf("Failed reading caction\n");
             }
-	    // TODO: why is this an int and why dont we need double quotes
-            if (action == 'cexe')
-            {
-                if (read(REPRL_CRFD, &script_size, 8) != 8)
-                {
+            if (action == 'cexe') {
+                if (read(REPRL_CRFD, &script_size, 8) != 8){
                     printf("error reading script size\n");
                 }
             }
-            else
-            {
+            else {
                 fprintf(stderr, "Unknown action: %u\n", action);
                 _exit(-1);
             }
             char *script_src = (char *)(malloc(script_size + 1));
-
             char *ptr = script_src;
             size_t remaining = script_size;
-            while (remaining > 0)
-            {
+            while (remaining > 0) {
                 ssize_t rv = read(REPRL_DRFD, ptr, remaining);
-                if (rv <= 0)
-                {
+                if (rv <= 0) {
                     fprintf(stderr, "Failed to load script\n");
                     _exit(-1);
                 }
@@ -119,52 +94,18 @@ int main(int argc, char *argv[])
             }
             script_src[script_size] = '\0';
 
-	    std::cout << "\nsource: ";
-	    std::cout << script_src;
-
 	    QStringList* exceptions = new QStringList();
             // evaluate byte array
             QJSValue result = engine.evaluate(script_src, NULL, 1, exceptions);
-
-	    std::cout << "\nresult value: ";
-	    std::cout << result.toString().toStdString();
-
             int status = 0;
 
-	    if (exceptions != NULL){
-		    if (exceptions->isEmpty()){
-			    std::cout << "exception list not empty";
-		    }
-		    QString str_exceptions = exceptions->join("\n");
-		    std::cout << "\ncaught exceptions: ";
-		    std::cout << str_exceptions.toStdString();
-	    }
-            if (result.isError() || engine.hasError() || !exceptions->isEmpty())
-            {
-                char debug[] = "\n[INFO] check result of engine evaluation\n";
-                write(LOG, debug, sizeof(debug));
+            if (result.isError() || engine.hasError() || !exceptions->isEmpty()) {
                 status = 1;
             }
-
-	    /*
-	    // handle throw case
-	    // add in the status code to be the character or string after throw 
-	    if (strstr(script_src,"throw")){
-		// find next string ( or number??idk)
-		//int throwidx = script_src.find("throw");
-		//status = script_src[throwidx]
-
-		status = 42;
-		
-	    }
-	    */
 	    // handle empty script case
-	    if (script_size == 0){
-		    status = 0;
-	    }
+	    if (script_size == 0) status = 0;
 
             free(script_src);
-	    //free(instance);
             // flush stderr, stdout
             fflush(stderr);
             fflush(stdout);
@@ -172,19 +113,12 @@ int main(int argc, char *argv[])
 	    status = (status & 0XFF) << 8;
 
             // Send return code to parent and reset edge counters.
-
-            if (write(REPRL_CWFD, &status, 4) != 4)
-            {
-                printf("Failed to write status\n");
-            }
+            if (write(REPRL_CWFD, &status, 4) != 4) printf("Failed to write status\n");
             // collect garbage
             engine.collectGarbage();
-            // destroy engine
-            //engine.~QJSEngine();
             // reset coverage guards
             __sanitizer_cov_reset_edgeguards();
         }
-
         return app.exec();
     }
 }
