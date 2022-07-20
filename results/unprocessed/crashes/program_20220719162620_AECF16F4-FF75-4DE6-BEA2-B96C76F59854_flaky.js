@@ -1,0 +1,12 @@
+function main() { 
+const v0 = {};
+const v1 = delete v0[-2147483647];
+const v2 = [v0,v0,v0,v0,v0];
+v0.__proto__ = v2;
+v0.__proto__ <<= v1;
+}
+main();
+// CRASH INFO
+// ==========
+// TERMSIG: 11
+// STDERR:
