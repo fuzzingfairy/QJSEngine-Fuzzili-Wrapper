@@ -26,7 +26,7 @@ Fuzzer Resources
 ### TODO
 
 - [X] get jerryscript fuzzilli target working
-- [ ] Create Fuzzili QJSEngine Target (Submit PR to github)
+- [X] Create Fuzzili QJSEngine Target (Submit PR to github)
     - [X] Compilation Changes
     - [X] Code Coverage
     - [X] Adding Read-Eval-Print-Reset-Loop
