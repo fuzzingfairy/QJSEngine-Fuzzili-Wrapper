@@ -3,8 +3,8 @@
 #include <QLabel>
 #include <QWidget>
 #include <QJSEngine>
-#include <iostream>
 #include <QDebug>
+#include <iostream>
 #include <sys/mman.h>
 #include <unistd.h>
 #include <sys/stat.h> /* For mode constants */
@@ -16,7 +16,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <QDebug>
 #define REPRL_CRFD 100
 #define REPRL_CWFD 101
 #define REPRL_DRFD 102
@@ -51,8 +50,6 @@ int main(int argc, char *argv[]) {
         {
 	    // initialize the application and its js engine
 	    QJSEngine engine;
-	    // install console extension
-	    engine.installExtensions(QJSEngine::GarbageCollectionExtension);
 
 	    // make a segfault object so fuzzilli can tell what a segfault looks like
 	    QObject *instance = new SegFault;

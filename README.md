@@ -385,41 +385,6 @@ do {
 } while (1);
 ```
 
-*Backtrace*:
-```
-#0  0x00007ffff7c8d053 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#1  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#2  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#3  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#4  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#5  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#6  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#7  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#8  0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#9  0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#10 0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#11 0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#12 0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#13 0x00007ffff7c7aaac in QV4::Object::internalGet(QV4::PropertyKey, QV4::Value const*, bool*) const ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#14 0x00007ffff7c8d055 in QV4::ProxyObject::virtualGet(QV4::Managed const*, QV4::PropertyKey, QV4::Value const*, bool*) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-(More stack frames follow...)
-```
-
 *Similar Crashes Folder*:
 `results/crashes/reviewed/proxy-looped-self-reference`
 
@@ -442,27 +407,6 @@ const v2 = [];
 const v8 = Reflect.apply(Promise.all, v1, v2);
 ```
 
-*Backtrace*:
-```
-#0  0x00007ffff7c33630 in QV4::ExecutionEngine::newPromiseObject(QV4::FunctionObject const*, QV4::PromiseCapability const*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#1  0x00007ffff7c88abd in QV4::PromiseCtor::method_all(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#2  0x00007ffff7cac0a1 in QV4::Reflect::method_apply(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#3  0x00007ffff7cc0c48 in QV4::Runtime::CallProperty::call(QV4::ExecutionEngine*, QV4::Value const&, int, QV4::Value*, int) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#4  0x00007ffff7cf11e2 in QV4::Moth::VME::interpret(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*, char const*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#5  0x00007ffff7cf708f in QV4::Moth::VME::exec(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#6  0x00007ffff7c56ef0 in QV4::ArrowFunction::virtualCall(QV4::FunctionObject const*, QV4::Value const*, QV4::Value const*, int) ()
-   from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#7  0x00007ffff7cbc60d in QV4::Runtime::CallName::call(QV4::ExecutionEngine*, int, QV4::Value*, int) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#8  0x00007ffff7cf116e in QV4::Moth::VME::interpret(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*, char const*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#9  0x00007ffff7cf708f in QV4::Moth::VME::exec(QV4::JSTypesStackFrame*, QV4::ExecutionEngine*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#10 0x00007ffff7c554fa in QV4::Function::call(QV4::Value const*, QV4::Value const*, int, QV4::ExecutionContext*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#11 0x00007ffff7cc4fbc in QV4::Script::run(QV4::Value const*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#12 0x00007ffff7bef9d4 in QJSEngine::evaluate(QString const&, QString const&, int, QList<QString>*) () from /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6
-#13 0x0000555555556491 in main (argc=<optimized out>, argc@entry=0x2, argv=argv@entry=0x7fffffffdf18) at harness.cpp:61
-#14 0x00007ffff709b7fd in __libc_start_main (main=0x555555556300 <main(int, char**)>, argc=0x2, argv=0x7fffffffdf18, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, stack_end=0x7fffffffdf08)
-    at ../csu/libc-start.c:332
-#15 0x00005555555566ca in _start () at ../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/../../src/corelib/tools/qlist.h:418
-```
 
 *Similar Crashes Folder*:
 `results/crashes/reviewed/promise-handling`
@@ -538,20 +482,10 @@ QJSEngine has no [abort](https://bugreports.qt.io/browse/QTBUG-49080) function. 
 ![global-object-pollution](./assets/global-object-pollution.png)
 
 
-#### Lack of support for async
-when testing the interpreter, we found that since qt6 runs a main GUI thread that it doesn't like to have blocked, running async functions in this thread is dissalowed and an alternative is provided by the QJSEngine::WorkerScript function
-
-TODO: verify with screenshots
-
-#### Lack of support for throw
-
-TODO: verify with screenshots
-
-
 ## Further Research
 
 #### Asynchronous Function Testing
-We did not use the asynchronous code generators due to Qjsengine not exposing an `async` keyword and instead only allowing multi-threading through the use of a `QtQML::WorkerScript` function. Future research could build off this instrumetation by modifying fuzzilli to use the WorkerScript functionality to test multi-threading
+e did not use the asynchronous code generators due to Qjsengine not exposing an `async` keyword and instead only allowing multi-threading through the use of a `QtQML::WorkerScript` function. Future research could build off this instrumetation by modifying fuzzilli to use the WorkerScript functionality to test multi-threading
 
 #### importModule Testing
 the importModule function expects utf8 text representing the name of a module. It might be wise to verify that correct safeguards are in place within the code that restrict non-utf8 text from being processed.

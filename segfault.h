@@ -7,6 +7,8 @@
 #include <unistd.h>
 #include <string.h>
 
+#define REPRL_DWFD 103
+
 class SegFault : public QObject {
     Q_OBJECT
 public:
