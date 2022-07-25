@@ -5,7 +5,7 @@
 TEMPLATE = app
 TARGET = harness
 INCLUDEPATH += .
-QT += core gui widgets qml
+QT += core qml
 CONFIG += qml_debug
 
 # You can make your code fail to compile if you use deprecated APIs.
