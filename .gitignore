@@ -4,3 +4,4 @@ moc_*
 tools/swift
 */.gdb_history
 */peda-session*
+results/stack.hashes
