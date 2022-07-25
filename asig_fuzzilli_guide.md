@@ -25,6 +25,8 @@ The first thing we want to do is enable communication between fuzzilli and our t
 The communication we implement will take place via a REPRL loop. As a derivitave of the perhaps more familiar Read-Eval-Print-Loop, the Read-Eval-Print-Loop-Reset communication we will implement includes an extra step where the state of the execution engine is rest
 
 
+Follow the REPRL [pseudocode](https://github.com/googleprojectzero/fuzzilli/tree/main/Targets).
+
 ### Recompiling the engine
 
 ### Exposing a function that consistently segfaults
