@@ -8104,3 +8104,79 @@ Extra Data:
    Short description: AccessViolation (21/22)
    Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
 ---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721044017_84562FE2-C286-48FC-BBBD-60F9FD520FD4_flaky.js
+SHA1: 528ebaede43492b8b591a260128e8c973470fa13
+Classification: EXPLOITABLE
+Hash: 1dce8ddb1af577cc3dcd9392fd5f0e90.18bf62327cb8b392535bec2e73876fb3
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721044017_84562FE2-C286-48FC-BBBD-60F9FD520FD4_flaky.js
+Faulting Frame:
+   QV4::RuntimeHelpers::numberToString @ 0x00007ffff7bc3800: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::RuntimeHelpers::numb @ 0x00007ffff7bc3800: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   primitiveToQString        @ 0x00007ffff7c02f9d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03b48: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x41ed68b327800000 rbx=0x41ed68b327800000 rcx=0x0000000000002f84 rdx=0x00007fffff7ff00c 
+rsi=0x00007fffff7ff008 rdi=0x00007fffff7ff0b0 rbp=0x00007fffff7ff1c0 rsp=0x00007fffff7fefe0 
+ r8=0x00007fffff7ff23f  r9=0x00007ffff3d16e08 r10=0x0000000000000006 r11=0x0000000000000050 
+r12=0x00007fffff7ff0b0 r13=0x00007ffff3d16e00 r14=0x0000000000000004 r15=0x00007fffff7ff370 
+rip=0x00007ffff7bc3800 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721063931_1BACA6D4-91CC-4074-BEB2-6C0FB36F20EA_flaky.js
+SHA1: 98e67ed5b299481d30c81a302b7e5e172a0f4e7d
+Classification: UNKNOWN
+Hash: 330883fd98162a3330c1b9f771dbc76e.d7d38e348ae54df61f82afd91a8e4834
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721063931_1BACA6D4-91CC-4074-BEB2-6C0FB36F20EA_flaky.js
+Faulting Frame:
+   qAbort @ 0x00007ffff7345255: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+Disassembly:
+Stack Head (26 entries):
+   __GI_raise                @ 0x00007ffff6e8e8a1: in (BL)
+   __GI_abort                @ 0x00007ffff6e78546: in (BL)
+   qAbort                    @ 0x00007ffff7345255: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   qt_message_fatal          @ 0x00007ffff734f329: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QMessageLogger::fatal     @ 0x00007ffff7351c0f: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   qt_assert                 @ 0x00007ffff7344ad8: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QV4::Runtime::IteratorClo @ 0x00007ffff7bbdb1e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c098a2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::exec      @ 0x00007ffff7c0fa3b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrowFunction::virtu @ 0x00007ffff7b1f20d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7b70073: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::PromiseCtor::virtual @ 0x00007ffff7b70073: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7bc0a59: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Runtime::Construct:: @ 0x00007ffff7bc0a59: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c09166: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000000000 rbx=0x00007ffff439a7c0 rcx=0x00007ffff6e8e8a1 rdx=0x0000000000000000 
+rsi=0x00007fffffffc0d0 rdi=0x0000000000000002 rbp=0x00007fffffffc378 rsp=0x00007fffffffc0d0 
+ r8=0x0000000000000000  r9=0x00007fffffffc0d0 r10=0x0000000000000008 r11=0x0000000000000246 
+r12=0x00007fffffffca60 r13=0x0000555555577900 r14=0x00007ffff3c6c678 r15=0x00005555555a3d10 
+rip=0x00007ffff6e8e8a1 efl=0x0000000000000246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Abort signal
+   Short description: AbortSignal (20/22)
+   Explanation: The target is stopped on a SIGABRT. SIGABRTs are often generated by libc and compiled check-code to indicate potentially exploitable conditions. Unfortunately this command does not yet further analyze these crashes.
+---END SUMMARY---
