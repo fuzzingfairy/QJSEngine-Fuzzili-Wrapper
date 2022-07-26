@@ -74,3 +74,8 @@ where storagePath is the folder where results of fuzzing are stored. The last ar
 
 
 ### Pwn..?
+
+It is helpful to demangle c++ names in GDB can be added to your `~/.gdbinit`
+```
+set print asm-demangle on
+```
