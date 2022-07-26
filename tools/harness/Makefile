@@ -12,12 +12,12 @@ EQ            = =
 
 ####### Compiler, tools and options
 
-CC            = clang
-CXX           = clang++
-DEFINES       = -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -O0 -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES) -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls -std=c++17 -g 
-CXXFLAGS      = -pipe -O0 -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES) -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls -std=c++17 -g
-INCPATH       = -I. -I. -I../../../target/qt-everywhere-src-6.3.1/qtbase/include -I../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets -I../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui -I../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml -I../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQmlIntegration -I../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtNetwork -I../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore -I. -I../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/linux-g++
+CC            = gcc
+CXX           = g++
+DEFINES       = -DQT_QML_DEBUG -DQT_GUI_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
+INCPATH       = -I. -I. -I../../../target/qt-everywhere-src-6.3.1/qtbase/include -I../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui -I../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml -I../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQmlIntegration -I../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtNetwork -I../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore -I. -I../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/linux-g++
 QMAKE         = /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -38,9 +38,9 @@ TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = harness1.0.0
 DISTDIR = /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/.tmp/harness1.0.0
-LINK          = clang++
-LFLAGS        = -Wl,-O0 -Wl,-rpath,/home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib -Wl,-rpath-link,/home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib
-LIBS          = $(SUBLIBS) /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Widgets.so /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Gui.so /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Network.so /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so -pthread -lpthread -lGLX -lOpenGL -fsanitize=address -g
+LINK          = g++
+LFLAGS        = -Wl,-rpath,/home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib -Wl,-rpath-link,/home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib
+LIBS          = $(SUBLIBS) /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Gui.so /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Network.so /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so -lpthread -lGLX -lOpenGL   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -313,7 +313,6 @@ DIST          = ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/resources.prf \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/moc.prf \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/unix/opengl.prf \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/uic.prf \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/unix/thread.prf \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/qmake_use.prf \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/file_copies.prf \
@@ -592,7 +591,6 @@ Makefile: harness.pro ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/lin
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/resources.prf \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/moc.prf \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/unix/opengl.prf \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/uic.prf \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/unix/thread.prf \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/qmake_use.prf \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/file_copies.prf \
@@ -601,7 +599,6 @@ Makefile: harness.pro ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/lin
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/yacc.prf \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/lex.prf \
 		harness.pro \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Widgets.prl \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Gui.prl \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.prl \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Network.prl \
@@ -866,7 +863,6 @@ Makefile: harness.pro ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/lin
 ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/resources.prf:
 ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/moc.prf:
 ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/unix/opengl.prf:
-../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/uic.prf:
 ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/unix/thread.prf:
 ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/qmake_use.prf:
 ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/file_copies.prf:
@@ -875,7 +871,6 @@ Makefile: harness.pro ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/lin
 ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/yacc.prf:
 ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/lex.prf:
 harness.pro:
-../../../target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Widgets.prl:
 ../../../target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Gui.prl:
 ../../../target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.prl:
 ../../../target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Network.prl:
@@ -924,7 +919,7 @@ compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/data/dummy.cpp
-	g++ -pipe -O2 -Wall -Wextra -dM -E -o moc_predefs.h ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/data/dummy.cpp
+	g++ -pipe -g -Wall -Wextra -dM -E -o moc_predefs.h ../../../target/qt-everywhere-src-6.3.1/qtbase/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all:
 compiler_moc_header_clean:
@@ -932,8 +927,6 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all:
-compiler_uic_clean:
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
@@ -944,13 +937,11 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-harness.o: harness.cpp ../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/QApplication \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/qapplication.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/widgets/kernel/qapplication.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/qtwidgetsglobal.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/widgets/kernel/qtwidgetsglobal.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qtguiglobal.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qtguiglobal.h \
+harness.o: harness.cpp ../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/QJSEngine \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qjsengine.h \
+		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsapi/qjsengine.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qmetatype.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qmetatype.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qglobal.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/global/qglobal.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qconfig-bootstrapped.h \
@@ -994,20 +985,6 @@ harness.o: harness.cpp ../../../target/qt-everywhere-src-6.3.1/qtbase/include/Qt
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/global/qnumeric.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qversiontagging.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/global/qversiontagging.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qtgui-config.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/qtgui-config.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qtguiexports.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/qtwidgets-config.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/widgets/qtwidgets-config.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/qtwidgetsexports.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qcoreapplication.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qcoreapplication.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstring.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qstring.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qchar.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qchar.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstringview.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qstringview.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qbytearray.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qbytearray.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qrefcount.h \
@@ -1030,6 +1007,20 @@ harness.o: harness.cpp ../../../target/qt-everywhere-src-6.3.1/qtbase/include/Qt
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qbytearrayalgorithms.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qbytearrayview.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qbytearrayview.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qcompare.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/global/qcompare.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qvarlengtharray.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qvarlengtharray.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qalgorithms.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qalgorithms.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qhashfunctions.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qhashfunctions.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstring.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qstring.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qchar.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qchar.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstringview.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qstringview.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstringliteral.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qstringliteral.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstringalgorithms.h \
@@ -1042,42 +1033,12 @@ harness.o: harness.cpp ../../../target/qt-everywhere-src-6.3.1/qtbase/include/Qt
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qstringtokenizer.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstringbuilder.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qstringbuilder.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qcoreevent.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qcoreevent.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qobjectdefs.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qobjectdefs.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qobjectdefs_impl.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qobjectdefs_impl.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qeventloop.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qeventloop.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qobject.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qobject.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qlist.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qlist.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qhashfunctions.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qhashfunctions.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qiterator.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qiterator.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qbytearraylist.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qbytearraylist.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstringlist.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qstringlist.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qalgorithms.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qalgorithms.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstringmatcher.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qstringmatcher.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qscopedpointer.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qscopedpointer.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qmetatype.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qmetatype.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qcompare.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/global/qcompare.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qvarlengtharray.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qvarlengtharray.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qscopeguard.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qscopeguard.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qdatastream.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/serialization/qdatastream.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qscopedpointer.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qscopedpointer.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qiodevicebase.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/io/qiodevicebase.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qiterable.h \
@@ -1090,22 +1051,40 @@ harness.o: harness.cpp ../../../target/qt-everywhere-src-6.3.1/qtbase/include/Qt
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qtaggedpointer.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qmath.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qmath.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qobject_impl.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qobject_impl.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qbindingstorage.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qbindingstorage.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qnativeinterface.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/global/qnativeinterface.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qdebug.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/io/qdebug.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qhash.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qhash.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qobjectdefs.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qobjectdefs.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qobjectdefs_impl.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qobjectdefs_impl.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qvariant.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qvariant.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qlist.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qlist.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qiterator.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qiterator.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qbytearraylist.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qbytearraylist.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstringlist.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qstringlist.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstringmatcher.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qstringmatcher.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qmap.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qmap.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qshareddata.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qshareddata.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qshareddata_impl.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qshareddata_impl.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qhash.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qhash.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qobject.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qobject.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qcoreevent.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qcoreevent.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qobject_impl.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qobject_impl.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qbindingstorage.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qbindingstorage.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qdebug.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/io/qdebug.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qtextstream.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/serialization/qtextstream.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qstringconverter.h \
@@ -1118,6 +1097,34 @@ harness.o: harness.cpp ../../../target/qt-everywhere-src-6.3.1/qtbase/include/Qt
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qsharedpointer.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qsharedpointer_impl.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qsharedpointer_impl.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qjsvalue.h \
+		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsapi/qjsvalue.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qtqmlglobal.h \
+		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/qtqmlglobal.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qtqml-config.h \
+		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/qtqml-config.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtNetwork/qtnetworkglobal.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/network/kernel/qtnetworkglobal.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtNetwork/qtnetwork-config.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/network/qtnetwork-config.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtNetwork/qtnetworkexports.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qtqmlexports.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qjsmanagedvalue.h \
+		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsapi/qjsmanagedvalue.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qjsprimitivevalue.h \
+		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsapi/qjsprimitivevalue.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qjsnumbercoercion.h \
+		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/common/qjsnumbercoercion.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qqmldebug.h \
+		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/debugger/qqmldebug.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/QDebug \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/QCoreApplication \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qcoreapplication.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qcoreapplication.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qeventloop.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qeventloop.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qnativeinterface.h \
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/global/qnativeinterface.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qcoreapplication_platform.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qcoreapplication_platform.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qfuture.h \
@@ -1145,139 +1152,7 @@ harness.o: harness.cpp ../../../target/qt-everywhere-src-6.3.1/qtbase/include/Qt
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qpointer.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qpointer.h \
 		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qpromise.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/thread/qpromise.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qvariant.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/kernel/qvariant.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qwindowdefs.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qwindowdefs.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qwindowdefs_win.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qwindowdefs_win.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qpoint.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qpoint.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qsize.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qsize.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qmargins.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qmargins.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qcursor.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qcursor.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qbitmap.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/image/qbitmap.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qpixmap.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/image/qpixmap.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qpaintdevice.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/painting/qpaintdevice.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qrect.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qrect.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qcolor.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/painting/qcolor.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qrgb.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/painting/qrgb.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qrgba64.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/painting/qrgba64.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qimage.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/image/qimage.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qpixelformat.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qpixelformat.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qtransform.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/painting/qtransform.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qpolygon.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/painting/qpolygon.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qregion.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/painting/qregion.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qline.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/tools/qline.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qguiapplication.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qguiapplication.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qinputmethod.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qinputmethod.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qlocale.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/text/qlocale.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qguiapplication_platform.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qguiapplication_platform.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/QPushButton \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/qpushbutton.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/widgets/widgets/qpushbutton.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/qabstractbutton.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/widgets/widgets/qabstractbutton.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qicon.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/image/qicon.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qkeysequence.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qkeysequence.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/qwidget.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/widgets/kernel/qwidget.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qaction.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qaction.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qpalette.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qpalette.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qbrush.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/painting/qbrush.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qfont.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/text/qfont.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qfontmetrics.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/text/qfontmetrics.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qfontinfo.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/text/qfontinfo.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/qsizepolicy.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/widgets/kernel/qsizepolicy.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qevent.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qevent.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qiodevice.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/io/qiodevice.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/qurl.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/io/qurl.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qeventpoint.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qeventpoint.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qvector2d.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/math3d/qvector2d.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qvectornd.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/math3d/qvectornd.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qpointingdevice.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qpointingdevice.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qinputdevice.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qinputdevice.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qscreen.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/kernel/qscreen.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/QList \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/QObject \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/QRect \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/QSize \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/QSizeF \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/QTransform \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/QLabel \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/qlabel.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/widgets/widgets/qlabel.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/qframe.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/widgets/widgets/qframe.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qpicture.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/image/qpicture.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtGui/qtextdocument.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/gui/text/qtextdocument.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtWidgets/QWidget \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/QJSEngine \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qjsengine.h \
-		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsapi/qjsengine.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qjsvalue.h \
-		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsapi/qjsvalue.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qtqmlglobal.h \
-		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/qtqmlglobal.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qtqml-config.h \
-		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/qtqml-config.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtNetwork/qtnetworkglobal.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/network/kernel/qtnetworkglobal.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtNetwork/qtnetwork-config.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/src/network/qtnetwork-config.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtNetwork/qtnetworkexports.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qtqmlexports.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qjsmanagedvalue.h \
-		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsapi/qjsmanagedvalue.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qjsprimitivevalue.h \
-		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsapi/qjsprimitivevalue.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qjsnumbercoercion.h \
-		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/common/qjsnumbercoercion.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtQml/qqmldebug.h \
-		../../../target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/debugger/qqmldebug.h \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/QDebug \
-		../../../target/qt-everywhere-src-6.3.1/qtbase/include/QtCore/QCoreApplication
+		../../../target/qt-everywhere-src-6.3.1/qtbase/src/corelib/thread/qpromise.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o harness.o harness.cpp
 
 ####### Install
