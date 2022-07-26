@@ -2,7 +2,7 @@ ASIG Fuzzilli Documentation
 ==========================
 
 
-This document aims to providue guidance in ASIG javascript-engine fuzzing campaigns that choose to utilize the [Fuzzilli Fuzzer](https://github.com/googleprojectzero/fuzzilli)
+This document aims to providue guidance in ASIG javascript-engine fuzzing campaigns that choose to utilize the [Fuzzilli Fuzzer](https://github.com/googleprojectzero/fuzzilli). A more succinct version of instructions can be found within the (repository)[https://github.com/googleprojectzero/fuzzilli/blob/main/Targets/README.md]. Our intent is to expand on these instructions to give more detailed guidance based upon our experience using this fuzzer. 
 
 ### Fuzzilli
 Summary: Fuzzilli is a coverage-guided fuzzer for javascript engines based on a custom intermediate language ("FuzzIL") which can be mutated and translated to JavaScript.
@@ -39,15 +39,13 @@ loop until signal interrupt:
 
 In between this communication, there are a few points of interest that might benefit from a bit of clarification:
 
-You must append a null terminator to the read in javascript.
-```
-script_src[script_size] = '\0';
-```
-
-You must remember to call `__sanitizer_cov_reset_edgeguards` after writing the status.
-
+- You must append a null terminator to the script after its read from the DRFD
+- Before returning the status code, a bitwise & and a bitshift to the right by 8 bits should be applied to it 
+- You must remember to call `__sanitizer_cov_reset_edgeguards` after writing the status as part of the reset stage
 
 Now that you have an understanding of the functionality we are trying to enable, you're probably wondering where it should be implemented.
+
+At the time of writing, all implementations are patches to either the main source file of the engine or a source file that compiles into an executable shell. Instead of patching pre-existing files, it is also possible to import the engine into a blank 
 
 ### Testing the Reprl
 To test the reprl implementation you can use the Reprl tester:
@@ -55,6 +53,7 @@ To test the reprl implementation you can use the Reprl tester:
 swift run REPRLRun ../QJSEngine-Fuzzili-Wrapper/instrumentation -reprl
 ```
 The arguments for REPRLRun is the path to the jshell and then any additional arguments.
+>>>>>>> 08379f11393ef7f410d8a5ba498ddf18d284d77c
 
 ### Recompiling the engine
 

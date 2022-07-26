@@ -7420,3 +7420,763 @@ Extra Data:
    Short description: AccessViolation (21/22)
    Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
 ---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721103827_60863739-12A7-4A3D-924C-B06D8E21E769_flaky.js
+SHA1: 138170b13881224a87c2136bef94e2cd227e975e
+Classification: EXPLOITABLE
+Hash: cff0ca72da3f265ff5bd0c9decf0ccb5.2db03e3d26d611550029674f44471ec9
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721103827_60863739-12A7-4A3D-924C-B06D8E21E769_flaky.js
+Faulting Frame:
+   QV4::RuntimeHelpers::numberToString @ 0x00007ffff7bc37d6: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::RuntimeHelpers::numb @ 0x00007ffff7bc37d6: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   primitiveToQString        @ 0x00007ffff7c02f20: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03b48: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x00007ffff7c02ef1 rbx=0x4008000000000000 rcx=0x00007ffff7ee4e28 rdx=0x0003800000000003 
+rsi=0x000000000000000a rdi=0x00007fffff7ff180 rbp=0x00007fffff7ff180 rsp=0x00007fffff7fefa0 
+ r8=0x00007fffff7ff1ff  r9=0x00007ffff3d16e38 r10=0x0000000000000001 r11=0x0000000000000050 
+r12=0x000000000000000a r13=0x00007ffff3d16e30 r14=0x000000000000000a r15=0x00007fffff7ff330 
+rip=0x00007ffff7bc37d6 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Possible stack corruption
+   Short description: PossibleStackCorruption (7/22)
+   Explanation: GDB generated an error while unwinding the stack and/or the stack contained return addresses that were not mapped in the inferior's process address space and/or the stack pointer is pointing to a location outside the default stack region. These conditions likely indicate stack corruption, which is generally considered exploitable.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721092608_CC24BD86-BC6C-46DD-ACFC-F5D3044385C3_flaky.js
+SHA1: 0ffb3c09db3f8e246f8c6c08ede5c08d8a16554c
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: 364d708f4ddc929880866dc73c2bb7c9.ad127eb0b3a8b6110a628433676fe654
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721092608_CC24BD86-BC6C-46DD-ACFC-F5D3044385C3_flaky.js
+Faulting Frame:
+   QV4::ExecutionEngine::newPromiseObject @ 0x00007ffff7ae3f7f: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (17 entries):
+   QV4::ExecutionEngine::new @ 0x00007ffff7ae3f7f: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::PromiseCtor::method_ @ 0x00007ffff7b71000: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7ba48b7: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Reflect::method_appl @ 0x00007ffff7ba48b7: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Runtime::CallPropert @ 0x00007ffff7bc4a74: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c08382: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::exec      @ 0x00007ffff7c0fa3b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrowFunction::virtu @ 0x00007ffff7b1f20d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Runtime::CallName::c @ 0x00007ffff7bc1d18: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c08cc3: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::exec      @ 0x00007ffff7c0fa3b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Function::call       @ 0x00007ffff7b1caac: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Script::run          @ 0x00007ffff7bc9f47: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QJSEngine::evaluate       @ 0x00007ffff7a80a9c: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000000000 rbx=0x00007ffff3c6c668 rcx=0x0000000000000000 rdx=0x00007ffff3c6c670 
+rsi=0x0000000000000000 rdi=0x00007ffff3c6c670 rbp=0x0000000000000000 rsp=0x00007fffffffc950 
+ r8=0x00007ffff36b23a0  r9=0x00007ffff36b0000 r10=0x0000000000000020 r11=0x0000000000000000 
+r12=0x00007ffff3c6c668 r13=0x0000555555577900 r14=0x00007ffff36b2300 r15=0x00007ffff36a8f00 
+rip=0x00007ffff7ae3f7f efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721045934_A08EAA2B-56A6-43C2-8E1F-655EEFD11FAD_flaky.js
+SHA1: 399912a20015976514076542d349f910f8b429f8
+Classification: UNKNOWN
+Hash: 7199e841e1c215539ab1256c39cdb577.f57f1abe0cc2bbcd5988049d67e648ad
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721045934_A08EAA2B-56A6-43C2-8E1F-655EEFD11FAD_flaky.js
+Faulting Frame:
+   QV4::Heap::StringOrSymbol::createHashValue @ 0x00007ffff7bd3f0a: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::Heap::StringOrSymbol @ 0x00007ffff7bd3f0a: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Heap::StringOrSymbol @ 0x00007ffff7b30631: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7b30631: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::String::createProper @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::StringOrSymbol::crea @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::StringOrSymbol::toPr @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::get          @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3f6d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000555555577900 rbx=0x000055555556ec00 rcx=0x0000000000000000 rdx=0x00007ffff37c3f40 
+rsi=0x00007ffff37c3f40 rdi=0x00007ffff37c3f40 rbp=0x00007ffff37c3f40 rsp=0x00007fffff7ff000 
+ r8=0x0000000000000038  r9=0x00007ffff3679400 r10=0x00007ffff7935d29 r11=0x0000000000000246 
+r12=0x0000000000000000 r13=0x0000000000000000 r14=0x00007ffff3d27eb0 r15=0x00007ffff7b5b19a 
+rip=0x00007ffff7bd3f0a efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721093921_C22D5D4B-BAC0-46F7-BE4F-971B60094EA6_flaky.js
+SHA1: 8c4b87ffccadddfb339ac6403c8cf2a5287383b6
+Classification: EXPLOITABLE
+Hash: 5525d6a369dd68c60cfd20b6055c4108.4b19a055e4f4adee2a582d0ded09d5d3
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721093921_C22D5D4B-BAC0-46F7-BE4F-971B60094EA6_flaky.js
+Faulting Frame:
+   QString::~QString @ 0x00007ffff7bc3733: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QString::~QString         @ 0x00007ffff7bc3733: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::numb @ 0x00007ffff7bc3733: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   primitiveToQString        @ 0x00007ffff7c02f9d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03b48: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000000000 rbx=0x0000000000000000 rcx=0x0000000000002003 rdx=0x0000000000000008 
+rsi=0x000000000000000a rdi=0x00007fffff7ff070 rbp=0x00007fffff7ff1e0 rsp=0x00007fffff7ff000 
+ r8=0x00007fffff7ff25f  r9=0x00007ffff3d16df8 r10=0x00000000000000b0 r11=0x0000000000000090 
+r12=0x0000000000000001 r13=0x00007ffff3d16df0 r14=0x0000000000000009 r15=0x00007fffff7ff390 
+rip=0x00007ffff7bc3733 efl=0x0000000000010203  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721094453_00CEC1F9-FDC4-4DCF-BAF2-10D90977C282_flaky.js
+SHA1: d2d64c89492f2628e9624eaf4aa78a51a1f9ba19
+Classification: EXPLOITABLE
+Hash: bf4aebcdc0b00f14fcb923e24b4ca8c3.54a09a10b73d66933d4280245aa9cf16
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721094453_00CEC1F9-FDC4-4DCF-BAF2-10D90977C282_flaky.js
+Faulting Frame:
+   QV4::RuntimeHelpers::numberToString @ 0x00007ffff7bc37d6: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::RuntimeHelpers::numb @ 0x00007ffff7bc37d6: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   primitiveToQString        @ 0x00007ffff7c02f9d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03b48: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x41eecca22be00000 rbx=0x41eecca22be00000 rcx=0x0000000000002f84 rdx=0xfffc000000000000 
+rsi=0x000000000000000a rdi=0x00007fffff7ff1a0 rbp=0x00007fffff7ff1a0 rsp=0x00007fffff7fefc0 
+ r8=0x00007fffff7ff21f  r9=0x00007ffff3d16e10 r10=0x0000000000000006 r11=0x0000000000000050 
+r12=0x000000000000000a r13=0x00007ffff3d16e08 r14=0x0000000000000005 r15=0x00007fffff7ff350 
+rip=0x00007ffff7bc37d6 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Possible stack corruption
+   Short description: PossibleStackCorruption (7/22)
+   Explanation: GDB generated an error while unwinding the stack and/or the stack contained return addresses that were not mapped in the inferior's process address space and/or the stack pointer is pointing to a location outside the default stack region. These conditions likely indicate stack corruption, which is generally considered exploitable.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721032747_D9101CE1-08CE-4292-BAC6-0F5CEA4E09D0_flaky.js
+SHA1: 383cd1166fe3c3f974cc38cee4ee552c44555174
+Classification: UNKNOWN
+Hash: 5bd2a58dc47ec0dbf808fd0b5490c568.b5323fb253d6e2f6e1e59ddc0696b9fd
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721032747_D9101CE1-08CE-4292-BAC6-0F5CEA4E09D0_flaky.js
+Faulting Frame:
+   QV4::Heap::StringOrSymbol::createHashValue @ 0x00007ffff7bd3f0d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::Heap::StringOrSymbol @ 0x00007ffff7bd3f0d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Heap::StringOrSymbol @ 0x00007ffff7b30631: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7b30631: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::String::createProper @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::StringOrSymbol::crea @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::StringOrSymbol::toPr @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::get          @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3f6d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000555555577900 rbx=0x000055555556ec00 rcx=0x0000000000000000 rdx=0x00007ffff37c4080 
+rsi=0x00007ffff37c4080 rdi=0x00007ffff37c4080 rbp=0x00007ffff37c4080 rsp=0x00007fffff7ff000 
+ r8=0x0000000000000040  r9=0x00007ffff3679400 r10=0x00007ffff7935d29 r11=0x0000000000000246 
+r12=0x0000000000000000 r13=0x0000000000000000 r14=0x00007ffff3d27eb0 r15=0x00007ffff7b5b19a 
+rip=0x00007ffff7bd3f0d efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721065712_21B5EA58-98C0-4BE7-9B04-07185FC1A548_flaky.js
+SHA1: 31d91426d3a755bcb71fd74cddd2847af1793bf8
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: 023aa05b98a6b51b21673aea83b82671.13067b32e39c539ad7f45a4b430e73c7
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721065712_21B5EA58-98C0-4BE7-9B04-07185FC1A548_flaky.js
+Faulting Frame:
+   QV4::ExecutionEngine::newPromiseObject @ 0x00007ffff7ae3f7f: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (17 entries):
+   QV4::ExecutionEngine::new @ 0x00007ffff7ae3f7f: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::PromiseCtor::method_ @ 0x00007ffff7b7125a: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7ba48b7: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Reflect::method_appl @ 0x00007ffff7ba48b7: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Runtime::CallPropert @ 0x00007ffff7bc4a74: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c08382: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::exec      @ 0x00007ffff7c0fa3b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrowFunction::virtu @ 0x00007ffff7b1f20d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Runtime::CallName::c @ 0x00007ffff7bc1d18: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c08cc3: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::exec      @ 0x00007ffff7c0fa3b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Function::call       @ 0x00007ffff7b1caac: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Script::run          @ 0x00007ffff7bc9f47: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QJSEngine::evaluate       @ 0x00007ffff7a80a9c: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000000000 rbx=0x00007ffff3c6c678 rcx=0x0000000000000000 rdx=0x00007ffff3c6c680 
+rsi=0x0000000000000000 rdi=0x00007ffff3c6c680 rbp=0x0000000000000000 rsp=0x00007fffffffc990 
+ r8=0x00007ffff36b2460  r9=0x00007ffff36b0000 r10=0x0000000000000020 r11=0x00007fffffffc954 
+r12=0x00007ffff3c6c678 r13=0x0000555555577900 r14=0x00007ffff36b23c0 r15=0x00007ffff36a8c00 
+rip=0x00007ffff7ae3f7f efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721063536_6FB604B5-42E6-4C36-9FA1-0A1AED651E41_flaky.js
+SHA1: 2f392338bf309e6e4c8ffca753187d2c7973fdb2
+Classification: EXPLOITABLE
+Hash: 94529f6db88181f77890d0c434a57ed5.c251723ac7fbd72717b043b451142e3b
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721063536_6FB604B5-42E6-4C36-9FA1-0A1AED651E41_flaky.js
+Faulting Frame:
+   QV4::HeapItem::setAllocatedSlots @ 0x00007ffff7c17ae9: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::HeapItem::setAllocat @ 0x00007ffff7c17ae9: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::BlockAllocator::allo @ 0x00007ffff7c17ae9: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::MemoryManager::alloc @ 0x00007ffff7c1c296: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::MemoryManager::alloc @ 0x00007ffff7c1c296: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::MemoryManager::alloc @ 0x00007ffff7ad1e01: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ExecutionEngine::new @ 0x00007ffff7ad1e01: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e00c: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3f6d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000000001 rbx=0x00007ffff37c4500 rcx=0x0000000000000228 rdx=0x0000000000000229 
+rsi=0x00007ffff37c0300 rdi=0x00005555555786a0 rbp=0x0000000000000002 rsp=0x00007fffff7fefe0 
+ r8=0x00007ffff3688520  r9=0x00007ffff3679400 r10=0x00007ffff7935d29 r11=0x0000000000000246 
+r12=0x00005555555786a0 r13=0x0000000000000000 r14=0x0000000000000000 r15=0x00007ffff7b5b19a 
+rip=0x00007ffff7c17ae9 efl=0x0000000000010206  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Possible stack corruption
+   Short description: PossibleStackCorruption (7/22)
+   Explanation: GDB generated an error while unwinding the stack and/or the stack contained return addresses that were not mapped in the inferior's process address space and/or the stack pointer is pointing to a location outside the default stack region. These conditions likely indicate stack corruption, which is generally considered exploitable.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721052805_A48A3469-058A-42A6-815A-2ACF4E5AAD6F_flaky.js
+SHA1: 58c63338f57f7eb92917e62505de3cb72602f4c7
+Classification: UNKNOWN
+Hash: 5320a8231c25a4906e248e755a707aaa.860ec2521966f5b65e2ba9ffa9138bd7
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721052805_A48A3469-058A-42A6-815A-2ACF4E5AAD6F_flaky.js
+Faulting Frame:
+   QV4::ProxyObject::virtualGet @ 0x00007ffff7b77474: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::ProxyObject::virtual @ 0x00007ffff7b77474: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::get          @ 0x00007ffff7b5af52: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::internalGet  @ 0x00007ffff7b5af52: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::virtualGet   @ 0x00007ffff7b5b1a3: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::get          @ 0x00007ffff7b776d4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ProxyObject::virtual @ 0x00007ffff7b776d4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::get          @ 0x00007ffff7b5af52: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::internalGet  @ 0x00007ffff7b5af52: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::virtualGet   @ 0x00007ffff7b5b1a3: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::get          @ 0x00007ffff7b776d4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ProxyObject::virtual @ 0x00007ffff7b776d4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::get          @ 0x00007ffff7b5af52: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::internalGet  @ 0x00007ffff7b5af52: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::virtualGet   @ 0x00007ffff7b5b1a3: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::get          @ 0x00007ffff7b776d4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ProxyObject::virtual @ 0x00007ffff7b776d4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x00007ffff7fac700 rbx=0x00007ffff3681340 rcx=0x0000000000000000 rdx=0x00007fffffffcc58 
+rsi=0x00007ffff3681340 rdi=0x00007fffff7ff040 rbp=0x00007ffff36b2440 rsp=0x00007fffff7ff000 
+ r8=0x00000000ffffffff  r9=0x00007ffff36a8f00 r10=0x00007ffff3c6c680 r11=0x00007ffff3675400 
+r12=0x00007ffff3cf7dd0 r13=0x0000000000000000 r14=0x00007fffffffcc58 r15=0x00007ffff7b5b19a 
+rip=0x00007ffff7b77474 efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721042112_7AD8DA8E-F312-4C5C-8765-3A6877A76CBF_flaky.js
+SHA1: 0992f9249a84af01f5f597c5ba9923588fe1cb6a
+Classification: EXPLOITABLE
+Hash: 83db239d6dd67b73687fc50039cd48d5.53f8cf46fa4038421baa9d759801d8c0
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721042112_7AD8DA8E-F312-4C5C-8765-3A6877A76CBF_flaky.js
+Faulting Frame:
+   QV4::Heap::StringOrSymbol::hashValue @ 0x00007ffff7b3062c: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::Heap::StringOrSymbol @ 0x00007ffff7b3062c: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7b3062c: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::String::createProper @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::StringOrSymbol::crea @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::StringOrSymbol::toPr @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::get          @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000555555577900 rbx=0x000055555556ec00 rcx=0x0000000000000000 rdx=0x00007ffff373c900 
+rsi=0x00007ffff373c900 rdi=0x00007ffff373c900 rbp=0x00007ffff373c900 rsp=0x00007fffff7ff000 
+ r8=0x00000000000000c8  r9=0x00007ffff3679400 r10=0x00000000000000c8 r11=0x0000000000000246 
+r12=0x0000000000000000 r13=0x0000000000000000 r14=0x00007ffff3d16df8 r15=0x00007ffff7b5b19a 
+rip=0x00007ffff7b3062c efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721033054_43E46AA0-C88B-4184-B517-24CB2A46F68F_flaky.js
+SHA1: a13d03545b7a8368b22699e9fe9522f37924ff33
+Classification: UNKNOWN
+Hash: 93c6600c19e7c75db6ed7605914e7652.d8ebd15937851309187fec8179932260
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721033054_43E46AA0-C88B-4184-B517-24CB2A46F68F_flaky.js
+Faulting Frame:
+   QV4::BlockAllocator::allocate @ 0x00007ffff7c17a54: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::BlockAllocator::allo @ 0x00007ffff7c17a54: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::MemoryManager::alloc @ 0x00007ffff7c1c296: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::MemoryManager::alloc @ 0x00007ffff7c1c296: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::MemoryManager::alloc @ 0x00007ffff7ad1e01: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ExecutionEngine::new @ 0x00007ffff7ad1e01: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e00c: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000020000 rbx=0x0000555555578690 rcx=0x0000000000000000 rdx=0x0000000000000000 
+rsi=0x0000000000000040 rdi=0x00005555555786a0 rbp=0x0000000000000000 rsp=0x00007fffff7ff000 
+ r8=0x00007ffff3688520  r9=0x00007ffff3679400 r10=0x0000000000000020 r11=0x0000000000000246 
+r12=0x00005555555786a0 r13=0x0000000000000000 r14=0x00007ffff3d16db8 r15=0x00007ffff7b5b19a 
+rip=0x00007ffff7c17a54 efl=0x0000000000010283  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721100050_946A3AD9-2BF1-4A0F-8A9F-EC07138710A4_flaky.js
+SHA1: 8fab42be6fe40ccd7782238450ee5a1e1de8abf2
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: d7e2d874033927d2275c1b9843afcfd3.d3b70a604ce25c129ec6dd1a0cf55ab3
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721100050_946A3AD9-2BF1-4A0F-8A9F-EC07138710A4_flaky.js
+Faulting Frame:
+   QV4::ExecutionEngine::newPromiseObject @ 0x00007ffff7ae3f7f: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (17 entries):
+   QV4::ExecutionEngine::new @ 0x00007ffff7ae3f7f: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::PromiseCtor::method_ @ 0x00007ffff7b72f24: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7ba48b7: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Reflect::method_appl @ 0x00007ffff7ba48b7: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Runtime::CallPropert @ 0x00007ffff7bc4a74: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c08382: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::exec      @ 0x00007ffff7c0fa3b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrowFunction::virtu @ 0x00007ffff7b1f20d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Runtime::CallName::c @ 0x00007ffff7bc1d18: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c08cc3: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::exec      @ 0x00007ffff7c0fa3b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Function::call       @ 0x00007ffff7b1caac: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Script::run          @ 0x00007ffff7bc9f47: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QJSEngine::evaluate       @ 0x00007ffff7a80a9c: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000000000 rbx=0x00007ffff3c6c688 rcx=0x0000000000000000 rdx=0x00007ffff3c6c690 
+rsi=0x0000000000000000 rdi=0x00007ffff3c6c690 rbp=0x0000000000000000 rsp=0x00007fffffffc790 
+ r8=0x00007ffff36b2420  r9=0x00007ffff36b0000 r10=0x0000000000000020 r11=0x0000000000000000 
+r12=0x00007ffff3c6c688 r13=0x0000555555577900 r14=0x00007ffff36b2380 r15=0x00007ffff36a8c00 
+rip=0x00007ffff7ae3f7f efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721040545_55E8964A-08FE-4C1C-BFC3-6CB770E7B9B5_flaky.js
+SHA1: 8cf29c3f903675e5689e68b74499a3899296de85
+Classification: EXPLOITABLE
+Hash: 074f2786caca48d4ab68e48f4caf16a1.6b40cf7a0b35ec34a8346062d32426d5
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721040545_55E8964A-08FE-4C1C-BFC3-6CB770E7B9B5_flaky.js
+Faulting Frame:
+   double_conversion::FastDtoa(double, double_conversion::FastDtoaMode, int, double_conversion::Vector<char>, int*, int*) @ 0x00007ffff637d93e: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+Disassembly:
+Stack Head (1000 entries):
+   double_conversion::FastDt @ 0x00007ffff637d93e: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   double_conversion::Double @ 0x00007ffff637ccbd: in /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1
+   qt_doubleToAscii          @ 0x00007ffff74e667b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   qdtoa                     @ 0x00007ffff74e8b2f: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QV4::RuntimeHelpers::numb @ 0x00007ffff7bc3805: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   primitiveToQString        @ 0x00007ffff7c02f20: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03b48: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000000000 rbx=0x0000000000000012 rcx=0x0000000000000012 rdx=0x00007fffff7ff110 
+rsi=0x0000000000000000 rdi=0x0000000000000000 rbp=0x0000000000000000 rsp=0x00007fffff7fefe0 
+ r8=0x00007fffff7ff124  r9=0x00007fffff7ff128 r10=0x0000000000000001 r11=0x0000000000000030 
+r12=0x00000000ffffff80 r13=0x00007fffff7ff110 r14=0x00007fffff7ff124 r15=0x0000000000000012 
+rip=0x00007ffff637d93e efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Possible stack corruption
+   Short description: PossibleStackCorruption (7/22)
+   Explanation: GDB generated an error while unwinding the stack and/or the stack contained return addresses that were not mapped in the inferior's process address space and/or the stack pointer is pointing to a location outside the default stack region. These conditions likely indicate stack corruption, which is generally considered exploitable.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721101225_E67CAEAA-EC07-484D-9D10-27ED120CB827_flaky.js
+SHA1: efaab2721ffb866110bff415acfe4fc36d2c970d
+Classification: EXPLOITABLE
+Hash: 3207192943bd59099e3bfd19e4721c45.33750fc505a51f73505ba9d92318be1c
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721101225_E67CAEAA-EC07-484D-9D10-27ED120CB827_flaky.js
+Faulting Frame:
+   QV4::RuntimeHelpers::numberToString @ 0x00007ffff7bc3800: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::RuntimeHelpers::numb @ 0x00007ffff7bc3800: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   primitiveToQString        @ 0x00007ffff7c02f20: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03b48: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x00007ffff7c02ef1 rbx=0x4014000000000000 rcx=0x00007ffff7ee4e28 rdx=0x00007fffff7ff02c 
+rsi=0x00007fffff7ff028 rdi=0x00007fffff7ff0d0 rbp=0x00007fffff7ff1e0 rsp=0x00007fffff7ff000 
+ r8=0x00007fffff7ff25f  r9=0x00007ffff3d16e08 r10=0x0000000000000011 r11=0x0000000000000050 
+r12=0x00007fffff7ff0d0 r13=0x00007ffff3d16e00 r14=0x0000000000000005 r15=0x00007fffff7ff390 
+rip=0x00007ffff7bc3800 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721082036_7664D9C7-661C-4DF6-A1BF-12374879A10E_flaky.js
+SHA1: 22ccd3511695183e00550c669cc4ed424a4f5adc
+Classification: UNKNOWN
+Hash: 442e468cf06f7298309460ed95688b46.266fe523c63d8a64b72788b7d1a75a77
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721082036_7664D9C7-661C-4DF6-A1BF-12374879A10E_flaky.js
+Faulting Frame:
+   QArrayDataPointer<char16_t>::allocateGrow @ 0x00007ffff750157a: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QArrayDataPointer<char16_ @ 0x00007ffff750157a: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QArrayDataPointer<char16_ @ 0x00007ffff75024ae: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QArrayDataPointer<char16_ @ 0x00007ffff7502c84: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QtPrivate::QPodArrayOps<c @ 0x00007ffff7502d7f: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QString::insert           @ 0x00007ffff74fd19a: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QString::insert           @ 0x00007ffff74fd1f7: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QString::prepend          @ 0x00007ffff7bc38e1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::numb @ 0x00007ffff7bc38e1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   primitiveToQString        @ 0x00007ffff7c02f20: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03b48: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000000000 rbx=0x00007fffff7ff560 rcx=0x0000000000000001 rdx=0x0000000000000001 
+rsi=0x00007fffff7ff560 rdi=0x00007fffff7ff020 rbp=0x00007fffff7ff0b0 rsp=0x00007fffff7ff000 
+ r8=0x0000000000000000  r9=0x00007fffff7ff329 r10=0x0000000000000005 r11=0xc97b1113404ea7f1 
+r12=0x0000000000000001 r13=0x0000000000000001 r14=0x0000000000000002 r15=0x00007fffff7ff710 
+rip=0x00007ffff750157a efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721050533_C760273D-4EDA-4674-9DF5-C6E6CA0A3EF5_flaky.js
+SHA1: 5ad9a3e709796a1d452119a4c6a65915ac812f7b
+Classification: PROBABLY_NOT_EXPLOITABLE
+Hash: f43b1d89f000cbafdd71ac44a66be8c2.bed81200747ee8be86a49cf5d1ebf8da
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721050533_C760273D-4EDA-4674-9DF5-C6E6CA0A3EF5_flaky.js
+Faulting Frame:
+   QV4::Chunk::testBit @ 0x00007ffff7b28c9b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (19 entries):
+   QV4::Chunk::testBit       @ 0x00007ffff7b28c9b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Heap::Base::inUse    @ 0x00007ffff7b28c9b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ValueArray<32ul>::ba @ 0x00007ffff7b28c9b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ValueArray<32ul>::se @ 0x00007ffff7b28c9b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Heap::ArrayData::set @ 0x00007ffff7b28c9b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::GeneratorFunction::v @ 0x00007ffff7b28c9b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Runtime::CallWithSpr @ 0x00007ffff7bc44c5: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c08ede: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::exec      @ 0x00007ffff7c0fa3b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrowFunction::virtu @ 0x00007ffff7b1f20d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Runtime::CallName::c @ 0x00007ffff7bc1d18: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c08cc3: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::exec      @ 0x00007ffff7c0fa3b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Function::call       @ 0x00007ffff7b1caac: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000000001 rbx=0x00007ffff36f8a80 rcx=0x0000000000000001 rdx=0x0000000000000000 
+rsi=0x0000000000000000 rdi=0x0000000000000000 rbp=0x00007ffff36f8b08 rsp=0x00007fffffffcbc0 
+ r8=0x0000000000000088  r9=0x00007ffff3681d80 r10=0x0000000000000000 r11=0x0000000000000000 
+r12=0x0000555555577900 r13=0x0000000000001f0e r14=0x00007ffff3c6c5b8 r15=0x00007ffff3c6c640 
+rip=0x00007ffff7b28c9b efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation near NULL on source operand
+   Short description: SourceAvNearNull (16/22)
+   Explanation: The target crashed on an access violation at an address matching the source operand of the current instruction. This likely indicates a read access violation, which may mean the application crashed on a simple NULL dereference to data structure that has no immediate effect on control of the processor.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721042650_BF1EDA2D-10D4-4F7E-AEF4-8FEF55B20AB8_flaky.js
+SHA1: c0c98e75c3865a269e3c768277ac3953926820c5
+Classification: EXPLOITABLE
+Hash: 83db239d6dd67b73687fc50039cd48d5.cc4d4c83bcc75863a7ab0c773419eeb6
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721042650_BF1EDA2D-10D4-4F7E-AEF4-8FEF55B20AB8_flaky.js
+Faulting Frame:
+   QV4::Heap::StringOrSymbol::hashValue @ 0x00007ffff7b3062c: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::Heap::StringOrSymbol @ 0x00007ffff7b3062c: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7b3062c: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::String::createProper @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::StringOrSymbol::crea @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::StringOrSymbol::toPr @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::get          @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3f6d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000555555577900 rbx=0x000055555556ec00 rcx=0x0000000000000000 rdx=0x00007ffff37c4140 
+rsi=0x00007ffff37c4140 rdi=0x00007ffff37c4140 rbp=0x00007ffff37c4140 rsp=0x00007fffff7ff000 
+ r8=0x0000000000000040  r9=0x00007ffff3679400 r10=0x00007ffff7935d29 r11=0x0000000000000246 
+r12=0x0000000000000000 r13=0x0000000000000000 r14=0x00007ffff3d27ed8 r15=0x00007ffff7b5b19a 
+rip=0x00007ffff7b3062c efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721054458_F47D46B5-CEAB-4A72-906D-BF53B24343F8_flaky.js
+SHA1: 7b8a49615425ae83efa84a482b168606bdbe4549
+Classification: UNKNOWN
+Hash: 5bd2a58dc47ec0dbf808fd0b5490c568.6a6474e662dce75bd1a31fe4e51f4ac0
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721054458_F47D46B5-CEAB-4A72-906D-BF53B24343F8_flaky.js
+Faulting Frame:
+   QV4::Heap::StringOrSymbol::createHashValue @ 0x00007ffff7bd3f0d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::Heap::StringOrSymbol @ 0x00007ffff7bd3f0d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Heap::StringOrSymbol @ 0x00007ffff7b30631: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7b30631: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::IdentifierTable::asP @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::String::createProper @ 0x00007ffff7bd3e4e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::StringOrSymbol::crea @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::StringOrSymbol::toPr @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Object::get          @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e230: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000555555577900 rbx=0x000055555556ec00 rcx=0x0000000000000000 rdx=0x00007ffff373c900 
+rsi=0x00007ffff373c900 rdi=0x00007ffff373c900 rbp=0x00007ffff373c900 rsp=0x00007fffff7ff000 
+ r8=0x00000000000000c8  r9=0x00007ffff3679400 r10=0x0000000000000020 r11=0x0000000000000246 
+r12=0x0000000000000000 r13=0x0000000000000000 r14=0x00007ffff3d16e50 r15=0x00007ffff7b5b19a 
+rip=0x00007ffff7bd3f0d efl=0x0000000000010202  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721044017_84562FE2-C286-48FC-BBBD-60F9FD520FD4_flaky.js
+SHA1: 528ebaede43492b8b591a260128e8c973470fa13
+Classification: EXPLOITABLE
+Hash: 1dce8ddb1af577cc3dcd9392fd5f0e90.18bf62327cb8b392535bec2e73876fb3
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721044017_84562FE2-C286-48FC-BBBD-60F9FD520FD4_flaky.js
+Faulting Frame:
+   QV4::RuntimeHelpers::numberToString @ 0x00007ffff7bc3800: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QV4::RuntimeHelpers::numb @ 0x00007ffff7bc3800: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   primitiveToQString        @ 0x00007ffff7c02f9d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03b48: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x41ed68b327800000 rbx=0x41ed68b327800000 rcx=0x0000000000002f84 rdx=0x00007fffff7ff00c 
+rsi=0x00007fffff7ff008 rdi=0x00007fffff7ff0b0 rbp=0x00007fffff7ff1c0 rsp=0x00007fffff7fefe0 
+ r8=0x00007fffff7ff23f  r9=0x00007ffff3d16e08 r10=0x0000000000000006 r11=0x0000000000000050 
+r12=0x00007fffff7ff0b0 r13=0x00007ffff3d16e00 r14=0x0000000000000004 r15=0x00007fffff7ff370 
+rip=0x00007ffff7bc3800 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation during branch instruction
+   Short description: BranchAv (4/22)
+   Explanation: The target crashed on a branch instruction, which may indicate that the control flow is tainted.
+---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721063931_1BACA6D4-91CC-4074-BEB2-6C0FB36F20EA_flaky.js
+SHA1: 98e67ed5b299481d30c81a302b7e5e172a0f4e7d
+Classification: UNKNOWN
+Hash: 330883fd98162a3330c1b9f771dbc76e.d7d38e348ae54df61f82afd91a8e4834
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220721063931_1BACA6D4-91CC-4074-BEB2-6C0FB36F20EA_flaky.js
+Faulting Frame:
+   qAbort @ 0x00007ffff7345255: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+Disassembly:
+Stack Head (26 entries):
+   __GI_raise                @ 0x00007ffff6e8e8a1: in (BL)
+   __GI_abort                @ 0x00007ffff6e78546: in (BL)
+   qAbort                    @ 0x00007ffff7345255: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   qt_message_fatal          @ 0x00007ffff734f329: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QMessageLogger::fatal     @ 0x00007ffff7351c0f: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   qt_assert                 @ 0x00007ffff7344ad8: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QV4::Runtime::IteratorClo @ 0x00007ffff7bbdb1e: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c098a2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::exec      @ 0x00007ffff7c0fa3b: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrowFunction::virtu @ 0x00007ffff7b1f20d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7b70073: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::PromiseCtor::virtual @ 0x00007ffff7b70073: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7bc0a59: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Runtime::Construct:: @ 0x00007ffff7bc0a59: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Moth::VME::interpret @ 0x00007ffff7c09166: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000000000 rbx=0x00007ffff439a7c0 rcx=0x00007ffff6e8e8a1 rdx=0x0000000000000000 
+rsi=0x00007fffffffc0d0 rdi=0x0000000000000002 rbp=0x00007fffffffc378 rsp=0x00007fffffffc0d0 
+ r8=0x0000000000000000  r9=0x00007fffffffc0d0 r10=0x0000000000000008 r11=0x0000000000000246 
+r12=0x00007fffffffca60 r13=0x0000555555577900 r14=0x00007ffff3c6c678 r15=0x00005555555a3d10 
+rip=0x00007ffff6e8e8a1 efl=0x0000000000000246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Abort signal
+   Short description: AbortSignal (20/22)
+   Explanation: The target is stopped on a SIGABRT. SIGABRTs are often generated by libc and compiled check-code to indicate potentially exploitable conditions. Unfortunately this command does not yet further analyze these crashes.
+---END SUMMARY---
