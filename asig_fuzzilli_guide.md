@@ -64,7 +64,9 @@ Now that you have an understanding of the functionality we are trying to enable,
 
 ### Deploying the Fuzzer
 Fuzzilli can be run as follows: 
-`swift run FuzzilliCli --storagePath=results/ --profile=qtjs ../QJSEngine-Fuzzili-Wrapper/instrumentation`
+```
+swift run FuzzilliCli --storagePath=results/ --profile=qtjs ../QJSEngine-Fuzzili-Wrapper/instrumentation
+```
 where storagePath is the folder where results of fuzzing are stored. The last argument is the path to the reprl
 
 ### Triaging crashes
