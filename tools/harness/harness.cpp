@@ -1,7 +1,3 @@
-#include <QApplication>
-#include <QPushButton>
-#include <QLabel>
-#include <QWidget>
 #include <QJSEngine>
 #include <iostream>
 #include <QDebug>
