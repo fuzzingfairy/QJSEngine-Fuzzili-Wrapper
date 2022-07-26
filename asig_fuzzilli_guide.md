@@ -38,14 +38,15 @@ loop until signal interrupt:
         child: reads script from DRFD, executes, writes return codes to CWFD, and resets state
 
 In between this communication, there are a few points of interest that might benefit from a bit of clarification:
-- 
+You must append a null terminator to the read in javascript.
+
+You must remember to call `__sanitizer_cov_reset_edgeguards` after writing the status.
 
 
 Now that you have an understanding of the functionality we are trying to enable, you're probably wondering where it should be implemented.
 
 
 
-Follow the REPRL [pseudocode](https://github.com/googleprojectzero/fuzzilli/tree/main/Targets).
 
 ### Recompiling the engine
 
@@ -55,7 +56,6 @@ Follow the REPRL [pseudocode](https://github.com/googleprojectzero/fuzzilli/tree
 
 ##### (Optional) Adding a JIT Generator
 
-### Deploying the fuzzer
 
 #### Installing Swift
 
@@ -63,10 +63,12 @@ Follow the REPRL [pseudocode](https://github.com/googleprojectzero/fuzzilli/tree
 `$ tar -xvf swift-*-RELEASE-ubuntu20.04.tar.gz`
 
 ### Deploying the Fuzzer
-`$ ./swift-5.6.1-RELEASE-ubuntu20.04/usr/bin/swift build -c debug`
-
-`$ ../swift-5.6.1-RELEASE-ubuntu20.04/usr/bin/swift run -c debug FuzzilliCli ---storagePath=../results -profile=qtjs  /path/to/jsshell`
+Fuzzilli can be run as follows:
+`swift run FuzzilliCli --storagePath=results/ --profile=qtjs ../QJSEngine-Fuzzili-Wrapper/instrumentation`
+where storagePath is the folder where results of fuzzing are stored. The last argument is the path to the reprl
 
 ### Triaging crashes
+
+
 
 ### Pwn..?
