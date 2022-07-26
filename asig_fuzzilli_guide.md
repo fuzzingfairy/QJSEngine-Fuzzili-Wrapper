@@ -38,7 +38,11 @@ loop until signal interrupt:
         child: reads script from DRFD, executes, writes return codes to CWFD, and resets state
 
 In between this communication, there are a few points of interest that might benefit from a bit of clarification:
+
 You must append a null terminator to the read in javascript.
+```
+script_src[script_size] = '\0';
+```
 
 You must remember to call `__sanitizer_cov_reset_edgeguards` after writing the status.
 
