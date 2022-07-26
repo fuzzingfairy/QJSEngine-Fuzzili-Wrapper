@@ -67,6 +67,12 @@ Now that you have an understanding of the functionality we are trying to enable,
 `$ tar -xvf swift-*-RELEASE-ubuntu20.04.tar.gz`
 
 ### Deploying the Fuzzer
+To test the reprl implementation you can use the Reprl tester:
+```
+swift run REPRLRun ../QJSEngine-Fuzzili-Wrapper/instrumentation -reprl
+```
+The arguments for REPRLRun is the path to the jshell and then any additional arguments.
+
 Fuzzilli can be run as follows: 
 ```
 swift run FuzzilliCli --storagePath=results/ --profile=qtjs ../QJSEngine-Fuzzili-Wrapper/instrumentation
