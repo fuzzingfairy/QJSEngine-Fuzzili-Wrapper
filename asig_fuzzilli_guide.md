@@ -53,7 +53,6 @@ To test the reprl implementation you can use the Reprl tester:
 swift run REPRLRun ../QJSEngine-Fuzzili-Wrapper/instrumentation -reprl
 ```
 The arguments for REPRLRun is the path to the jshell and then any additional arguments.
->>>>>>> 08379f11393ef7f410d8a5ba498ddf18d284d77c
 
 ### Recompiling the engine
 
