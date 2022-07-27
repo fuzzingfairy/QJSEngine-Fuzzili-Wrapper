@@ -67,6 +67,7 @@ The arguments for REPRLRun is the path to the jshell and then any additional arg
 
 `$ wget https://download.swift.org/swift-5.6.1-release/ubuntu2004/swift-5.6.1-RELEASE/swift-5.6.1-RELEASE-ubuntu20.04.tar.gz`
 `$ tar -xvf swift-*-RELEASE-ubuntu20.04.tar.gz`
+`$ export PATH=/path/to/Swift/usr/bin:"${PATH}"`
 
 ### Deploying the Fuzzer
 
