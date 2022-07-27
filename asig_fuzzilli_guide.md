@@ -2,7 +2,7 @@ ASIG Fuzzilli Documentation
 ==========================
 
 
-This document aims to providue guidance in ASIG javascript-engine fuzzing campaigns that choose to utilize the [Fuzzilli Fuzzer](https://github.com/googleprojectzero/fuzzilli). A more succinct version of instructions can be found within the (repository)[https://github.com/googleprojectzero/fuzzilli/blob/main/Targets/README.md]. Our intent is to expand on these instructions to give more detailed guidance based upon our experience using this fuzzer. 
+This document aims to providue guidance in ASIG javascript-engine fuzzing campaigns that choose to utilize the [Fuzzilli Fuzzer](https://github.com/googleprojectzero/fuzzilli). A more succinct version of instructions can be found within the [repository](https://github.com/googleprojectzero/fuzzilli/blob/main/Targets/README.md). Our intent is to expand on these instructions to give more detailed guidance based upon our experience using this fuzzer. 
 
 ### Fuzzilli
 Summary: Fuzzilli is a coverage-guided fuzzer for javascript engines based on a custom intermediate language ("FuzzIL") which can be mutated and translated to JavaScript.
