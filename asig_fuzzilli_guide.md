@@ -32,7 +32,7 @@ Before communication begins, the following items will need to be completed:
 - check for a '-reprl' command line option, if present, then begin communication
 
 Using well known file descriptors to communicate between the parent (fuzzilli) and child process (target engine), the implementation will allow for the following communication scheme:
-
+```
 child: writes 'HELO' to the CWFD to notify fuzzilli its ready for input
 fuzzilli: reads child's 'HELO' and writes 'HELO' to CRFD
 loop until signal interrupt:
@@ -43,7 +43,7 @@ loop until signal interrupt:
         child: reads size of generated javascript from CRFD
         fuzzilli: writes generated javascript to CRFD
         child: reads script from DRFD, executes, writes return codes to CWFD, and resets state
-
+```
 Notes:
 - You must append a null terminator to the script after its read from the DRFD
 - Before returning the status code, a bitwise & and a bitshift to the right by 8 bits should be applied to it 
