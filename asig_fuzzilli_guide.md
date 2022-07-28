@@ -41,7 +41,7 @@ loop until signal interrupt:
     if command == 'cexe':
         fuzzilli: writes size of generated javascript to CRFD
         child: reads size of generated javascript from CRFD
-        fuzzilli: writes generated javascript to CRFD
+        fuzzilli: writes generated javascript to DRFD
         child: reads script from DRFD, executes, writes return codes to CWFD, and resets state
 ```
 Notes:
