@@ -391,7 +391,7 @@ const v7 = v6.reduce(v4);
 **Remediation**
 Addition of input validation to guarantee against the parameter being null before dereferencing it in the second line `QV4::ArrayPrototype::method_toString()`
 
-#### Uncontrolled Recursion (QV4::ProxyObject::virtualGet <-> QV4::Object::internalGet)
+#### Uncontrolled Recursion (QV4::Object::internalGet <-> QV4::ProxyObject::virtualGet <-> QV4::Object::internalGet)
 *Vulnerability Type*:
 CWE-674 Uncontrolled Recursion
 
@@ -411,6 +411,16 @@ do {
     v9.__proto__ = v11;
 } while (1);
 ```
+
+**Affected Components**:
+- /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4ob
+ject_p.h:314
+- /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4pr
+oxy.cpp:83
+- /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4object.cpp:308
+- /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4object.cpp:451
+
+
 
 *Similar Crashes Folder*:
 `results/crashes/reviewed/proxy-looped-self-reference`
