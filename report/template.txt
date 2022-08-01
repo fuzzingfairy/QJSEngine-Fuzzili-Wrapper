@@ -1,37 +1,32 @@
-
 Description
-
 ------------------------------------------------------------------------------
 
-# Lead with specific defect details
+<Insert CWE>
 
-* Expected behavior
+< detailed description >
+
+* Expected behavior 
 
 * Actual behavior
-
-* Testbed configuration
-
 
 
 Security Impact
 ------------------------------------------------------------------------------
 
-
+<insert impact to confidentiality, availability, or integrity>
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
 
 
-
 Affected Components
 ------------------------------------------------------------------------------
-
-
-General Background
-------------------------------------------------------------------------------
-
+files:
+functions: 
 
 
 References
 ------------------------------------------------------------------------------
 
+* Proof of Concept Code
+<insert PoC>

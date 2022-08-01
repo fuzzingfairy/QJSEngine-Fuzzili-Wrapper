@@ -14298,3 +14298,41 @@ Extra Data:
    Short description: AccessViolation (21/22)
    Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
 ---END SUMMARY---
+---CRASH SUMMARY---
+Filename: /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220801082153_BD3EFECE-3166-4C15-B9D4-AAA69CE52DA0_deterministic.js
+SHA1: 18928e0112e9faeadafccde4703baf41b2588849
+Classification: UNKNOWN
+Hash: 106a3ece79f1dda2f391710580f67614.21408b291175bbd9e64fa1b930cc93fc
+Command: /home/kali/Summer22/qjs-eval/instrumentation/tools/harness/harness /home/kali/Summer22/qjs-eval/instrumentation/results/unprocessed/program_20220801082153_BD3EFECE-3166-4C15-B9D4-AAA69CE52DA0_deterministic.js
+Faulting Frame:
+   QArrayDataPointer<char16_t>::allocateGrow @ 0x00007ffff7501577: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+Disassembly:
+Stack Head (1000 entries):
+   QArrayDataPointer<char16_ @ 0x00007ffff7501577: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QArrayDataPointer<char16_ @ 0x00007ffff75024ae: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QArrayDataPointer<char16_ @ 0x00007ffff7502c84: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QtPrivate::QPodArrayOps<c @ 0x00007ffff7502d7f: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QString::insert           @ 0x00007ffff74fd19a: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QString::insert           @ 0x00007ffff74fd1f7: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Core.so.6.3.1
+   QV4::RuntimeHelpers::numb @ 0x00007ffff7bc38f8: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   primitiveToQString        @ 0x00007ffff7c02f9d: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::Value::toQString     @ 0x00007ffff7c03b48: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7aa3d87: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::ArrayPrototype::meth @ 0x00007ffff7a9e2c2: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::FunctionObject::call @ 0x00007ffff7aa77c1: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::ordi @ 0x00007ffff7bbcad4: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::obje @ 0x00007ffff7bbce88: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+   QV4::RuntimeHelpers::toPr @ 0x00007ffff7c03cdd: in /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtbase/lib/libQt6Qml.so.6.3.1
+Registers:
+rax=0x0000000000000000 rbx=0x00007fffff7ff550 rcx=0x0000000000000000 rdx=0x0000000000000001 
+rsi=0x00007fffff7ff550 rdi=0x00007fffff7ff010 rbp=0x00007fffff7ff0a0 rsp=0x00007fffff7ff000 
+ r8=0x0000000000000001  r9=0x00007fffff7ff321 r10=0x00007fffff7ff310 r11=0x0000000000000012 
+r12=0x0000000000000001 r13=0x0000000000000000 r14=0x0000000000000003 r15=0x00007fffff7ff700 
+rip=0x00007ffff7501577 efl=0x0000000000010246  cs=0x0000000000000033  ss=0x000000000000002b 
+ ds=0x0000000000000000  es=0x0000000000000000  fs=0x0000000000000000  gs=0x0000000000000000 
+Extra Data:
+   Description: Access violation
+   Short description: AccessViolation (21/22)
+   Explanation: The target crashed due to an access violation but there is not enough additional information available to determine exploitability.
+---END SUMMARY---
