@@ -1,0 +1,16 @@
+function main() { 
+const v0 = {};
+const v1 = [v0,v0,v0];
+const v2 = {};
+const v3 = [v2];
+const v5 = {};
+const v7 = Object.defineProperty(v3,"a",v5);
+const v8 = v3.unshift(v3);
+let [v10,,v11] = v1;
+Date[v7] |= v10;
+}
+main();
+// CRASH INFO
+// ==========
+// TERMSIG: 11
+// STDERR:
