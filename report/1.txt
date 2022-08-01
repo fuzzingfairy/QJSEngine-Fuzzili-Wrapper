@@ -1,0 +1,40 @@
+Description
+------------------------------------------------------------------------------
+
+CWE-674 Uncontrolled Recursion
+
+Due to a lack of input validation, an attacker can trigger a Stack Overflow due to the uncontrolled recursion between `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()` that can lead to a Denial of Service by evaluating javascript which contains an object that references itself through one of its properties
+
+* Expected behavior 
+Application should handle the dereferencing of self-referencing object by notifying the user of an error without crashing.
+
+* Actual behavior
+Application crashes due to a lack of available stack space
+
+
+Security Impact
+------------------------------------------------------------------------------
+
+Availability of the process utilizing QML could be disrupted
+
+
+Remediation and Mitigating Factors
+------------------------------------------------------------------------------
+
+Remediation can be acheived by passing a depth parameter between the vulnerable functions and dissallowing recursion past a certain depth
+
+Affected Components
+------------------------------------------------------------------------------
+file: qtdeclarative/src/qml/jsruntime/qv4runtime.cpp
+functions: 
+	- RuntimeHelpers:objectDefaultValue
+	- RuntimeHelpers::ordinaryToPrimitive
+
+
+References
+------------------------------------------------------------------------------
+
+* Proof of Concept Code
+let v1 [1, 1, 1];
+v1[1] = v1;
+const v2 = v1--;

@@ -1,0 +1,2 @@
+1. Uncontrolled Recursion (ObjectDefaultValue <-> ordinaryToPrimitive
+2. Null Pinter Dereference (ArrayPrototype::method_values)
