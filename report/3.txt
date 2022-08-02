@@ -1,14 +1,14 @@
 Description
 ------------------------------------------------------------------------------
-CWE-476: NULL Pointer Dereference
+CWE-674 Uncontrolled Recursion
 
-QV4::ExecutionEngine::newPromiseObject dereferences a parameterized object in order to create a ScopedObject from it without first checking if the pointer is NULL. The result is a null-dereference that crashes the process.
+Due to a lack of input validation, an attacker can trigger a stack overflow by abusing the uncontrolled recursion between QV4::ArrayPrototype::method_toLocaleString(), QV4::Runtime::CallElement::call(), and QV4::FunctionObject::call() through the use of a self-referencing object as a parameter to ArrayPrototype::method_toLocaleString() that can lead to a Denial of Service
 
 - Expected behavior:
-	The function should return an undefined promise object and continue execution
+	QML should handle the dereferencing of self-referencing objects by notifying the developer of an error without crashing.
 
 - Actual behavior:
-	The function dereferences the NULL parameter and causes a crash via segmentation fault
+	Application crashes due to a lack of available stack space
 
 
 Security Impact
@@ -18,20 +18,22 @@ Availability of the process utilizing QML could be disrupted
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
-Validation of parameters to assure that they are not NULL before attempting to dereference their properties
-
+Remediation can be acheived by passing a depth parameter between the vulnerable functions and dissallowing recursion past a certain depth. In addition, an exception should be thrown to inform the developer that the max recursion depth was exceeded
 
 Affected Components
 ------------------------------------------------------------------------------
-- file:
-	qtdeclarative/src/qml/jsruntime/qv4engine.cpp
-- function:
-	ExecutionEngine::newPromiseObject()
+- files: 
+	qtdeclarative/src/qml/jsruntime/qv4functionobject_p.h
+	qtdeclarative/src/qml/jsruntime/qv4runtime.cpp
+	qtdeclarative/src/qml/jsruntime/qv4engine_p.h
 
+- functions: 
+	QV4::ArrayPrototype::method_toLocaleString()
+	QV4::Runtime::CallElement::call()
+	QV4::FunctionObject::call()
 
 Reproduction
 ------------------------------------------------------------------------------
-const v1 = Promise.resolve;
-const v2 = Reflect.apply(v1,{},{});
-
-
+const v1 = [{},{},{}];
+v1[1] = v1;
+const v4 = v1.toLocaleString();
