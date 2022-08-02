@@ -1,10 +1,8 @@
 function main() { 
-const v0 = {};
-const v1 = [v0,v0,v0,v0,v0];
+const v1 = [];
 const v3 = /[\d(Y)?]/ui;
-const v4 = ["species"];
-const v5 = v3.compile;
-const v7 = v4["reduceRight"](v5,v1);
+const v4 = ['species'];
+const v7 = v4['reduce'](v3.compile, v1);
 }
 main();
 // CRASH INFO

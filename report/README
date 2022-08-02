@@ -7,5 +7,9 @@ This directory holds the defect reports to be presented to the Qt Development Te
 A defect report template can be found at ./template.txt
 
 
-1. Uncontrolled Recursion (ObjectDefaultValue <-> ordinaryToPrimitive
-2. Null Pinter Dereference (ArrayPrototype::method_values)
+1. Uncontrolled Recursion (ObjectDefaultValue <-> ordinaryToPrimitive)
+2. Null Pointer Dereference (ArrayPrototype::method_values)
+3. Null Pointer Dereference (ExecutionEngine::newPromiseObject)
+4. Null Pointer Dereference (getThisString)
+5. Null Pointer Dereference (RegExpPrototype::method_compile)
+6. Null Pointer Dereference (ArrayPrototype::method_toString)

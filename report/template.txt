@@ -1,13 +1,14 @@
 Description
 ------------------------------------------------------------------------------
-
 <Insert CWE>
 
 < detailed description >
 
-* Expected behavior 
+- Expected behavior:
+	<insert behavior>
 
-* Actual behavior
+- Actual behavior:
+	<insert behavior>
 
 
 Security Impact
@@ -21,12 +22,11 @@ Remediation and Mitigating Factors
 
 Affected Components
 ------------------------------------------------------------------------------
-files:
-functions: 
+- files:
+- functions: 
 
 
-References
+Reproduction
 ------------------------------------------------------------------------------
 
-* Proof of Concept Code
 <insert PoC>

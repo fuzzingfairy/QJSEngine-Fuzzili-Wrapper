@@ -272,10 +272,9 @@ const v9 = v7["reduce"](v5);
 **Remediation**
 Addition of a null-pointer check before dereferencing it in `QV4::ArrayPrototype::method_values()`
 
-#### Null-Pointer Dereference (QV4::ProxyObject::virtualGet)
+#### Uncontrolled Recursion (QV4::ProxyObject::virtualGet)
 **Impact**
 Attacker that can advertise a malicious PAC file to the device can trigger a DoS
-
 
 **Description**
 A loop between these functions.
@@ -522,7 +521,7 @@ QJSEngine has no [abort](https://bugreports.qt.io/browse/QTBUG-49080) function. 
 ## Further Research
 
 #### Asynchronous Function Testing
-e did not use the asynchronous code generators due to Qjsengine not exposing an `async` keyword and instead only allowing multi-threading through the use of a `QtQML::WorkerScript` function. Future research could build off this instrumetation by modifying fuzzilli to use the WorkerScript functionality to test multi-threading
+we did not use the asynchronous code generators due to Qjsengine not exposing an `async` keyword and instead only allowing multi-threading through the use of a `QtQML::WorkerScript` function. Future research could build off this instrumetation by modifying fuzzilli to use the WorkerScript functionality to test multi-threading
 
 #### importModule Testing
 the importModule function expects utf8 text representing the name of a module. It might be wise to verify that correct safeguards are in place within the code that restrict non-utf8 text from being processed.
