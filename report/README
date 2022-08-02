@@ -8,8 +8,9 @@ A defect report template can be found at ./template.txt
 
 
 1. Uncontrolled Recursion (ObjectDefaultValue <-> ordinaryToPrimitive)
-2. Null Pointer Dereference (ArrayPrototype::method_values)
+2. Uncontrolled Recursion (QV4::ProxyObject::virtualGet -> QV4::Object::get -> QV4::Object::virtualGet -> QV4::Object::internalGet)
 3. Null Pointer Dereference (ExecutionEngine::newPromiseObject)
 4. Null Pointer Dereference (getThisString)
 5. Null Pointer Dereference (RegExpPrototype::method_compile)
 6. Null Pointer Dereference (ArrayPrototype::method_toString)
+7. Null Pointer Dereference (ArrayPrototype::method_values)

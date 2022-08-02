@@ -412,12 +412,10 @@ do {
 ```
 
 **Affected Components**:
-- /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4ob
-ject_p.h:314
-- /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4pr
-oxy.cpp:83
-- /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4object.cpp:308
-- /home/kali/Summer22/qjs-eval/target/qt-everywhere-src-6.3.1/qtdeclarative/src/qml/jsruntime/qv4object.cpp:451
+qtdeclarative/src/qml/jsruntime/qv4object_p.h
+qtdeclarative/src/qml/jsruntime/qv4proxy.cpp
+qtdeclarative/src/qml/jsruntime/qv4object.cpp
+qtdeclarative/src/qml/jsruntime/qv4object.cpp
 
 
 

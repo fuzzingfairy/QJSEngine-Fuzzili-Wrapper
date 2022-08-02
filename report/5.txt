@@ -1,0 +1,37 @@
+Description
+------------------------------------------------------------------------------
+CWE-476: NULL Pointer Dereference
+
+The QV4::RegExpPrototype::method_compile() function dereferences a parameter before first validating that the object is not NULL leading to a crash of the process
+
+- Expected behavior:
+	QV4::RegExpPrototype::method_compile() should check if the string is NULL before dereferencing its property and return an undefined string in the case that it is NULL
+
+- Actual behavior:
+	QV4::RegExpPrototype::method_compile() dereferences a parameterized object without first checking if its NULL resulting in an application crash
+
+
+Security Impact
+------------------------------------------------------------------------------
+Availability of the application utilizing QML could be disrupted
+
+
+Remediation and Mitigating Factors
+------------------------------------------------------------------------------
+Addition of input valudation that checks that parameters aren't NULL before attempting to dereference their properties in QV4::RegExpPrototype::method_compile()
+
+
+Affected Components
+------------------------------------------------------------------------------
+- file:
+	qtdeclarative/src/qml/jsruntime/qv4regexpobject.cpp
+- function:
+	RegExpPrototype::method_compile()
+
+
+Reproduction
+------------------------------------------------------------------------------
+const v1 = [];
+const v2 = /[\d(Y)?]/ui;
+const v3 = ['species'];
+const v4 = v3['reduce'](v2.compile, v1);

@@ -18,8 +18,7 @@ Availability of the process utilizing QML could be disrupted
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
-Remediation can be acheived by passing a depth parameter between the vulnerable functions and dissallowing recursion past a certain depth
-
+Remediation can be acheived by passing a depth parameter between the vulnerable functions and dissallowing recursion past a certain depth. In addition, an exception should be thrown to inform the developer that the max recursion depth was exceeded
 
 Affected Components
 ------------------------------------------------------------------------------

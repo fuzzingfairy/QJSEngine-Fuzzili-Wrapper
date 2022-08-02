@@ -1,0 +1,37 @@
+Description
+------------------------------------------------------------------------------
+CWE-476 NULL Pointer Dereference
+
+QV4::ArrayPrototype::method_values dereferences a parameterized object in order to create a Scoped Object from it without first checking if the pointer is NULL. The result is a null-dereference that crashes the process.
+
+- Expected behavior:
+	QV4::ArrayPrototype::method_values should check whether the callback parameter is undefined and return an undefined value without atttempting to dereference a null-pointer
+
+- Actual behavior:
+	QV4::ArrayPrototype::method_values dereferences a parameterized object without first checking if its NULL resulting in an application crash
+
+
+Security Impact
+------------------------------------------------------------------------------
+Availability of the application utilizing QML could be disrupted
+
+
+Remediation and Mitigating Factors
+------------------------------------------------------------------------------
+Addition of input validation that checks that parameters aren't NULL before attempting to dereference their properties in QV4::ArrayPrototype::method_values()
+
+
+Affected Components
+------------------------------------------------------------------------------
+- file:
+	qtdeclarative/src/qml/jsruntime/qv4arrayobject.cpp
+- function:
+	ArrayPrototype::method_values()
+
+
+Reproduction
+------------------------------------------------------------------------------
+const v1 = [1];
+const v2 = v1[Symbol.iterator];
+const v3 = [1,1,1];
+const v4 = v3["reduce"](v2);

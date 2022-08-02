@@ -1,37 +1,42 @@
 Description
 ------------------------------------------------------------------------------
-CWE-476 NULL Pointer Dereference
+CWE-674 Uncontrolled Recursion
 
-QV4::ArrayPrototype::method_values dereferences a parameterized object in order to create a Scoped Object from it without first checking if the pointer is NULL. The result is a null-dereference that crashes the process.
+Due to a lack of input validation, an attacker can trigger a Stack Overflow due to uncontrolled recursion between  QV4::ProxyObject::virtualGet(), QV4::Object::get(), QV4::Object::virtualGet(), and QV4::Object::internalGet() to trigger a Denial of Service
 
 - Expected behavior:
-	QV4::ArrayPrototype::method_values should check whether the callback parameter is undefined and return an undefined value without atttempting to dereference a null-pointer
+	QML should handle the dereferencing of self-referencing proxy objects by throwing an exception to notify the developer of uncontrolled recursion
 
 - Actual behavior:
-	QV4::ArrayPrototype::method_values dereferences a parameterized object without first checking if its NULL resulting in an application crash
+	Application crashes due to a lack of available stack space
 
 
 Security Impact
 ------------------------------------------------------------------------------
-Availability of the application utilizing QML could be disrupted
+Availability of the process utilizing QML could be disrupted
 
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
-Addition of input validation that checks that parameters aren't NULL before attempting to dereference their properties in QV4::ArrayPrototype::method_values()
+Remediation can be acheived by passing a depth parameter between the vulnerable functions and dissallowing recursion past a certain depth. In addition, an exception should be thrown to inform the developer that the max recursion depth was exceeded.
 
 
 Affected Components
 ------------------------------------------------------------------------------
-- file:
-	qtdeclarative/src/qml/jsruntime/qv4arrayobject.cpp
-- function:
-	ArrayPrototype::method_values()
-
+- files: 
+	qtdeclarative/src/qml/jsruntime/qv4object_p.h
+	qtdeclarative/src/qml/jsruntime/qv4proxy.cpp
+	qtdeclarative/src/qml/jsruntime/qv4object.cpp
+	qtdeclarative/src/qml/jsruntime/qv4object.cpp
+- functions: 
+	QV4::ProxyObject::virtualGet()
+	QV4::Object::get()
+	QV4::Object::virtualGet()
+	QV4::Object::internalGet()
 
 Reproduction
 ------------------------------------------------------------------------------
-const v1 = [1];
-const v2 = v1[Symbol.iterator];
-const v3 = [1,1,1];
-const v4 = v3["reduce"](v2);
+const v9 = {};
+const v11 = new Proxy(Object,v9);
+v9.__proto__ = v11;
+v9.__proto__ = v11;
