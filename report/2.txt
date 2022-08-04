@@ -1,0 +1,32 @@
+Description
+------------------------------------------------------------------------------
+
+
+CWE-476 NULL Pointer Dereference
+Due to a lack of input validation, 
+
+* Expected behavior 
+
+* Actual behavior
+
+
+Security Impact
+------------------------------------------------------------------------------
+
+<insert impact to confidentiality, availability, or integrity>
+
+Remediation and Mitigating Factors
+------------------------------------------------------------------------------
+
+
+Affected Components
+------------------------------------------------------------------------------
+files:
+functions: 
+
+
+References
+------------------------------------------------------------------------------
+
+* Proof of Concept Code
+<insert PoC>
