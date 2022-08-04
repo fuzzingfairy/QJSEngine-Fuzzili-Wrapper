@@ -2,13 +2,13 @@ Description
 ------------------------------------------------------------------------------
 CWE-476: NULL Pointer Dereference
 
-The QString member function, getThisString(), dereferences a parameter before first validating that the object is not NULL leading to a crash of the process
+The QString member function, getThisString(), dereferences a parameter before first validating that the object is not NULL leading to a possible Denial of Service
 
 - Expected behavior:
 	getThisString() should check if the string is NULL before dereferencing its property and return an undefined string in the case that it is NULL
 
 - Actual behavior:
-	getThisString() dereferences a parameterized object without first checking if its NULL resulting in an application crash
+	getThisString() dereferences a parameterized object without first checking if its NULL resulting in an application crash via segmentation fault.
 
 
 Security Impact
@@ -18,7 +18,7 @@ Availability of the application utilizing QML could be disrupted
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
-Addition of input valudation that checks that parameters aren't NULL before attempting to dereference their properties in getThisString()
+Remediation can be achieved through the addition of input validation that checks that the vulnerable function's parameters are not NULL before attempting to dereference their properties.
 
 
 Affected Components
@@ -31,6 +31,7 @@ Affected Components
 
 Reproduction
 ------------------------------------------------------------------------------
-const v2 = ["i68jdS1zZC"];
-const v3 = "i68jdS1zZC".endsWith;
-const v4 = v2.reduceRight(v3,3769255543);
+invocation of getThisString() on an undefined object
+	const v2 = ["i68jdS1zZC"];
+	const v3 = "i68jdS1zZC".endsWith;
+	const v4 = v2.reduceRight(v3,3769255543);

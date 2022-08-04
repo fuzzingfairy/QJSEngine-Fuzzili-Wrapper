@@ -2,13 +2,13 @@ Description
 ------------------------------------------------------------------------------
 CWE-476: NULL Pointer Dereference
 
-QV4::ExecutionEngine::newPromiseObject dereferences a parameterized object in order to create a ScopedObject from it without first checking if the pointer is NULL. The result is a null-dereference that crashes the process.
+The QV4::ExecutionEngine::newPromiseObject() function dereferences a parameterized object before first validating that it is not NULL leading to a crash of the process
 
 - Expected behavior:
-	The function should return an undefined promise object and continue execution
+	QV4::ExecutionEngine::newPromiseObject() should check if the parameterized object is NULL before dereferencing its property and return and undefined promise obejct in the case that it is NULL
 
 - Actual behavior:
-	The function dereferences the NULL parameter and causes a crash via segmentation fault
+	QV4::ExecutionEngine::newPromiseObject() dereferences the NULL parameter without first checking if it is NULL resulting in a crash via segmentation fault
 
 
 Security Impact
@@ -18,7 +18,7 @@ Availability of the process utilizing QML could be disrupted
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
-Validation of parameters to assure that they are not NULL before attempting to dereference their properties
+Remediation can be achieved throuugh the addition of input validationthat checks that the vulnerable function's parameters are not NULL before attempting to dereference their properties
 
 
 Affected Components
@@ -26,12 +26,13 @@ Affected Components
 - file:
 	qtdeclarative/src/qml/jsruntime/qv4engine.cpp
 - function:
-	ExecutionEngine::newPromiseObject()
+	QV4::ExecutionEngine::newPromiseObject()
 
 
 Reproduction
 ------------------------------------------------------------------------------
-const v1 = Promise.resolve;
-const v2 = Reflect.apply(v1,{},{});
+Creation of a promise out of a NULL object:
+	const v1 = Promise.resolve;
+	const v2 = Reflect.apply(v1,{},{});
 
 

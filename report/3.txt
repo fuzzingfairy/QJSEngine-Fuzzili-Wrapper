@@ -2,13 +2,13 @@ Description
 ------------------------------------------------------------------------------
 CWE-674 Uncontrolled Recursion
 
-Due to a lack of input validation, an attacker can trigger a stack overflow by abusing the uncontrolled recursion between QV4::ArrayPrototype::method_toLocaleString(), QV4::Runtime::CallElement::call(), and QV4::FunctionObject::call() through the use of a self-referencing object as a parameter to ArrayPrototype::method_toLocaleString() that can lead to a Denial of Service
+Due to a lack of input validation, an attacker can trigger a stack overflow by abusing the uncontrolled recursion between QV4::ArrayPrototype::method_toLocaleString(), QV4::Runtime::CallElement::call(), and QV4::FunctionObject::call() that can lead to a Denial of Service 
 
 - Expected behavior:
-	QML should handle the dereferencing of self-referencing objects by notifying the developer of an error without crashing.
+	QML should handle the dereferencing of self-referencing objects by throwing an exception to notify the developer of uncontrolled recursion
 
 - Actual behavior:
-	Application crashes due to a lack of available stack space
+	Application crashes due to a lack of available stack space caused by uncontrolled recursion between QV4::ArrayPrototype::method_toLocaleString(), QV4::Runtime::CallElement::call(), and QV4::FunctionObject::call()
 
 
 Security Impact
@@ -18,7 +18,7 @@ Availability of the process utilizing QML could be disrupted
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
-Remediation can be acheived by passing a depth parameter between the vulnerable functions and dissallowing recursion past a certain depth. In addition, an exception should be thrown to inform the developer that the max recursion depth was exceeded
+Remediation can be achieved by passing a depth parameter between the vulnerable functions and disallowing recursion past a certain depth. In addition, an exception should be thrown to inform the developer that the max recursion depth was exceeded.
 
 Affected Components
 ------------------------------------------------------------------------------
@@ -34,6 +34,7 @@ Affected Components
 
 Reproduction
 ------------------------------------------------------------------------------
-const v1 = [{},{},{}];
-v1[1] = v1;
-const v4 = v1.toLocaleString();
+calling QV4::ArrayPrototype::method_toLocaleString() on a self-referencing object:
+	const v1 = [{},{},{}];
+	v1[1] = v1;
+	const v4 = v1.toLocaleString();

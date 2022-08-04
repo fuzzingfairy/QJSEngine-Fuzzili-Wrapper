@@ -2,13 +2,13 @@ Description
 ------------------------------------------------------------------------------
 CWE-476 NULL Pointer Dereference
 
-QV4::ArrayPrototype::method_values dereferences a parameterized object in order to create a Scoped Object from it without first checking if the pointer is NULL. The result is a null-dereference that crashes the process.
+The QV4::ArrayPrototype::method_values() function dereferences a parameterized object without first validating that it is not NULL leading to a crash of the process
 
 - Expected behavior:
-	QV4::ArrayPrototype::method_values should check whether the callback parameter is undefined and return an undefined value without atttempting to dereference a null-pointer
+	QV4::ArrayPrototype::method_values() should check whether the callback parameter is NULL and return an undefined value in the case that it is NULL
 
 - Actual behavior:
-	QV4::ArrayPrototype::method_values dereferences a parameterized object without first checking if its NULL resulting in an application crash
+	QV4::ArrayPrototype::method_values() dereferences a parameterized object without first checking if its NULL resulting in an application crash via segmentation fault
 
 
 Security Impact
@@ -18,7 +18,7 @@ Availability of the application utilizing QML could be disrupted
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
-Addition of input validation that checks that parameters aren't NULL before attempting to dereference their properties in QV4::ArrayPrototype::method_values()
+Remediation can be achieved through the addition of input validation that checks that the vulnerable function's parameters are not NULL before attempting to dereference their properties.
 
 
 Affected Components
@@ -26,12 +26,13 @@ Affected Components
 - file:
 	qtdeclarative/src/qml/jsruntime/qv4arrayobject.cpp
 - function:
-	ArrayPrototype::method_values()
+	QV4::ArrayPrototype::method_values()
 
 
 Reproduction
 ------------------------------------------------------------------------------
-const v1 = [1];
-const v2 = v1[Symbol.iterator];
-const v3 = [1,1,1];
-const v4 = v3["reduce"](v2);
+invocation of QV4::ArrayPrototype::method_values() with a NULL parameter:
+	const v1 = [1];
+	const v2 = v1[Symbol.iterator];
+	const v3 = [1,1,1];
+	const v4 = v3["reduce"](v2);

@@ -1,10 +1,8 @@
 Defect Reports
-==================
+-----------------------------------
 
 
 This directory holds the defect reports to be presented to the Qt Development Team. In order to organize and compartmentalize information for easy mitigation prioritization, each file will contain a report for a specific defect. The defects and their respective file numbers are listed below
-
-A defect report template can be found at ./template.txt
 
 
 1. Uncontrolled Recursion (ObjectDefaultValue <-> ordinaryToPrimitive)

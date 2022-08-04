@@ -2,13 +2,13 @@ Description
 ------------------------------------------------------------------------------
 CWE-476: NULL Pointer Dereference
 
-The QV4::ArrayPrototype::method_toString() function dereferences a NULL parameterized object leading to a crash of the process
+The QV4::ArrayPrototype::method_toString() function dereferences a parameterized object without first validating that it is not NULL, leading to a crash of the process
 
 - Expected behavior:
 	QV4::ArrayPrototype::method_toString() should check if the string is NULL before dereferencing its property and return an undefined string in the case that it is NULL
 
 - Actual behavior:
-	QV4::ArrayPrototype::method_toString() dereferences a parameterized object without first checking if its NULL resulting in an application crash
+	QV4::ArrayPrototype::method_toString() dereferences a parameterized object without first checking if its NULL resulting in an application crash via segmentation fault
 
 
 Security Impact
@@ -18,7 +18,7 @@ Availability of the application utilizing QML could be disrupted
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
-Addition of input validation that checks that parameters aren't NULL before attempting to dereference their properties in QV4::ArrayPrototype::method_toString()
+Remediation can be achieved throgh the addition of input validation that checks that the vulnerable function's parameters are not NULL before attempting to dereference their properties.
 
 
 Affected Components
@@ -31,7 +31,8 @@ Affected Components
 
 Reproduction
 ------------------------------------------------------------------------------
-const v1 = [0,0,0,0];
-const v2 = v1["toString"];
-const v3 = [0,0,0,0];
-const v4 = v3.reduce(v2)
+invocation of QV4::ArrayPrototype::method_toString() with an undefined parameterized object:
+	const v1 = [0,0,0,0];
+	const v2 = v1["toString"];
+	const v3 = [0,0,0,0];
+	const v4 = v3.reduce(v2)
