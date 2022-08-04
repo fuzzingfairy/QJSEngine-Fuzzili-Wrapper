@@ -14,3 +14,4 @@ This directory holds the defect reports to be presented to the Qt Development Te
 7. Null Pointer Dereference (ArrayPrototype::method_values)
 8. Null Pointer Dereference (ExecutionEngine::newPromiseObject)
 9. Out-Of-Bounds Read (ArrayPrototype::method_reverse)
+10. Allocation of Resources Without Limits or Throttling (Scope::alloc)

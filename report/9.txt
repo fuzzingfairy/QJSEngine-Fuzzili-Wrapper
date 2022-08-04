@@ -2,8 +2,10 @@ Description
 ------------------------------------------------------------------------------
 CWE-476: Out-Of-Bounds Read
 
+The inlined scoped function dereferences a pointer that is not mapped in the processes virtual address space causing a segmentation fault. The faulting address can be changed via manipulating the length of the input array.
+
 - Expected behavior:
-    Scoped(const Scope &scope, typename T::Data *t) validates the pointer returned by scope.alloc
+	Scoped(const Scope &scope, typename T::Data *t) validates the pointer returned by scope.alloc
 
 - Actual behavior:
 	Scoped(const Scope &scope, typename T::Data *t) dereferences a pointer without first checking it is in mapped memory resulting in an application crash via segmentation fault
@@ -16,7 +18,7 @@ Confidentiality of the process memory could be disrupted through the possibility
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
-Remediation can be done by validating the pointer returned by scope.alloc in qv4scopedvalue_p.h:350.
+Remediation can be achieved by validating the pointer returned by the allocator within the Scoped(const Scope &scope, typename T::Data *t) inline function to ensure that it is within a mapped memory region
 
 
 Affected Components
@@ -25,7 +27,8 @@ Affected Components
 	qtdeclarative/src/qml/jsruntime/qv4arrayobject.cpp
 	qtdeclarative/src/qml/jsruntime/qv4scopedvalue_p.h
 - function:
-	QV4::ArrayProtype::method_reverse()
+	QV4::ArrayProtype::method_reverse(const FunctionObject *b, const Value *thisObject)
+	Scoped(const Scope &scope, typename T::Data *t) inline function
 
 
 Reproduction

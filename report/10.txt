@@ -1,0 +1,37 @@
+Description
+------------------------------------------------------------------------------
+CWE-770: Allocation of Resources Without Limits or Throttling
+
+The QV4::Scope::alloc<(QV4::Scope::AllocMode)0> fails to ensure that there is enough stack space before attempting to allocate memory for the requested object, leading to a stack overflow and the potential for a Denial of Service
+
+- Expected behavior:
+	QV4::Scope::alloc<(QV4::Scope::AllocMode)0> should throw a rangeError when receiving a declaration for an array length larger than the platform's maximum array length.
+
+- Actual behavior:
+	QV4::Scope::alloc<(QV4::Scope::AllocMode)0> fails to validate the length of the requested allocation and consumes all available stack space, leading to a crash via segmentation fault
+
+
+Security Impact
+------------------------------------------------------------------------------
+Availability of the process utilizing QML could be disrupted
+
+
+Remediation and Mitigating Factors
+------------------------------------------------------------------------------
+Remediation can be achieved through the definition of a maximum array length and subsequent validation during allocation of memory that the length of the array to be allocated is below the maximum length.
+
+
+Affected Components
+------------------------------------------------------------------------------
+- file:
+	qtdeclarative/src/qml/jsruntime/qv4scopedvalue_p.h
+- function:
+	QV4::Scope::alloc<(QV4::Scope::AllocMode)0>
+
+Reproduction
+------------------------------------------------------------------------------
+Allocation of an array with size greater than the available stack space:
+	const v1 = []; 
+	v1.length = 4500000;
+	let [...v4] = v1;
+
