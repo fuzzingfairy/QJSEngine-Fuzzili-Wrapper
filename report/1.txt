@@ -2,13 +2,13 @@ Description
 ------------------------------------------------------------------------------
 CWE-674 Uncontrolled Recursion
 
-Due to a lack of input validation, an attacker can trigger a Stack Overflow by abusing the uncontrolled recursion between QV4::RuntimeHelpers::ordinaryToPrimitive() and QV4::RuntimeHelpers::objectDefaultValue() that can lead to a Denial of Service 
+Due to a lack of input validation, an attacker can trigger a Stack Overflow by abusing the uncontrolled recursion between QV4::RuntimeHelpers::ordinaryToPrimitive(ExecutionEngine *engine,const Object *object, String *typeHint) and QV4::RuntimeHelpers::objectDefaultValue(const Object *object, int typeHint) that can lead to a Denial of Service 
 
 - Expected behavior:
 	QML should handle the dereferencing of self-referencing object by throwing an exception to notify the developer of uncontrolled recursion
 
 - Actual behavior:
-	Application crashes due to a lack of available stack space caused by uncontrolled recursion between QV4::RuntimeHelpers::ordinaryToPrimitive() and QV4::RuntimeHelpers::objectDefaultValue() 
+	Application crashes due to a lack of available stack space caused by uncontrolled recursion between QV4::RuntimeHelpers::ordinaryToPrimitive(ExecutionEngine *engine,const Object *object, String *typeHint) and QV4::RuntimeHelpers::objectDefaultValue(const Object *object, int typeHint) 
 
 
 Security Impact
@@ -26,8 +26,8 @@ Affected Components
 - file: 
 	qtdeclarative/src/qml/jsruntime/qv4runtime.cpp
 - functions: 
-	QV4::RuntimeHelpers:objectDefaultValue()
-	QV4::RuntimeHelpers::ordinaryToPrimitive()
+	QV4::RuntimeHelpers:objectDefaultValue(const Object *object, int typeHint)
+	QV4::RuntimeHelpers::ordinaryToPrimitive(ExecutionEngine *engine,const Object *object, String *typeHint)
 
 
 Reproduction

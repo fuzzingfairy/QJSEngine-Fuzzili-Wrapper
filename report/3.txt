@@ -2,13 +2,13 @@ Description
 ------------------------------------------------------------------------------
 CWE-674 Uncontrolled Recursion
 
-Due to a lack of input validation, an attacker can trigger a stack overflow by abusing the uncontrolled recursion between QV4::ArrayPrototype::method_toLocaleString(), QV4::Runtime::CallElement::call(), and QV4::FunctionObject::call() that can lead to a Denial of Service 
+Due to a lack of input validation, an attacker can trigger a stack overflow by abusing the uncontrolled recursion between QV4::ArrayPrototype::method_toLocaleString(const FunctionObject *b, const Value *thisObject, const Value *), QV4::Runtime::CallElement::call(ExecutionEngine *engine, const Value &baseRef, const Value &index, Value *argv, int argc), and QV4::FunctionObject::call(QObject *thisObject, void **a, const QMetaType *types, int argc) that can lead to a Denial of Service 
 
 - Expected behavior:
 	QML should handle the dereferencing of self-referencing objects by throwing an exception to notify the developer of uncontrolled recursion
 
 - Actual behavior:
-	Application crashes due to a lack of available stack space caused by uncontrolled recursion between QV4::ArrayPrototype::method_toLocaleString(), QV4::Runtime::CallElement::call(), and QV4::FunctionObject::call()
+	Application crashes due to a lack of available stack space caused by uncontrolled recursion between QV4::ArrayPrototype::method_toLocaleString(const FunctionObject *b, const Value *thisObject, const Value *), QV4::Runtime::CallElement::call(ExecutionEngine *engine, const Value &baseRef, const Value &index, Value *argv, int argc), and QV4::FunctionObject::call(QObject *thisObject, void **a, const QMetaType *types, int argc)
 
 
 Security Impact
@@ -23,18 +23,20 @@ Remediation can be achieved by passing a depth parameter between the vulnerable 
 Affected Components
 ------------------------------------------------------------------------------
 - files: 
+	qtdeclarative/src/qml/jsruntime/qv4arrayobject.cpp
+
 	qtdeclarative/src/qml/jsruntime/qv4functionobject_p.h
 	qtdeclarative/src/qml/jsruntime/qv4runtime.cpp
 	qtdeclarative/src/qml/jsruntime/qv4engine_p.h
 
 - functions: 
-	QV4::ArrayPrototype::method_toLocaleString()
-	QV4::Runtime::CallElement::call()
-	QV4::FunctionObject::call()
+	QV4::ArrayPrototype::method_toLocaleString(const FunctionObject *b, const Value *thisObject, const Value *)
+	QV4::Runtime::CallElement::call(ExecutionEngine *engine, const Value call()baseRef, const Value call()index, Value *argv, int argc)
+	QV4::FunctionObject::call(QObject *thisObject, void **a, const QMetaType *types, int argc)
 
 Reproduction
 ------------------------------------------------------------------------------
-calling QV4::ArrayPrototype::method_toLocaleString() on a self-referencing object:
+calling QV4::ArrayPrototype::method_toLocaleString(const FunctionObject *b, const Value *thisObject, const Value *) on a self-referencing object:
 	const v1 = [{},{},{}];
 	v1[1] = v1;
 	const v4 = v1.toLocaleString();

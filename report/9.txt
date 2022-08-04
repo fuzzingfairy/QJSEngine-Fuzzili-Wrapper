@@ -4,26 +4,28 @@ CWE-476: Out-Of-Bounds Read
 
 - Expected behavior:
     Scoped(const Scope &scope, typename T::Data *t) validates the pointer returned by scope.alloc
-- Actual behavior::Scoped(const Scope &scope, typename T::Data *t)
-	Scoped(const Scope &scope, typename T::Data *t) dereferences a pointer without first checking it is in mapped memory resulting in an application crash via segmentation fault
 
+- Actual behavior:
+	Scoped(const Scope &scope, typename T::Data *t) dereferences a pointer without first checking it is in mapped memory resulting in an application crash via segmentation fault
 
 
 Security Impact
 ------------------------------------------------------------------------------
-Possible arbitrary read of memory.
+Confidentiality of the process memory could be disrupted through the possibility for this leading to an arbitrary memory read
+
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
-Remediation can be done by validating the pointer returned by scope.alloc in qv4scopedvalue_p.h:350. 
+Remediation can be done by validating the pointer returned by scope.alloc in qv4scopedvalue_p.h:350.
+
 
 Affected Components
 ------------------------------------------------------------------------------
 - file:
 	qtdeclarative/src/qml/jsruntime/qv4arrayobject.cpp
-    qtdeclarative/src/qml/jsruntime/qv4scopedvalue_p.h
+	qtdeclarative/src/qml/jsruntime/qv4scopedvalue_p.h
 - function:
-	ArrayProtype::method_reverse
+	QV4::ArrayProtype::method_reverse()
 
 
 Reproduction

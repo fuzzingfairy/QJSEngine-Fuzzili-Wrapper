@@ -2,13 +2,13 @@ Description
 ------------------------------------------------------------------------------
 CWE-476: NULL Pointer Dereference
 
-The QV4::RegExpPrototype::method_compile() function dereferences a parameterized object before first validating that it is not NULL leading to a crash of the process
+The QV4::RegExpPrototype::method_compile(const FunctionObject *b, const Value *thisObject, const Value *argv, int argc) function dereferences a parameterized object before first validating that it is not NULL leading to a crash of the process
 
 - Expected behavior:
-	QV4::RegExpPrototype::method_compile() should check if the string is NULL before dereferencing its property and return an undefined string in the case that it is NULL
+	QV4::RegExpPrototype::method_compile(const FunctionObject *b, const Value *thisObject, const Value *argv, int argc) should check if the string is NULL before dereferencing its property and return an undefined string in the case that it is NULL
 
 - Actual behavior:
-	QV4::RegExpPrototype::method_compile() dereferences a parameterized object without first checking if it is NULL resulting in an application crash via segmentation fault
+	QV4::RegExpPrototype::method_compile(const FunctionObject *b, const Value *thisObject, const Value *argv, int argc) dereferences a parameterized object without first checking if it is NULL resulting in an application crash via segmentation fault
 
 
 Security Impact
@@ -26,12 +26,12 @@ Affected Components
 - file:
 	qtdeclarative/src/qml/jsruntime/qv4regexpobject.cpp
 - function:
-	QV4::RegExpPrototype::method_compile()
+	QV4::RegExpPrototype::method_compile(const FunctionObject *b, const Value *thisObject, const Value *argv, int argc)
 
 
 Reproduction
 ------------------------------------------------------------------------------
-invocation of QV4::RegExpPrototype::method_compile() with a NULL parameter:
+invocation of QV4::RegExpPrototype::method_compile(const FunctionObject *b, const Value *thisObject, const Value *argv, int argc) with a NULL parameter:
 	const v1 = [];
 	const v2 = /[\d(Y)?]/ui;
 	const v3 = ['species'];

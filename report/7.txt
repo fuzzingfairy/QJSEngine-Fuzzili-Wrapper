@@ -2,13 +2,13 @@ Description
 ------------------------------------------------------------------------------
 CWE-476 NULL Pointer Dereference
 
-The QV4::ArrayPrototype::method_values() function dereferences a parameterized object without first validating that it is not NULL leading to a crash of the process
+The QV4::ArrayPrototype::method_values(const FunctionObject *b, const Value *thisObject) function dereferences a parameterized object without first validating that it is not NULL leading to a crash of the process
 
 - Expected behavior:
-	QV4::ArrayPrototype::method_values() should check whether the callback parameter is NULL and return an undefined value in the case that it is NULL
+	QV4::ArrayPrototype::method_values(const FunctionObject *b, const Value *thisObject) should check whether the callback parameter is NULL and return an undefined value in the case that it is NULL
 
 - Actual behavior:
-	QV4::ArrayPrototype::method_values() dereferences a parameterized object without first checking if its NULL resulting in an application crash via segmentation fault
+	QV4::ArrayPrototype::method_values(const FunctionObject *b, const Value *thisObject) dereferences a parameterized object without first checking if its NULL resulting in an application crash via segmentation fault
 
 
 Security Impact
@@ -26,12 +26,12 @@ Affected Components
 - file:
 	qtdeclarative/src/qml/jsruntime/qv4arrayobject.cpp
 - function:
-	QV4::ArrayPrototype::method_values()
+	QV4::ArrayPrototype::method_values(const FunctionObject *b, const Value *thisObject)
 
 
 Reproduction
 ------------------------------------------------------------------------------
-invocation of QV4::ArrayPrototype::method_values() with a NULL parameter:
+invocation of QV4::ArrayPrototype::method_values(const FunctionObject *b, const Value *thisObject) with a NULL parameter:
 	const v1 = [1];
 	const v2 = v1[Symbol.iterator];
 	const v3 = [1,1,1];
