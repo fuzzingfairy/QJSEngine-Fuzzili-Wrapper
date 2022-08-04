@@ -1,32 +1,44 @@
 Description
 ------------------------------------------------------------------------------
+CWE-674 Uncontrolled Recursion
 
+Due to a lack of input validation, an attacker can trigger a Stack Overflow by abusing the uncontrolled recursion between  QV4::ProxyObject::virtualGet(), QV4::Object::get(), QV4::Object::virtualGet(), and QV4::Object::internalGet() to trigger a Denial of Service
 
-CWE-476 NULL Pointer Dereference
-Due to a lack of input validation, 
+- Expected behavior:
+	QML should handle the dereferencing of self-referencing proxy objects by throwing an exception to notify the developer of uncontrolled recursion
 
-* Expected behavior 
-
-* Actual behavior
+- Actual behavior:
+	Application crashes due to a lack of available stack space due to uncontrolled recursion between QV4::ProxyObject::virtualGet(), QV4::Object::get(), QV4::Object::virtualGet(), and QV4::Object::internalGet()
 
 
 Security Impact
 ------------------------------------------------------------------------------
+Availability of the process utilizing QML could be disrupted 
 
-<insert impact to confidentiality, availability, or integrity>
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
+Remediation can be achieved by passing a depth parameter between the vulnerable functions and disallowing recursion past a certain depth. In addition, an exception should be thrown to inform the developer that the max recursion depth was exceeded.
 
 
 Affected Components
 ------------------------------------------------------------------------------
-files:
-functions: 
+- files: 
+	qtdeclarative/src/qml/jsruntime/qv4object_p.h
+	qtdeclarative/src/qml/jsruntime/qv4proxy.cpp
+	qtdeclarative/src/qml/jsruntime/qv4object.cpp
+	qtdeclarative/src/qml/jsruntime/qv4object.cpp
+- functions: 
+	QV4::ProxyObject::virtualGet()
+	QV4::Object::get()
+	QV4::Object::virtualGet()
+	QV4::Object::internalGet()
 
 
-References
+Reproduction
 ------------------------------------------------------------------------------
-
-* Proof of Concept Code
-<insert PoC>
+creation of a proxy object that is made to reference and re-reference its target object:
+	const v9 = {};
+	const v11 = new Proxy(Object,v9);
+	v9.__proto__ = v11;
+	v9.__proto__ = v11;

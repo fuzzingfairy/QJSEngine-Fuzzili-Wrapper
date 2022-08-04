@@ -1,8 +1,8 @@
 function main() { 
-const v1 = [3769255543,3769255543,3769255543,3769255543];
-let {"constructor":v2,"length":v3,"toString":v4,} = v1;
-const v6 = [3769255543,3769255543,3769255543,3769255543];
-const v7 = v6.reduce(v4);
+const v1 = [0,0,0,0];
+const v2 = v1["toString"];
+const v3 = [0,0,0,0];
+const v4 = v3.reduce(v2);
 }
 main();
 // CRASH INFO

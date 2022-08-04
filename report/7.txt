@@ -1,14 +1,14 @@
 Description
 ------------------------------------------------------------------------------
-CWE-476: NULL Pointer Dereference
+CWE-476 NULL Pointer Dereference
 
-The QString member function, getThisString(), dereferences a parameter before first validating that the object is not NULL leading to a possible Denial of Service
+The QV4::ArrayPrototype::method_values() function dereferences a parameterized object without first validating that it is not NULL leading to a crash of the process
 
 - Expected behavior:
-	getThisString() should check if the string is NULL before dereferencing its property and return an undefined string in the case that it is NULL
+	QV4::ArrayPrototype::method_values() should check whether the callback parameter is NULL and return an undefined value in the case that it is NULL
 
 - Actual behavior:
-	getThisString() dereferences a parameterized object without first checking if its NULL resulting in an application crash via segmentation fault.
+	QV4::ArrayPrototype::method_values() dereferences a parameterized object without first checking if its NULL resulting in an application crash via segmentation fault
 
 
 Security Impact
@@ -24,14 +24,15 @@ Remediation can be achieved through the addition of input validation that checks
 Affected Components
 ------------------------------------------------------------------------------
 - file:
-	qtdeclarative/src/qml/jsruntime/qv4stringobject.cpp
+	qtdeclarative/src/qml/jsruntime/qv4arrayobject.cpp
 - function:
-	getThisString()
+	QV4::ArrayPrototype::method_values()
 
 
 Reproduction
 ------------------------------------------------------------------------------
-invocation of getThisString() on an undefined object
-	const v2 = ["i68jdS1zZC"];
-	const v3 = "i68jdS1zZC".endsWith;
-	const v4 = v2.reduceRight(v3,3769255543);
+invocation of QV4::ArrayPrototype::method_values() with a NULL parameter:
+	const v1 = [1];
+	const v2 = v1[Symbol.iterator];
+	const v3 = [1,1,1];
+	const v4 = v3["reduce"](v2);

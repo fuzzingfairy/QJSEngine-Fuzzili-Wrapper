@@ -1,40 +1,38 @@
 Description
 ------------------------------------------------------------------------------
-
 CWE-674 Uncontrolled Recursion
 
-Due to a lack of input validation, an attacker can trigger a Stack Overflow due to the uncontrolled recursion between `QV4::RuntimeHelpers::ordinaryToPrimitive()` and `QV4::RuntimeHelpers::objectDefaultValue()` that can lead to a Denial of Service by evaluating javascript which contains an object that references itself through one of its properties
+Due to a lack of input validation, an attacker can trigger a Stack Overflow by abusing the uncontrolled recursion between QV4::RuntimeHelpers::ordinaryToPrimitive() and QV4::RuntimeHelpers::objectDefaultValue() that can lead to a Denial of Service 
 
-* Expected behavior 
-Application should handle the dereferencing of self-referencing object by notifying the user of an error without crashing.
+- Expected behavior:
+	QML should handle the dereferencing of self-referencing object by throwing an exception to notify the developer of uncontrolled recursion
 
-* Actual behavior
-Application crashes due to a lack of available stack space
+- Actual behavior:
+	Application crashes due to a lack of available stack space caused by uncontrolled recursion between QV4::RuntimeHelpers::ordinaryToPrimitive() and QV4::RuntimeHelpers::objectDefaultValue() 
 
 
 Security Impact
 ------------------------------------------------------------------------------
-
 Availability of the process utilizing QML could be disrupted
 
 
 Remediation and Mitigating Factors
 ------------------------------------------------------------------------------
+Remediation can be achieved by passing a depth parameter between the vulnerable functions and disallowing recursion past a certain depth. In addition, an exception should be thrown to inform the developer that the max recursion depth was exceeded
 
-Remediation can be acheived by passing a depth parameter between the vulnerable functions and dissallowing recursion past a certain depth
 
 Affected Components
 ------------------------------------------------------------------------------
-file: qtdeclarative/src/qml/jsruntime/qv4runtime.cpp
-functions: 
-	- RuntimeHelpers:objectDefaultValue
-	- RuntimeHelpers::ordinaryToPrimitive
+- file: 
+	qtdeclarative/src/qml/jsruntime/qv4runtime.cpp
+- functions: 
+	QV4::RuntimeHelpers:objectDefaultValue()
+	QV4::RuntimeHelpers::ordinaryToPrimitive()
 
 
-References
+Reproduction
 ------------------------------------------------------------------------------
-
-* Proof of Concept Code
-let v1 [1, 1, 1];
-v1[1] = v1;
-const v2 = v1--;
+creation and use of a self-referencing array:
+	let v1 [1, 1, 1];
+	v1[1] = v1;
+	const v2 = v1--;

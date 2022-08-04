@@ -1,6 +1,7 @@
 function main() { 
-const v7 = Promise.resolve;
-const v8 = Reflect.apply(v7,{},{});
+const v1 = [{},{},{}];
+v1[1] = v1;
+const v4 = v1.toLocaleString();
 }
 main();
 // CRASH INFO

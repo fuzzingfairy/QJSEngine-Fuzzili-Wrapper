@@ -1,0 +1,38 @@
+Description
+------------------------------------------------------------------------------
+CWE-476: NULL Pointer Dereference
+
+The QV4::ExecutionEngine::newPromiseObject() function dereferences a parameterized object before first validating that it is not NULL leading to a crash of the process
+
+- Expected behavior:
+	QV4::ExecutionEngine::newPromiseObject() should check if the parameterized object is NULL before dereferencing its property and return and undefined promise obejct in the case that it is NULL
+
+- Actual behavior:
+	QV4::ExecutionEngine::newPromiseObject() dereferences the NULL parameter without first checking if it is NULL resulting in a crash via segmentation fault
+
+
+Security Impact
+------------------------------------------------------------------------------
+Availability of the process utilizing QML could be disrupted
+
+
+Remediation and Mitigating Factors
+------------------------------------------------------------------------------
+Remediation can be achieved throuugh the addition of input validationthat checks that the vulnerable function's parameters are not NULL before attempting to dereference their properties
+
+
+Affected Components
+------------------------------------------------------------------------------
+- file:
+	qtdeclarative/src/qml/jsruntime/qv4engine.cpp
+- function:
+	QV4::ExecutionEngine::newPromiseObject()
+
+
+Reproduction
+------------------------------------------------------------------------------
+Creation of a promise out of a NULL object:
+	const v1 = Promise.resolve;
+	const v2 = Reflect.apply(v1,{},{});
+
+
